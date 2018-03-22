@@ -1,9 +1,9 @@
 var path = require('path');
 module.exports = {
 
-    mode: "production", // "development", "production",
+    mode: "development", // "development", "production",
 
-    entry: "./src/app/App.tsx",
+    entry: "./src/app/AppRoot.tsx",
 
     output: {
         filename: "app.js",
@@ -18,7 +18,7 @@ module.exports = {
 
     module: {
         rules: [
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+            { test: /\.tsx?$/, loader: "ts-loader" },
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
         ]
     }
