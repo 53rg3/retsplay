@@ -16,7 +16,9 @@ export function AjaxRequestBuilder(config:(cfg:GenericConfig<AjaxRequest>)=>Gene
 
     const result = GenericBuilder.buildFrom(config);
 
-    let method = GenericBuilder.build<HttpRequest>().method(Method.GET).build();
+    let method = GenericBuilder.build<HttpRequest>()
+        .method(Method.GET)
+        .build();
 
 
     Checks.throwIfNull(result.method, "'method' must not be null.");

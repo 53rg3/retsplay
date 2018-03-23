@@ -6,7 +6,7 @@ $main-content-bg-color : #f3f3f3;
 
 
 $nav-font-color: #d8d8d8;
-$nav-bg-color: #444;
+$nav-bg-color: #62727b;
 
 /************** LAYOUT **************/
 
@@ -24,7 +24,6 @@ html, body {
   display: flex;
   flex-direction: row;
   flex: 1;
-
 }
 
 /************** HEADER **************/
@@ -51,6 +50,7 @@ nav {
 /************** MAIN CONTENT **************/
 
 main {
+  flex-grow: 1;
   background-color: $main-content-bg-color;
   order:2;
   padding: 10px;

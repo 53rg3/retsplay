@@ -5,18 +5,20 @@ import {RxJs} from "./RxJS";
 import {Redux} from "./Redux";
 import {BrowserRouter} from "react-router-dom";
 import {Router} from "./Router";
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import {MuiCustomStyle} from "../containers/layout/theme/materialui/Style";
-// <MuiThemeProvider muiTheme={MuiCustomStyle}>
-// </MuiThemeProvider>
+import MuiThemeProvider from "material-ui-next/es/styles/MuiThemeProvider";
+import {MuiCustomTheme} from "../containers/layout/Theme";
+
+
 
 RxJs.getImports();
 
 ReactDOM.render(
         <Provider store={Redux.INST.store}>
+            <MuiThemeProvider theme={MuiCustomTheme}>
             <BrowserRouter>
                 <Router/>
             </BrowserRouter>
+            </MuiThemeProvider>
         </Provider>
     ,
     document.getElementById("app")

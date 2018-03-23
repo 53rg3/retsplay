@@ -6,7 +6,7 @@ import {Sidebar} from "./sidebar/Sidebar";
 
 
 
-export class Layout extends React.Component<NoProps,NoState> {
+export class LayoutRoot extends React.Component<NoProps,NoState> {
     render() {
         return (
             <div className="flex-full-height">

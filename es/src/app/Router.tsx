@@ -3,7 +3,8 @@ import {NoProps, NoState} from "../helpers/NoPropsNoState";
 import {Route} from "react-router";
 import Home from "../containers/home/Home";
 import Blog from "../containers/blog/Blog";
-import {Layout} from "../containers/layout/Layout";
+import {LayoutRoot} from "../containers/layout/LayoutRoot";
+import CssBaseline from "material-ui-next/es/CssBaseline";
 
 
 export class Routes {
@@ -30,10 +31,11 @@ export class Router extends React.Component<NoProps, NoState> {
     render() {
         return (
             <div>
-                <Layout>
+                <CssBaseline />
+                <LayoutRoot>
                     <Route exact path={Routes.HOME} component={Home}/>
                     <Route exact path={Routes.blog.ROOT} component={Blog}/>
-                </Layout>
+                </LayoutRoot>
             </div>
         );
     }
