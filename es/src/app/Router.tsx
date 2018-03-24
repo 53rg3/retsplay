@@ -15,7 +15,7 @@ export class Routes {
         assets: Routes.root + "assets"
     };
 
-    public static HOME = Routes.root;
+    public static DASHBOARD = Routes.root;
 
     public static blog = {
         ROOT: Routes.modules.blog
@@ -33,7 +33,7 @@ export class Router extends React.Component<NoProps, NoState> {
             <div>
                 <CssBaseline />
                 <LayoutRoot>
-                    <Route exact path={Routes.HOME} component={Home}/>
+                    <Route exact path={Routes.DASHBOARD} component={Home}/>
                     <Route exact path={Routes.blog.ROOT} component={Blog}/>
                 </LayoutRoot>
             </div>

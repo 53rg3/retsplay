@@ -7,4 +7,11 @@ export module Checks {
         }
         return value;
     }
+
+    export function throwIfNotUndefined(value: any, message: string): any {
+        if (value !== undefined) {
+            throw new Error(message);
+        }
+        return value;
+    }
 }

@@ -13,6 +13,7 @@ export class Reducer<T> {
     }
 
     public addReducer(actionType: string, reducerFunction: (state: T, action: FSAction<T>) => T) {
+        Checks.throwIfNotUndefined(this.reducers[actionType], "Duplicate ActionType for Reducer in EAR instance provided, problem with "+actionType);
         this.reducers[actionType] = reducerFunction;
     }
 

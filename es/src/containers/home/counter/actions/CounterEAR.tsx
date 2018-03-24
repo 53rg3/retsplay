@@ -1,8 +1,8 @@
 import {FSAction} from "../../../../lib/FSAction";
 import {Reducer} from "../../../../lib/Reducer";
-import {EAR, EarBuilder} from "../../../../lib/EarBuilder";
 import {Act} from "../../../../app/ActionType";
 import {ActionFactory} from "../../../../helpers/ActionFactory";
+import {EAR} from "../../../../lib/EAR";
 
 
 export class CounterState {
@@ -26,7 +26,7 @@ export class CounterStateFactory {
         return new CounterState(0);
     }
 
-    public static value(value:number) {
+    public static value(value: number) {
         return new CounterState(value);
     }
 }
@@ -36,25 +36,22 @@ export class CounterEAR extends Reducer<CounterState> {
         super(CounterStateFactory.initial());
     }
 
-    public readonly increase: EAR<CounterState, CounterEAR> = new EarBuilder<CounterState, CounterEAR>()
-        .setParentEAR(this)
+    public readonly increase = new EAR(this, c => c
         .setDispatchAction(Act.counter.ASYNC_INCREMENT)
         .setEpic(action => action
             .ofType(Act.counter.ASYNC_INCREMENT)
             .delay(500)
             .mapTo(ActionFactory.create(Act.counter.INCREMENT, null)))
-        .setReducer(Act.counter.INCREMENT, CounterStateFactory.increase)
-        .build();
+        .addReducer(Act.counter.INCREMENT, CounterStateFactory.increase));
 
-    public readonly decrease: EAR<CounterState, CounterEAR> = new EarBuilder<CounterState, CounterEAR>()
-        .setParentEAR(this)
+
+    public readonly decrease = new EAR(this, c => c
         .setDispatchAction(Act.counter.ASYNC_DECREMENT)
         .setEpic(action => action
             .ofType(Act.counter.ASYNC_DECREMENT)
             .delay(500)
             .map(x => ActionFactory.create(Act.counter.DECREMENT, x.payload)))
-        .setReducer(Act.counter.DECREMENT, CounterStateFactory.decrease)
-        .build();
+        .addReducer(Act.counter.DECREMENT, CounterStateFactory.decrease));
 
 
     private static _INST: CounterEAR;

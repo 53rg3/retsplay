@@ -1,21 +1,44 @@
-import * as React from "react";
-import {NoProps, NoState} from "../../helpers/NoPropsNoState";
+import React = require("react");
+import {NoState} from "../../helpers/NoPropsNoState";
+import {decorate} from "../../helpers/ComponentDecorators";
+import {Sidebar} from "./sidebar/Sidebar";
 import {Header} from "./header/Header";
 import {Main} from "./main/Main";
-import {Sidebar} from "./sidebar/Sidebar";
 
 
+const styles = (theme: any) => ({
+    root: {
+        flexGrow: 1,
+        height: "100vh",
+        zIndex: 1,
+        overflow: 'hidden',
+        position: 'relative',
+        display: 'flex',
+    },
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
+    }
+});
 
-export class LayoutRoot extends React.Component<NoProps,NoState> {
+interface Props {
+    classes?: any;
+}
+
+class Component extends React.Component<Props, NoState> {
     render() {
         return (
-            <div className="flex-full-height">
-                <Header/>
-                <div className="row row-main">
-                    <Main children={this.props.children}/>
-                    <Sidebar/>
-                </div>
+            <div className={this.props.classes.root}>
+
+                <Header />
+
+                <Sidebar />
+
+                <Main children={this.props.children}/>
+
             </div>
         );
     }
 }
+
+export const LayoutRoot = decorate<Props>(Component, c => c
+    .withStyles(styles));

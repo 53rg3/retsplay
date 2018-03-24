@@ -8,13 +8,13 @@ import {withRouter} from "react-router";
 
 interface Capabilities {
     withRedux:boolean;
-    withStyles: ()=>Object;
+    withStyles: (theme?:any)=>Object;
     withRouter:boolean;
 }
 
 /**
  * ----- Props interface maybe needs specific properties -----
- * ------ We can't check these at compile- or run-time. ------0
+ * ------ We can't check these at compile- or run-time. ------
  *
  * withStyles:
  * Props must have property 'classes:any'. This adds the provided CSS to props.
@@ -23,7 +23,7 @@ interface Capabilities {
  * Props should have property 'location:any'. This adds some functions to props.
  *
  * withRedux:
- * Props must have the state property names from the store.
+ * Props must have the state property names from the store. Otherwise they won't be available.
  */
 export function decorate<P>(component: React.ComponentClass, cfg:(cfg:GenericConfig<Capabilities>)=>GenericConfig<Capabilities>): React.ComponentClass<P> {
 

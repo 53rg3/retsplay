@@ -5,7 +5,7 @@ import Counter from "./counter/Counter";
 
 
 
-class Home extends React.Component<NoProps,NoState> {
+export default class Home extends React.Component<NoProps,NoState> {
 
     render() {
         return (
@@ -16,4 +16,3 @@ class Home extends React.Component<NoProps,NoState> {
         );
     }
 }
-export default withRedux<NoProps>(Home);
