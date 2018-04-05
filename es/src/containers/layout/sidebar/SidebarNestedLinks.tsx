@@ -1,12 +1,9 @@
 import * as React from "react";
-import {decorate} from "../../../helpers/ComponentDecorators";
-import {NoState} from "../../../helpers/NoPropsNoState";
-import {Routes} from "../../../app/Router";
-import {Toggle} from "../../../helpers/Toggle";
-import List, {ListItem, ListItemText} from 'material-ui-next/List';
+import {ListItem, ListItemText} from 'material-ui-next/List';
 import Collapse from 'material-ui-next/transitions/Collapse';
 import Icon from "material-ui-next/es/Icon";
-import {SidebarLink} from "./SidebarLink";
+import {Toggle} from "../../../lib/helpers/Toggle";
+import {decorate} from "../../../lib/helpers/ComponentDecorators";
 
 
 const styles = (theme: any) => ({

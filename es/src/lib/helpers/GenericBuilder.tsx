@@ -1,4 +1,5 @@
-import {FormField} from "./forms/FormField";
+import {FormField} from "../form/FormField";
+
 
 export type GenericConfig<T> = {
         [k in keyof T]: (arg: T[k]) => GenericConfig<T>

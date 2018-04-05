@@ -1,8 +1,8 @@
 import * as React from "react";
-import {decorate} from "../../../helpers/ComponentDecorators";
-import {NoState} from "../../../helpers/NoPropsNoState";
-import {paperStyle} from "../css/MuiComponents";
 import Paper from "material-ui-next/es/Paper";
+import {MUI} from "../css/MUI";
+import {NoState} from "../../../lib/helpers/NoPropsNoState";
+import {decorate} from "../../../lib/helpers/ComponentDecorators";
 
 class Props {
     classes?: any;
@@ -18,4 +18,4 @@ class HeadingRaw extends React.Component<Props, NoState> {
     }
 }
 export const Heading = decorate<Props>(HeadingRaw, c => c
-    .withStyles(paperStyle));
+    .withStyles(MUI.classes.mainContent));

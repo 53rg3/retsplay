@@ -2,6 +2,7 @@ import {FSAction} from "./FSAction";
 import {Checks} from "../helpers/Checks";
 
 
+
 export class Reducer<T> {
 
     private readonly reducers: { [index: string]: (state: T, action: FSAction<T>) => T } = {};

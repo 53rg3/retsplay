@@ -2,7 +2,8 @@ import {SelectProps} from "material-ui-next/es/Select";
 import * as React from "react";
 import {FormField} from "../FormField";
 import {FormManager} from "../FormManager";
-import {GenericBuilder, GenericConfig} from "../../GenericBuilder";
+import {GenericBuilder, GenericConfig} from "../../helpers/GenericBuilder";
+
 
 
 export class SelectFieldConfigData {

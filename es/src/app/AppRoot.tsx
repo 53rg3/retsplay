@@ -7,10 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Router} from "./Router";
 import MuiThemeProvider from "material-ui-next/es/styles/MuiThemeProvider";
 import createMuiTheme from "material-ui-next/styles/createMuiTheme";
-import {theme} from "../containers/layout/css/Theme";
-
-
-
+import {MUI} from "../containers/layout/css/MUI";
 
 
 
@@ -18,7 +15,7 @@ RxJs.getImports();
 
 ReactDOM.render(
         <Provider store={Redux.INST.store}>
-            <MuiThemeProvider theme={createMuiTheme(theme)}>
+            <MuiThemeProvider theme={createMuiTheme(MUI.theme)}>
             <BrowserRouter>
                 <Router/>
             </BrowserRouter>

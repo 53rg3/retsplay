@@ -1,30 +1,21 @@
 import * as React from "react";
-import {decorate} from "../../helpers/ComponentDecorators";
 import {Field, Form} from 'react-final-form'
-import {FormFactory} from "../../helpers/forms/FormFactory";
-import {FormField} from "../../helpers/forms/FormField";
-import {Value} from "../../helpers/forms/Value";
 import Button from "material-ui-next/es/Button";
 import {FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, RadioGroup} from "material-ui-next";
-import {FieldMeta} from "../../helpers/forms/FieldMeta";
-import {FormManager} from "../../helpers/forms/FormManager";
-import {formCss, modalStyle} from "../layout/css/MuiComponents";
+import {MUI} from "../layout/css/MUI";
 import Divider from "material-ui-next/es/Divider";
-import {Toggle} from "../../helpers/Toggle";
 import {ModalStandard} from "../layout/commons/ModalStandard";
+import {colorSelection, FormExampleLogic} from "./FormExample.logic";
+import {formExampleFields} from "./FormExample.fields";
+import {FormExampleCss} from "./FormExample.css";
+import {FormManager} from "../../lib/form/FormManager";
+import {Toggle} from "../../lib/helpers/Toggle";
+import {FormFactory} from "../../lib/form/FormFactory";
+import {FieldMeta} from "../../lib/form/FieldMeta";
+import {decorate} from "../../lib/helpers/ComponentDecorators";
 
 
-const colorSelection = [
-    'red',
-    'green',
-    'blue',
-    'purple',
-    'yellow',
-    'black',
-    'white',
-    'brown',
-    'orange'
-];
+
 
 class Props {
     classes?: any;
@@ -35,77 +26,19 @@ class State {
     colorFilter = "";
 }
 
-class FormExampleBlank extends React.Component<Props, State> {
+class FormExample extends React.Component<Props, State> {
+
+    private formFields = formExampleFields;
+    private formManager: FormManager;
+    private logic:FormExampleLogic;
+    private css = FormExampleCss;
 
     constructor(props: Props) {
         super(props);
         this.state = new State();
+        this.formManager = new FormManager(this, formExampleFields);
+        this.logic = new FormExampleLogic(this, this.formManager);
     }
-
-    handleSubmit(input: any) {
-        console.log("Form Submission Result: ", input);
-        Toggle.byKey("isModalOpen", this);
-    }
-
-    private changeValues() {
-        this.formManager.setValues({
-            name: "Bob",
-            secretKey: "KAJssdf2399823§$%&",
-            skill: "swordsmanship",
-            food: ["burger", "pizza"],
-            awesome: true,
-            glorious: true,
-            formidable: true,
-            singleColor: "blue",
-            multiColor: ["orange", "red", "yellow"]
-        });
-    }
-
-    private selectAllLink() {
-        const value = FieldMeta.getValueAsArray(this.formFields.food);
-        if (value.length == 0) {
-            return <span style={formCss.functionLink}
-                         onClick={() => FieldMeta.selectAll(this.formManager, this.formFields.food)}>(select all)</span>;
-        } else {
-            return <span style={formCss.functionLink}
-                         onClick={() => FieldMeta.deselectAll(this.formManager, this.formFields.food)}>(deselect all)</span>;
-        }
-    }
-
-    private formFields = {
-        name: new FormField(String, c => c
-            .validation(Value.isRequired, "Required")),
-
-        secretKey: new FormField(String, c => c
-            .validation(Value.isRequired, "Required")
-            .validation(v => /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{12,})/.test(v),
-                "Min 12 chars, with capital letters & special chars")
-            .validation(v => Value.hasMinLength(v, 12), "Min length: 12")),
-
-        skill: new FormField(String, c => c
-            .validation(Value.isRequired, "Only a dead socialist is good socialist. How do you slay them?")),
-
-        food: new FormField(Array, c => c
-            .validation(Value.isRequired, "We need to know!")
-            .validation(v => v.length > 1, "Choose at least two!")),
-
-        awesome: new FormField(Boolean, c => c
-            .validation(Value.isRequired, "Must be awesome")),
-
-        glorious: new FormField(Boolean, c => c
-            .validation(Value.isRequired, "Must be glorious")),
-
-        formidable: new FormField(Boolean, c => c
-            .validation(Value.isRequired, "Must be formidable")),
-
-        multiColor: new FormField(Array, c => c
-            .validation(Value.isRequired, "Dude, choose some colors!")
-            .validation(v => v.length > 1, "Choose at least two!")),
-
-        singleColor: new FormField(Array, c => c
-            .validation(Value.isRequired, "Dude, choose a color!"))
-    };
-    private formManager: FormManager = new FormManager(this, this.formFields);
 
 
     render(): any {
@@ -116,11 +49,11 @@ class FormExampleBlank extends React.Component<Props, State> {
                         <pre>{JSON.stringify(this.formManager.getValues(), null, 4)}</pre>
                     </div>
                 </ModalStandard>
-                <Button variant="raised" onClick={this.changeValues.bind(this)}>Insert values (initialize)</Button>
+                <Button variant="raised" onClick={this.logic.changeValues.bind(this)}>Insert values (initialize)</Button>
                 <br/>
                 <br/>
                 <Form
-                    onSubmit={this.handleSubmit.bind(this)}
+                    onSubmit={this.logic.handleSubmit.bind(this.logic)}
                     validate={this.formManager.validate.bind(this.formManager)}
                     initialValues={this.formManager.getValues()}
                     render={(formProps) => (
@@ -129,7 +62,7 @@ class FormExampleBlank extends React.Component<Props, State> {
                                 <Field {...this.formFields.name}>
                                     {props => FormFactory.textField(c => c
                                         .fieldProps(props)
-                                        .customProps(FieldMeta.styleAsProp({width: "100px", marginRight: "20px"}))
+                                        .customProps(FieldMeta.styleAsProp(this.css.nameField))
                                         .field(c => c
                                             .label("Name *")
                                             .error(FieldMeta.isTouchedAndInvalid(props))
@@ -166,7 +99,7 @@ class FormExampleBlank extends React.Component<Props, State> {
                                                               .formField(this.formFields.skill)
                                                               .value("archery"))}/>
                                     </RadioGroup>
-                                    <FormHelperText style={formCss.radioButtonHelperText}>
+                                    <FormHelperText style={MUI.inline.form.radioButtonHelperText}>
                                         {FieldMeta.showHelpOrErrorByField(formProps, this.formFields.skill, "How do you like to slay socialists?")}
                                     </FormHelperText>
                                 </FormControl>
@@ -178,7 +111,7 @@ class FormExampleBlank extends React.Component<Props, State> {
                                 <FormLabel>Favorite food</FormLabel><br/>
                                 <FormControl
                                     error={FieldMeta.isTouchedAndInvalidByField(formProps, this.formFields.food)}>
-                                    {this.selectAllLink()}
+                                    {this.logic.selectAllLink()}
                                     <FormGroup row>
                                         <FormControlLabel label="Pizza"
                                                           control={FormFactory.checkbox(c => c
@@ -193,7 +126,7 @@ class FormExampleBlank extends React.Component<Props, State> {
                                                               .formField(this.formFields.food)
                                                               .value("hot dogs"))}/>
                                     </FormGroup>
-                                    <FormHelperText style={formCss.radioButtonHelperText}>
+                                    <FormHelperText style={MUI.inline.form.radioButtonHelperText}>
                                         {FieldMeta.showHelpOrErrorByField(formProps, this.formFields.food,
                                             "Why get thinner, when you can get more dinner?")}
                                     </FormHelperText>
@@ -213,7 +146,7 @@ class FormExampleBlank extends React.Component<Props, State> {
                                                 label="Awesome"
                                                 control={FormFactory.switch(c => c
                                                     .formField(this.formFields.awesome))}/>
-                                            <FormHelperText style={formCss.radioButtonHelperText}>
+                                            <FormHelperText style={MUI.inline.form.radioButtonHelperText}>
                                                 {FieldMeta.showHelpOrErrorByField(formProps, this.formFields.awesome, "")}
                                             </FormHelperText>
                                         </FormControl>
@@ -226,7 +159,7 @@ class FormExampleBlank extends React.Component<Props, State> {
                                                 label="Glorious"
                                                 control={FormFactory.switch(c => c
                                                     .formField(this.formFields.glorious))}/>
-                                            <FormHelperText style={formCss.radioButtonHelperText}>
+                                            <FormHelperText style={MUI.inline.form.radioButtonHelperText}>
                                                 {FieldMeta.showHelpOrErrorByField(formProps, this.formFields.glorious, "")}
                                             </FormHelperText>
                                         </FormControl>
@@ -239,7 +172,7 @@ class FormExampleBlank extends React.Component<Props, State> {
                                                 label="Formidable"
                                                 control={FormFactory.switch(c => c
                                                     .formField(this.formFields.formidable))}/>
-                                            <FormHelperText style={formCss.radioButtonHelperText}>
+                                            <FormHelperText style={MUI.inline.form.radioButtonHelperText}>
                                                 {FieldMeta.showHelpOrErrorByField(formProps, this.formFields.formidable, "")}
                                             </FormHelperText>
                                         </FormControl>
@@ -249,24 +182,19 @@ class FormExampleBlank extends React.Component<Props, State> {
 
                             <div>
                                 <FormLabel>Color Selection</FormLabel><br/>
-                                <FormControl className={this.props.classes.formControl}
-                                             error={FieldMeta.isTouchedAndInvalidByField(formProps, this.formFields.singleColor)}>
+                                <FormControl error={FieldMeta.isTouchedAndInvalidByField(formProps, this.formFields.singleColor)}>
                                     <Field {...this.formFields.singleColor} render={props => FormFactory.select(c => c
                                         .formField(this.formFields.singleColor)
                                         .formManager(this.formManager)
                                         .inputLabel("(SINGLE SELECT)")
-                                        .selectComponentCustomProps(FieldMeta.styleAsProp({
-                                            width: "250px",
-                                            marginRight: "10px"
-                                        }))
+                                        .selectComponentCustomProps(FieldMeta.styleAsProp(this.css.singleColor))
                                         .options(colorSelection))}/>
                                     <FormHelperText>
                                         {FieldMeta.showHelpOrErrorByField(formProps, this.formFields.singleColor, "Choose a color")}
                                     </FormHelperText>
                                 </FormControl>
 
-                                <FormControl className={this.props.classes.formControl}
-                                             error={FieldMeta.isTouchedAndInvalidByField(formProps, this.formFields.multiColor)}>
+                                <FormControl error={FieldMeta.isTouchedAndInvalidByField(formProps, this.formFields.multiColor)}>
                                     <Field {...this.formFields.multiColor} render={props => FormFactory.select(c => c
                                         .formField(this.formFields.multiColor)
                                         .formManager(this.formManager)
@@ -278,13 +206,12 @@ class FormExampleBlank extends React.Component<Props, State> {
                                             .includes(this.state.colorFilter))
                                         .selectComponentProps(c => c
                                             .multiple(true))
-                                        .selectComponentCustomProps(FieldMeta.styleAsProp({width: "250px"}))
+                                        .selectComponentCustomProps(FieldMeta.styleAsProp(this.css.multiColor))
                                         .options(colorSelection))}/>
                                     <FormHelperText>
                                         {FieldMeta.showHelpOrErrorByField(formProps, this.formFields.multiColor, "Choose some colors")}
                                     </FormHelperText>
                                 </FormControl>
-                                {console.log("formProps", formProps)}
                             </div>
 
 
@@ -297,15 +224,14 @@ class FormExampleBlank extends React.Component<Props, State> {
                             <Divider/>
 
                             <h2>Values</h2>
-                            <div style={{backgroundColor: "#ddd"}}>
+                            <div style={this.css.values}>
                                 <pre>{JSON.stringify(this.formManager.getValues(), null, 4)}</pre>
                             </div>
                         </form>)}
                 />
-
             </div>
         );
     }
 }
-export const FormExample = decorate<Props>(FormExampleBlank, c => c
-    .withStyles(modalStyle));
+export default decorate<Props>(FormExample, c=>c
+    .withRedux(true))

@@ -1,9 +1,7 @@
-import {GenericBuilder, GenericConfig, GenericConfigWithFormField} from "../GenericBuilder";
 import TextField from "material-ui-next/es/TextField";
 import * as React from "react";
 import {Field, FieldProps, FormProps} from "react-final-form";
 import Radio from "material-ui-next/es/Radio";
-import {Checks} from "../Checks";
 import Checkbox from "material-ui-next/es/Checkbox";
 import {FieldMeta} from "./FieldMeta";
 import Switch from "material-ui-next/es/Switch";
@@ -15,6 +13,8 @@ import Tooltip from "material-ui-next/es/Tooltip";
 import {FormManager} from "./FormManager";
 import {TextFieldConfig, TextFieldConfigData} from "./configs/TextFieldConfig";
 import {SelectFieldConfig, SelectFieldConfigData} from "./configs/SelectFieldConfig";
+import {Checks} from "../helpers/Checks";
+import {GenericBuilder, GenericConfigWithFormField} from "../helpers/GenericBuilder";
 
 
 export class FormFactory {
@@ -43,7 +43,7 @@ export class FormFactory {
 
         cfg.name = cfg.formField.name;
         return (
-            <Field {...cfg} type={"radio"}>
+            <Field {...cfg} type={FieldMeta.inputType.radio}>
                 {props => <Radio {...props.input} />}
             </Field>
         );
@@ -60,7 +60,7 @@ export class FormFactory {
         cfg.name = cfg.formField.name;
         cfg.formField.addOption(cfg.value);
         return (
-            <Field {...cfg} type={"checkbox"}>
+            <Field {...cfg} type={FieldMeta.inputType.checkbox}>
                 {props => {
                     cfg.formField.props = props;
                     return (<Checkbox {...props.input} checked={FieldMeta.hasValue(cfg.value, cfg.formField)}/>);
@@ -79,7 +79,7 @@ export class FormFactory {
 
         cfg.name = cfg.formField.name;
         return (
-            <Field {...cfg} type={"checkbox"}>
+            <Field {...cfg} type={FieldMeta.inputType.checkbox}>
                 {props => {
                     cfg.formField.props = props;
                     return (<Switch {...props.input} value={"override_dummy"} checked={props.input.value}/>);

@@ -3,8 +3,8 @@ import {ActionsObservable, Epic} from "redux-observable";
 import {Observable} from "rxjs/Observable";
 import {FSAction} from "./FSAction";
 import {Reducer} from "./Reducer";
+import {Redux} from "../../app/Redux";
 import {Checks} from "../helpers/Checks";
-import {Redux} from "../app/Redux";
 import {ActionFactory} from "../helpers/ActionFactory";
 
 

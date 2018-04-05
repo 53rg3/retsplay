@@ -1,12 +1,12 @@
 import * as React from "react";
-import {NoProps, NoState} from "../helpers/NoPropsNoState";
 import {Route} from "react-router";
 import Home from "../containers/home/Home";
 import Blog from "../containers/blog/Blog";
 import {LayoutRoot} from "../containers/layout/LayoutRoot";
 import CssBaseline from "material-ui-next/es/CssBaseline";
 import Counter from "../containers/counter/Counter";
-import {FormExample} from "../containers/formexample/FormExample";
+import {NoProps, NoState} from "../lib/helpers/NoPropsNoState";
+import FormExample from "../containers/formexample/FormExample";
 
 
 export class Routes {

@@ -1,13 +1,10 @@
-import {decorate} from "../../../helpers/ComponentDecorators";
-import {NoState} from "../../../helpers/NoPropsNoState";
 import React = require("react");
 import AppBar from "material-ui-next/es/AppBar";
 import Toolbar from "material-ui-next/es/Toolbar";
 import Typography from "material-ui-next/es/Typography";
-import Drawer from "material-ui-next/es/Drawer";
-import List from "material-ui-next/es/List";
-import Divider from "material-ui-next/es/Divider";
-import {Assets} from "../../../helpers/Assets";
+import {NoState} from "../../../lib/helpers/NoPropsNoState";
+import {Assets} from "../../../lib/helpers/Assets";
+import {decorate} from "../../../lib/helpers/ComponentDecorators";
 
 const drawerWidth = 240;
 const styles = (theme:any) => ({

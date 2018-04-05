@@ -1,9 +1,9 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
-import {decorate} from "../../../helpers/ComponentDecorators";
-import {NoState} from "../../../helpers/NoPropsNoState";
 import { ListItem, ListItemText } from 'material-ui-next/List';
 import Icon from "material-ui-next/es/Icon";
+import {NoState} from "../../../lib/helpers/NoPropsNoState";
+import {decorate} from "../../../lib/helpers/ComponentDecorators";
 
 
 const styles = (theme:any) => ({

@@ -1,9 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
-import withStyles, {StyleRules, StyleRulesCallback} from "material-ui-next/es/styles/withStyles";
-import {AjaxRequest} from "rxjs/Rx";
+import withStyles from "material-ui-next/es/styles/withStyles";
 import {GenericBuilder, GenericConfig} from "./GenericBuilder";
-import {SidebarLink} from "../containers/layout/sidebar/SidebarLink";
 import {withRouter} from "react-router";
 
 interface Capabilities {
@@ -29,21 +27,21 @@ export function decorate<P>(component: React.ComponentClass, cfg:(cfg:GenericCon
 
     const config = GenericBuilder.buildFromConfig(cfg);
 
-    let bareComponent = component as any;
+    let blankComponent = component as any;
 
     if(config.withStyles) {
-        bareComponent = withStyles(config.withStyles)(bareComponent)
+        blankComponent = withStyles(config.withStyles)(blankComponent)
     }
 
     if(config.withRouter) {
-        bareComponent = withRouter(bareComponent);
+        blankComponent = withRouter(blankComponent);
     }
 
     if(config.withRedux) {
-        bareComponent = connect<P>((props:P) => props)(bareComponent);
+        blankComponent = connect<P>((props:P) => props)(blankComponent);
     }
 
-    return bareComponent;
+    return blankComponent;
 }
 
 

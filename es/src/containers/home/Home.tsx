@@ -1,7 +1,8 @@
 import * as React from "react";
-import {NoProps, NoState} from "../../helpers/NoPropsNoState";
 import Button from "material-ui-next/es/Button";
-import {Assets} from "../../helpers/Assets";
+import {NoProps} from "../../lib/helpers/NoPropsNoState";
+import {Assets} from "../../lib/helpers/Assets";
+
 
 
 

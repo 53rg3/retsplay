@@ -1,4 +1,4 @@
-import {FSAction} from "../lib/FSAction";
+import {FSAction} from "../ear/FSAction";
 
 
 export class ActionFactory {

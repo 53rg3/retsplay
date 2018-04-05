@@ -1,10 +1,10 @@
 import React = require("react");
-import {NoState} from "../../helpers/NoPropsNoState";
-import {decorate} from "../../helpers/ComponentDecorators";
 import {Sidebar} from "./sidebar/Sidebar";
 import {Header} from "./header/Header";
 import {Main} from "./main/Main";
-import {layoutRoot} from "./css/MuiComponents";
+import {MUI} from "./css/MUI";
+import {NoState} from "../../lib/helpers/NoPropsNoState";
+import {decorate} from "../../lib/helpers/ComponentDecorators";
 
 
 interface Props {
@@ -27,4 +27,4 @@ class Component extends React.Component<Props, NoState> {
 }
 
 export const LayoutRoot = decorate<Props>(Component, c => c
-    .withStyles(layoutRoot));
+    .withStyles(MUI.classes.layoutRoot));

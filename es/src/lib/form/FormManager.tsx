@@ -1,6 +1,6 @@
 import {FormField} from "./FormField";
-import {Checks} from "../Checks";
 import * as React from "react";
+import {Checks} from "../helpers/Checks";
 
 export class FormManager {
 

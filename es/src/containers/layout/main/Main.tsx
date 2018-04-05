@@ -1,6 +1,6 @@
 import * as React from "react";
-import {decorate} from "../../../helpers/ComponentDecorators";
-import {NoState} from "../../../helpers/NoPropsNoState";
+import {NoState} from "../../../lib/helpers/NoPropsNoState";
+import {decorate} from "../../../lib/helpers/ComponentDecorators";
 
 
 const styles = (theme:any) => ({

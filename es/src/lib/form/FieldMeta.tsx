@@ -1,9 +1,7 @@
 import {FieldRenderProps} from "react-final-form";
 import {FormField} from "./FormField";
 import {FormManager} from "./FormManager";
-import {Toggle} from "../Toggle";
 import * as React from "react";
-import _ = require("lodash");
 
 export class FieldMeta {
 

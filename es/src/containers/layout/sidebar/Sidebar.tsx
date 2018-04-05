@@ -1,14 +1,12 @@
 import * as React from "react";
-import {NoState} from "../../../helpers/NoPropsNoState";
-import {decorate} from "../../../helpers/ComponentDecorators";
 import Drawer from "material-ui-next/es/Drawer";
 import {SidebarLink} from "./SidebarLink";
 import {Routes} from "../../../app/Router";
 import {MenuList} from "material-ui-next";
 import {SidebarLinkGroup} from "./SidebarNestedLinks";
-import Icon from "material-ui-next/es/Icon";
 import Divider from "material-ui-next/es/Divider";
-
+import {NoState} from "../../../lib/helpers/NoPropsNoState";
+import {decorate} from "../../../lib/helpers/ComponentDecorators";
 
 
 const styles = (theme:any) => ({

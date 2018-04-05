@@ -1,8 +1,8 @@
 import * as React from "react";
-import {NoState} from "../../helpers/NoPropsNoState";
-import {decorate} from "../../helpers/ComponentDecorators";
 import {Heading} from "../layout/commons/Heading";
 import {Body} from "../layout/commons/Body";
+import {NoState} from "../../lib/helpers/NoPropsNoState";
+import {decorate} from "../../lib/helpers/ComponentDecorators";
 
 
 class Props {

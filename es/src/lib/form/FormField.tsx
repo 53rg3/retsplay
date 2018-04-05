@@ -1,7 +1,6 @@
 import {Validation} from "./FormManager";
-import {Checks} from "../Checks";
-import {FieldMeta} from "./FieldMeta";
 import {FieldRenderProps} from "react-final-form";
+import {Checks} from "../helpers/Checks";
 
 
 export class FormField<T> {

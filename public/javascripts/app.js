@@ -105690,10 +105690,10 @@ var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_mod
 var Router_1 = __webpack_require__(/*! ./Router */ "./src/app/Router.tsx");
 var MuiThemeProvider_1 = __webpack_require__(/*! material-ui-next/es/styles/MuiThemeProvider */ "./node_modules/material-ui-next/es/styles/MuiThemeProvider.js");
 var createMuiTheme_1 = __webpack_require__(/*! material-ui-next/styles/createMuiTheme */ "./node_modules/material-ui-next/styles/createMuiTheme.js");
-var Theme_1 = __webpack_require__(/*! ../containers/layout/css/Theme */ "./src/containers/layout/css/Theme.tsx");
+var MUI_1 = __webpack_require__(/*! ../containers/layout/css/MUI */ "./src/containers/layout/css/MUI.tsx");
 RxJS_1.RxJs.getImports();
 ReactDOM.render(React.createElement(react_redux_1.Provider, { store: Redux_1.Redux.INST.store },
-    React.createElement(MuiThemeProvider_1.default, { theme: createMuiTheme_1.default(Theme_1.theme) },
+    React.createElement(MuiThemeProvider_1.default, { theme: createMuiTheme_1.default(MUI_1.MUI.theme) },
         React.createElement(react_router_dom_1.BrowserRouter, null,
             React.createElement(Router_1.Router, null)))), document.getElementById("app"));
 
@@ -105839,7 +105839,7 @@ var Router = /** @class */ (function (_super) {
                 React.createElement(react_router_1.Route, { exact: true, path: Routes.DASHBOARD, component: Home_1.default }),
                 React.createElement(react_router_1.Route, { exact: true, path: Routes.counter.ROOT, component: Counter_1.default }),
                 React.createElement(react_router_1.Route, { exact: true, path: Routes.blog.ROOT, component: Blog_1.default }),
-                React.createElement(react_router_1.Route, { exact: true, path: Routes.formExample.ROOT, component: FormExample_1.FormExample }))));
+                React.createElement(react_router_1.Route, { exact: true, path: Routes.formExample.ROOT, component: FormExample_1.default }))));
     };
     return Router;
 }(React.Component));
@@ -105895,9 +105895,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
 var Heading_1 = __webpack_require__(/*! ../layout/commons/Heading */ "./src/containers/layout/commons/Heading.tsx");
 var Body_1 = __webpack_require__(/*! ../layout/commons/Body */ "./src/containers/layout/commons/Body.tsx");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var Props = /** @class */ (function () {
     function Props() {
     }
@@ -105942,13 +105942,13 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var CounterEAR_1 = __webpack_require__(/*! ./actions/CounterEAR */ "./src/containers/counter/actions/CounterEAR.tsx");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
-var Counter = /** @class */ (function (_super) {
-    __extends(Counter, _super);
-    function Counter() {
+var ComponentDecorators_1 = __webpack_require__(/*! ../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
+var Component = /** @class */ (function (_super) {
+    __extends(Component, _super);
+    function Component() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Counter.prototype.render = function () {
+    Component.prototype.render = function () {
         return (React.createElement("div", null,
             "Counter: ",
             this.props.counterState.count,
@@ -105958,9 +105958,10 @@ var Counter = /** @class */ (function (_super) {
             React.createElement("button", { onClick: CounterEAR_1.CounterEAR.INST.decrease.dispatch(CounterEAR_1.CounterStateFactory.value(7)) }, "Decrease"),
             React.createElement("br", null)));
     };
-    return Counter;
+    return Component;
 }(React.Component));
-exports.default = ComponentDecorators_1.withRedux(Counter);
+exports.default = ComponentDecorators_1.decorate(Component, function (c) { return c
+    .withRedux(true); });
 
 
 /***/ }),
@@ -105985,10 +105986,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Reducer_1 = __webpack_require__(/*! ../../../lib/Reducer */ "./src/lib/Reducer.tsx");
 var ActionType_1 = __webpack_require__(/*! ../../../app/ActionType */ "./src/app/ActionType.tsx");
-var EAR_1 = __webpack_require__(/*! ../../../lib/EAR */ "./src/lib/EAR.tsx");
-var ActionFactory_1 = __webpack_require__(/*! ../../../helpers/ActionFactory */ "./src/helpers/ActionFactory.tsx");
+var Reducer_1 = __webpack_require__(/*! ../../../lib/ear/Reducer */ "./src/lib/ear/Reducer.tsx");
+var EAR_1 = __webpack_require__(/*! ../../../lib/ear/EAR */ "./src/lib/ear/EAR.tsx");
+var ActionFactory_1 = __webpack_require__(/*! ../../../lib/helpers/ActionFactory */ "./src/lib/helpers/ActionFactory.tsx");
 var CounterState = /** @class */ (function () {
     function CounterState(count) {
         this.count = count;
@@ -106051,6 +106052,142 @@ exports.CounterEAR = CounterEAR;
 
 /***/ }),
 
+/***/ "./src/containers/formexample/FormExample.css.tsx":
+/*!********************************************************!*\
+  !*** ./src/containers/formexample/FormExample.css.tsx ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FormExampleCss = {
+    nameField: {
+        width: "100px",
+        marginRight: "20px"
+    },
+    singleColor: {
+        width: "250px",
+        marginRight: "10px"
+    },
+    multiColor: {
+        width: "250px",
+    },
+    values: {
+        backgroundColor: "#ddd"
+    }
+};
+
+
+/***/ }),
+
+/***/ "./src/containers/formexample/FormExample.fields.tsx":
+/*!***********************************************************!*\
+  !*** ./src/containers/formexample/FormExample.fields.tsx ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var FormField_1 = __webpack_require__(/*! ../../lib/form/FormField */ "./src/lib/form/FormField.tsx");
+var Value_1 = __webpack_require__(/*! ../../lib/form/Value */ "./src/lib/form/Value.tsx");
+exports.formExampleFields = {
+    name: new FormField_1.FormField(String, function (c) { return c
+        .validation(Value_1.Value.isRequired, "Required"); }),
+    secretKey: new FormField_1.FormField(String, function (c) { return c
+        .validation(Value_1.Value.isRequired, "Required")
+        .validation(function (v) { return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{12,})/.test(v); }, "Min 12 chars, with capital letters & special chars")
+        .validation(function (v) { return Value_1.Value.hasMinLength(v, 12); }, "Min length: 12"); }),
+    skill: new FormField_1.FormField(String, function (c) { return c
+        .validation(Value_1.Value.isRequired, "Only a dead socialist is good socialist. How do you slay them?"); }),
+    food: new FormField_1.FormField(Array, function (c) { return c
+        .validation(Value_1.Value.isRequired, "We need to know!")
+        .validation(function (v) { return v.length > 1; }, "Choose at least two!"); }),
+    awesome: new FormField_1.FormField(Boolean, function (c) { return c
+        .validation(Value_1.Value.isRequired, "Must be awesome"); }),
+    glorious: new FormField_1.FormField(Boolean, function (c) { return c
+        .validation(Value_1.Value.isRequired, "Must be glorious"); }),
+    formidable: new FormField_1.FormField(Boolean, function (c) { return c
+        .validation(Value_1.Value.isRequired, "Must be formidable"); }),
+    multiColor: new FormField_1.FormField(Array, function (c) { return c
+        .validation(Value_1.Value.isRequired, "Dude, choose some colors!")
+        .validation(function (v) { return v.length > 1; }, "Choose at least two!"); }),
+    singleColor: new FormField_1.FormField(Array, function (c) { return c
+        .validation(Value_1.Value.isRequired, "Dude, choose a color!"); })
+};
+
+
+/***/ }),
+
+/***/ "./src/containers/formexample/FormExample.logic.tsx":
+/*!**********************************************************!*\
+  !*** ./src/containers/formexample/FormExample.logic.tsx ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var FormExample_fields_1 = __webpack_require__(/*! ./FormExample.fields */ "./src/containers/formexample/FormExample.fields.tsx");
+var MUI_1 = __webpack_require__(/*! ../layout/css/MUI */ "./src/containers/layout/css/MUI.tsx");
+var Toggle_1 = __webpack_require__(/*! ../../lib/helpers/Toggle */ "./src/lib/helpers/Toggle.tsx");
+var FieldMeta_1 = __webpack_require__(/*! ../../lib/form/FieldMeta */ "./src/lib/form/FieldMeta.tsx");
+var FormExampleLogic = /** @class */ (function () {
+    function FormExampleLogic(component, formManager) {
+        this.formFields = FormExample_fields_1.formExampleFields;
+        this.component = component;
+        this.formManager = formManager;
+    }
+    FormExampleLogic.prototype.handleSubmit = function (input) {
+        console.log("Form Submission Result: ", input);
+        Toggle_1.Toggle.byKey("isModalOpen", this.component);
+    };
+    FormExampleLogic.prototype.changeValues = function () {
+        this.formManager.setValues({
+            name: "Bob",
+            secretKey: "KAJssdf2399823§$%&",
+            skill: "swordsmanship",
+            food: ["burger", "pizza"],
+            awesome: true,
+            glorious: true,
+            formidable: true,
+            singleColor: "blue",
+            multiColor: ["orange", "red", "yellow"]
+        });
+    };
+    FormExampleLogic.prototype.selectAllLink = function () {
+        var _this = this;
+        var value = FieldMeta_1.FieldMeta.getValueAsArray(this.formFields.food);
+        if (value.length == 0) {
+            return React.createElement("span", { style: MUI_1.MUI.inline.form.functionLink, onClick: function () { return FieldMeta_1.FieldMeta.selectAll(_this.formManager, _this.formFields.food); } }, "(select all)");
+        }
+        else {
+            return React.createElement("span", { style: MUI_1.MUI.inline.form.functionLink, onClick: function () { return FieldMeta_1.FieldMeta.deselectAll(_this.formManager, _this.formFields.food); } }, "(deselect all)");
+        }
+    };
+    return FormExampleLogic;
+}());
+exports.FormExampleLogic = FormExampleLogic;
+exports.colorSelection = [
+    'red',
+    'green',
+    'blue',
+    'purple',
+    'yellow',
+    'black',
+    'white',
+    'brown',
+    'orange'
+];
+
+
+/***/ }),
+
 /***/ "./src/containers/formexample/FormExample.tsx":
 /*!****************************************************!*\
   !*** ./src/containers/formexample/FormExample.tsx ***!
@@ -106080,30 +106217,20 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
 var react_final_form_1 = __webpack_require__(/*! react-final-form */ "./node_modules/react-final-form/dist/react-final-form.es.js");
-var FormFactory_1 = __webpack_require__(/*! ../../helpers/forms/FormFactory */ "./src/helpers/forms/FormFactory.tsx");
-var FormField_1 = __webpack_require__(/*! ../../helpers/forms/FormField */ "./src/helpers/forms/FormField.tsx");
-var Value_1 = __webpack_require__(/*! ../../helpers/forms/Value */ "./src/helpers/forms/Value.tsx");
 var Button_1 = __webpack_require__(/*! material-ui-next/es/Button */ "./node_modules/material-ui-next/es/Button/index.js");
 var material_ui_next_1 = __webpack_require__(/*! material-ui-next */ "./node_modules/material-ui-next/index.es.js");
-var FieldMeta_1 = __webpack_require__(/*! ../../helpers/forms/FieldMeta */ "./src/helpers/forms/FieldMeta.tsx");
-var FormManager_1 = __webpack_require__(/*! ../../helpers/forms/FormManager */ "./src/helpers/forms/FormManager.tsx");
-var MuiComponents_1 = __webpack_require__(/*! ../layout/css/MuiComponents */ "./src/containers/layout/css/MuiComponents.tsx");
+var MUI_1 = __webpack_require__(/*! ../layout/css/MUI */ "./src/containers/layout/css/MUI.tsx");
 var Divider_1 = __webpack_require__(/*! material-ui-next/es/Divider */ "./node_modules/material-ui-next/es/Divider/index.js");
-var Toggle_1 = __webpack_require__(/*! ../../helpers/Toggle */ "./src/helpers/Toggle.tsx");
 var ModalStandard_1 = __webpack_require__(/*! ../layout/commons/ModalStandard */ "./src/containers/layout/commons/ModalStandard.tsx");
-var colorSelection = [
-    'red',
-    'green',
-    'blue',
-    'purple',
-    'yellow',
-    'black',
-    'white',
-    'brown',
-    'orange'
-];
+var FormExample_logic_1 = __webpack_require__(/*! ./FormExample.logic */ "./src/containers/formexample/FormExample.logic.tsx");
+var FormExample_fields_1 = __webpack_require__(/*! ./FormExample.fields */ "./src/containers/formexample/FormExample.fields.tsx");
+var FormExample_css_1 = __webpack_require__(/*! ./FormExample.css */ "./src/containers/formexample/FormExample.css.tsx");
+var FormManager_1 = __webpack_require__(/*! ../../lib/form/FormManager */ "./src/lib/form/FormManager.tsx");
+var Toggle_1 = __webpack_require__(/*! ../../lib/helpers/Toggle */ "./src/lib/helpers/Toggle.tsx");
+var FormFactory_1 = __webpack_require__(/*! ../../lib/form/FormFactory */ "./src/lib/form/FormFactory.tsx");
+var FieldMeta_1 = __webpack_require__(/*! ../../lib/form/FieldMeta */ "./src/lib/form/FieldMeta.tsx");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var Props = /** @class */ (function () {
     function Props() {
     }
@@ -106116,79 +106243,31 @@ var State = /** @class */ (function () {
     }
     return State;
 }());
-var FormExampleBlank = /** @class */ (function (_super) {
-    __extends(FormExampleBlank, _super);
-    function FormExampleBlank(props) {
+var FormExample = /** @class */ (function (_super) {
+    __extends(FormExample, _super);
+    function FormExample(props) {
         var _this = _super.call(this, props) || this;
-        _this.formFields = {
-            name: new FormField_1.FormField(String, function (c) { return c
-                .validation(Value_1.Value.isRequired, "Required"); }),
-            secretKey: new FormField_1.FormField(String, function (c) { return c
-                .validation(Value_1.Value.isRequired, "Required")
-                .validation(function (v) { return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{12,})/.test(v); }, "Min 12 chars, with capital letters & special chars")
-                .validation(function (v) { return Value_1.Value.hasMinLength(v, 12); }, "Min length: 12"); }),
-            skill: new FormField_1.FormField(String, function (c) { return c
-                .validation(Value_1.Value.isRequired, "Only a dead socialist is good socialist. How do you slay them?"); }),
-            food: new FormField_1.FormField(Array, function (c) { return c
-                .validation(Value_1.Value.isRequired, "We need to know!")
-                .validation(function (v) { return v.length > 1; }, "Choose at least two!"); }),
-            awesome: new FormField_1.FormField(Boolean, function (c) { return c
-                .validation(Value_1.Value.isRequired, "Must be awesome"); }),
-            glorious: new FormField_1.FormField(Boolean, function (c) { return c
-                .validation(Value_1.Value.isRequired, "Must be glorious"); }),
-            formidable: new FormField_1.FormField(Boolean, function (c) { return c
-                .validation(Value_1.Value.isRequired, "Must be formidable"); }),
-            multiColor: new FormField_1.FormField(Array, function (c) { return c
-                .validation(Value_1.Value.isRequired, "Dude, choose some colors!")
-                .validation(function (v) { return v.length > 1; }, "Choose at least two!"); }),
-            singleColor: new FormField_1.FormField(Array, function (c) { return c
-                .validation(Value_1.Value.isRequired, "Dude, choose a color!"); })
-        };
-        _this.formManager = new FormManager_1.FormManager(_this, _this.formFields);
+        _this.formFields = FormExample_fields_1.formExampleFields;
+        _this.css = FormExample_css_1.FormExampleCss;
         _this.state = new State();
+        _this.formManager = new FormManager_1.FormManager(_this, FormExample_fields_1.formExampleFields);
+        _this.logic = new FormExample_logic_1.FormExampleLogic(_this, _this.formManager);
         return _this;
     }
-    FormExampleBlank.prototype.handleSubmit = function (input) {
-        console.log("Form Submission Result: ", input);
-        Toggle_1.Toggle.byKey("isModalOpen", this);
-    };
-    FormExampleBlank.prototype.changeValues = function () {
-        this.formManager.setValues({
-            name: "Bob",
-            secretKey: "KAJssdf2399823§$%&",
-            skill: "swordsmanship",
-            food: ["burger", "pizza"],
-            awesome: true,
-            glorious: true,
-            formidable: true,
-            singleColor: "blue",
-            multiColor: ["orange", "red", "yellow"]
-        });
-    };
-    FormExampleBlank.prototype.selectAllLink = function () {
-        var _this = this;
-        var value = FieldMeta_1.FieldMeta.getValueAsArray(this.formFields.food);
-        if (value.length == 0) {
-            return React.createElement("span", { style: MuiComponents_1.formCss.functionLink, onClick: function () { return FieldMeta_1.FieldMeta.selectAll(_this.formManager, _this.formFields.food); } }, "(select all)");
-        }
-        else {
-            return React.createElement("span", { style: MuiComponents_1.formCss.functionLink, onClick: function () { return FieldMeta_1.FieldMeta.deselectAll(_this.formManager, _this.formFields.food); } }, "(deselect all)");
-        }
-    };
-    FormExampleBlank.prototype.render = function () {
+    FormExample.prototype.render = function () {
         var _this = this;
         return (React.createElement("div", null,
             React.createElement(ModalStandard_1.ModalStandard, { isOpen: this.state.isModalOpen, onClose: Toggle_1.Toggle.asFunction('isModalOpen', this) },
                 React.createElement("div", null,
                     React.createElement("pre", null, JSON.stringify(this.formManager.getValues(), null, 4)))),
-            React.createElement(Button_1.default, { variant: "raised", onClick: this.changeValues.bind(this) }, "Insert values (initialize)"),
+            React.createElement(Button_1.default, { variant: "raised", onClick: this.logic.changeValues.bind(this) }, "Insert values (initialize)"),
             React.createElement("br", null),
             React.createElement("br", null),
-            React.createElement(react_final_form_1.Form, { onSubmit: this.handleSubmit.bind(this), validate: this.formManager.validate.bind(this.formManager), initialValues: this.formManager.getValues(), render: function (formProps) { return (React.createElement("form", { onSubmit: formProps.handleSubmit },
+            React.createElement(react_final_form_1.Form, { onSubmit: this.logic.handleSubmit.bind(this.logic), validate: this.formManager.validate.bind(this.formManager), initialValues: this.formManager.getValues(), render: function (formProps) { return (React.createElement("form", { onSubmit: formProps.handleSubmit },
                     React.createElement("div", null,
                         React.createElement(react_final_form_1.Field, __assign({}, _this.formFields.name), function (props) { return FormFactory_1.FormFactory.textField(function (c) { return c
                             .fieldProps(props)
-                            .customProps(FieldMeta_1.FieldMeta.styleAsProp({ width: "100px", marginRight: "20px" }))
+                            .customProps(FieldMeta_1.FieldMeta.styleAsProp(_this.css.nameField))
                             .field(function (c) { return c
                             .label("Name *")
                             .error(FieldMeta_1.FieldMeta.isTouchedAndInvalid(props))
@@ -106214,13 +106293,13 @@ var FormExampleBlank = /** @class */ (function (_super) {
                                 React.createElement(material_ui_next_1.FormControlLabel, { label: "Archery", control: FormFactory_1.FormFactory.radioButton(function (c) { return c
                                         .formField(_this.formFields.skill)
                                         .value("archery"); }) })),
-                            React.createElement(material_ui_next_1.FormHelperText, { style: MuiComponents_1.formCss.radioButtonHelperText }, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.skill, "How do you like to slay socialists?")))),
+                            React.createElement(material_ui_next_1.FormHelperText, { style: MUI_1.MUI.inline.form.radioButtonHelperText }, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.skill, "How do you like to slay socialists?")))),
                     React.createElement("br", null),
                     React.createElement("div", null,
                         React.createElement(material_ui_next_1.FormLabel, null, "Favorite food"),
                         React.createElement("br", null),
                         React.createElement(material_ui_next_1.FormControl, { error: FieldMeta_1.FieldMeta.isTouchedAndInvalidByField(formProps, _this.formFields.food) },
-                            _this.selectAllLink(),
+                            _this.logic.selectAllLink(),
                             React.createElement(material_ui_next_1.FormGroup, { row: true },
                                 React.createElement(material_ui_next_1.FormControlLabel, { label: "Pizza", control: FormFactory_1.FormFactory.checkbox(function (c) { return c
                                         .formField(_this.formFields.food)
@@ -106231,7 +106310,7 @@ var FormExampleBlank = /** @class */ (function (_super) {
                                 React.createElement(material_ui_next_1.FormControlLabel, { label: "Hot Dogs", control: FormFactory_1.FormFactory.checkbox(function (c) { return c
                                         .formField(_this.formFields.food)
                                         .value("hot dogs"); }) })),
-                            React.createElement(material_ui_next_1.FormHelperText, { style: MuiComponents_1.formCss.radioButtonHelperText }, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.food, "Why get thinner, when you can get more dinner?")))),
+                            React.createElement(material_ui_next_1.FormHelperText, { style: MUI_1.MUI.inline.form.radioButtonHelperText }, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.food, "Why get thinner, when you can get more dinner?")))),
                     React.createElement("br", null),
                     React.createElement("div", null,
                         React.createElement(material_ui_next_1.FormLabel, null, "Attributes"),
@@ -106240,32 +106319,29 @@ var FormExampleBlank = /** @class */ (function (_super) {
                                 React.createElement(material_ui_next_1.FormControl, { error: FieldMeta_1.FieldMeta.isTouchedAndInvalidByField(formProps, _this.formFields.awesome) },
                                     React.createElement(material_ui_next_1.FormControlLabel, { label: "Awesome", control: FormFactory_1.FormFactory.switch(function (c) { return c
                                             .formField(_this.formFields.awesome); }) }),
-                                    React.createElement(material_ui_next_1.FormHelperText, { style: MuiComponents_1.formCss.radioButtonHelperText }, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.awesome, "")))),
+                                    React.createElement(material_ui_next_1.FormHelperText, { style: MUI_1.MUI.inline.form.radioButtonHelperText }, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.awesome, "")))),
                             React.createElement("div", null,
                                 React.createElement(material_ui_next_1.FormControl, { error: FieldMeta_1.FieldMeta.isTouchedAndInvalidByField(formProps, _this.formFields.glorious) },
                                     React.createElement(material_ui_next_1.FormControlLabel, { label: "Glorious", control: FormFactory_1.FormFactory.switch(function (c) { return c
                                             .formField(_this.formFields.glorious); }) }),
-                                    React.createElement(material_ui_next_1.FormHelperText, { style: MuiComponents_1.formCss.radioButtonHelperText }, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.glorious, "")))),
+                                    React.createElement(material_ui_next_1.FormHelperText, { style: MUI_1.MUI.inline.form.radioButtonHelperText }, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.glorious, "")))),
                             React.createElement("div", null,
                                 React.createElement(material_ui_next_1.FormControl, { error: FieldMeta_1.FieldMeta.isTouchedAndInvalidByField(formProps, _this.formFields.formidable) },
                                     React.createElement(material_ui_next_1.FormControlLabel, { label: "Formidable", control: FormFactory_1.FormFactory.switch(function (c) { return c
                                             .formField(_this.formFields.formidable); }) }),
-                                    React.createElement(material_ui_next_1.FormHelperText, { style: MuiComponents_1.formCss.radioButtonHelperText }, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.formidable, "")))))),
+                                    React.createElement(material_ui_next_1.FormHelperText, { style: MUI_1.MUI.inline.form.radioButtonHelperText }, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.formidable, "")))))),
                     React.createElement("div", null,
                         React.createElement(material_ui_next_1.FormLabel, null, "Color Selection"),
                         React.createElement("br", null),
-                        React.createElement(material_ui_next_1.FormControl, { className: _this.props.classes.formControl, error: FieldMeta_1.FieldMeta.isTouchedAndInvalidByField(formProps, _this.formFields.singleColor) },
+                        React.createElement(material_ui_next_1.FormControl, { error: FieldMeta_1.FieldMeta.isTouchedAndInvalidByField(formProps, _this.formFields.singleColor) },
                             React.createElement(react_final_form_1.Field, __assign({}, _this.formFields.singleColor, { render: function (props) { return FormFactory_1.FormFactory.select(function (c) { return c
                                     .formField(_this.formFields.singleColor)
                                     .formManager(_this.formManager)
                                     .inputLabel("(SINGLE SELECT)")
-                                    .selectComponentCustomProps(FieldMeta_1.FieldMeta.styleAsProp({
-                                    width: "250px",
-                                    marginRight: "10px"
-                                }))
-                                    .options(colorSelection); }); } })),
+                                    .selectComponentCustomProps(FieldMeta_1.FieldMeta.styleAsProp(_this.css.singleColor))
+                                    .options(FormExample_logic_1.colorSelection); }); } })),
                             React.createElement(material_ui_next_1.FormHelperText, null, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.singleColor, "Choose a color"))),
-                        React.createElement(material_ui_next_1.FormControl, { className: _this.props.classes.formControl, error: FieldMeta_1.FieldMeta.isTouchedAndInvalidByField(formProps, _this.formFields.multiColor) },
+                        React.createElement(material_ui_next_1.FormControl, { error: FieldMeta_1.FieldMeta.isTouchedAndInvalidByField(formProps, _this.formFields.multiColor) },
                             React.createElement(react_final_form_1.Field, __assign({}, _this.formFields.multiColor, { render: function (props) { return FormFactory_1.FormFactory.select(function (c) { return c
                                     .formField(_this.formFields.multiColor)
                                     .formManager(_this.formManager)
@@ -106277,23 +106353,22 @@ var FormExampleBlank = /** @class */ (function (_super) {
                                     .includes(_this.state.colorFilter); })
                                     .selectComponentProps(function (c) { return c
                                     .multiple(true); })
-                                    .selectComponentCustomProps(FieldMeta_1.FieldMeta.styleAsProp({ width: "250px" }))
-                                    .options(colorSelection); }); } })),
-                            React.createElement(material_ui_next_1.FormHelperText, null, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.multiColor, "Choose some colors"))),
-                        console.log("formProps", formProps)),
+                                    .selectComponentCustomProps(FieldMeta_1.FieldMeta.styleAsProp(_this.css.multiColor))
+                                    .options(FormExample_logic_1.colorSelection); }); } })),
+                            React.createElement(material_ui_next_1.FormHelperText, null, FieldMeta_1.FieldMeta.showHelpOrErrorByField(formProps, _this.formFields.multiColor, "Choose some colors")))),
                     React.createElement("br", null),
                     React.createElement(Button_1.default, { variant: "raised", color: "primary", type: "submit", disabled: formProps.submitting }, "Submit"),
                     React.createElement("br", null),
                     React.createElement("br", null),
                     React.createElement(Divider_1.default, null),
                     React.createElement("h2", null, "Values"),
-                    React.createElement("div", { style: { backgroundColor: "#ddd" } },
+                    React.createElement("div", { style: _this.css.values },
                         React.createElement("pre", null, JSON.stringify(_this.formManager.getValues(), null, 4))))); } })));
     };
-    return FormExampleBlank;
+    return FormExample;
 }(React.Component));
-exports.FormExample = ComponentDecorators_1.decorate(FormExampleBlank, function (c) { return c
-    .withStyles(MuiComponents_1.modalStyle); });
+exports.default = ComponentDecorators_1.decorate(FormExample, function (c) { return c
+    .withRedux(true); });
 
 
 /***/ }),
@@ -106320,7 +106395,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var Button_1 = __webpack_require__(/*! material-ui-next/es/Button */ "./node_modules/material-ui-next/es/Button/index.js");
-var Assets_1 = __webpack_require__(/*! ../../helpers/Assets */ "./src/helpers/Assets.tsx");
+var Assets_1 = __webpack_require__(/*! ../../lib/helpers/Assets */ "./src/lib/helpers/Assets.tsx");
 var styles = {
     margin: "0 auto"
 };
@@ -106378,11 +106453,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
 var Sidebar_1 = __webpack_require__(/*! ./sidebar/Sidebar */ "./src/containers/layout/sidebar/Sidebar.tsx");
 var Header_1 = __webpack_require__(/*! ./header/Header */ "./src/containers/layout/header/Header.tsx");
 var Main_1 = __webpack_require__(/*! ./main/Main */ "./src/containers/layout/main/Main.tsx");
-var MuiComponents_1 = __webpack_require__(/*! ./css/MuiComponents */ "./src/containers/layout/css/MuiComponents.tsx");
+var MUI_1 = __webpack_require__(/*! ./css/MUI */ "./src/containers/layout/css/MUI.tsx");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var Component = /** @class */ (function (_super) {
     __extends(Component, _super);
     function Component() {
@@ -106397,7 +106472,7 @@ var Component = /** @class */ (function (_super) {
     return Component;
 }(React.Component));
 exports.LayoutRoot = ComponentDecorators_1.decorate(Component, function (c) { return c
-    .withStyles(MuiComponents_1.layoutRoot); });
+    .withStyles(MUI_1.MUI.classes.layoutRoot); });
 
 
 /***/ }),
@@ -106423,9 +106498,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var MuiComponents_1 = __webpack_require__(/*! ../css/MuiComponents */ "./src/containers/layout/css/MuiComponents.tsx");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
 var Paper_1 = __webpack_require__(/*! material-ui-next/es/Paper */ "./node_modules/material-ui-next/es/Paper/index.js");
+var MUI_1 = __webpack_require__(/*! ../css/MUI */ "./src/containers/layout/css/MUI.tsx");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var Props = /** @class */ (function () {
     function Props() {
     }
@@ -106442,7 +106517,7 @@ var BodyBlank = /** @class */ (function (_super) {
     return BodyBlank;
 }(React.Component));
 exports.Body = ComponentDecorators_1.decorate(BodyBlank, function (c) { return c
-    .withStyles(MuiComponents_1.paperStyle); });
+    .withStyles(MUI_1.MUI.classes.mainContent); });
 
 
 /***/ }),
@@ -106468,9 +106543,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
-var MuiComponents_1 = __webpack_require__(/*! ../css/MuiComponents */ "./src/containers/layout/css/MuiComponents.tsx");
 var Paper_1 = __webpack_require__(/*! material-ui-next/es/Paper */ "./node_modules/material-ui-next/es/Paper/index.js");
+var MUI_1 = __webpack_require__(/*! ../css/MUI */ "./src/containers/layout/css/MUI.tsx");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var Props = /** @class */ (function () {
     function Props() {
     }
@@ -106487,7 +106562,7 @@ var HeadingRaw = /** @class */ (function (_super) {
     return HeadingRaw;
 }(React.Component));
 exports.Heading = ComponentDecorators_1.decorate(HeadingRaw, function (c) { return c
-    .withStyles(MuiComponents_1.paperStyle); });
+    .withStyles(MUI_1.MUI.classes.mainContent); });
 
 
 /***/ }),
@@ -106513,9 +106588,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var MuiComponents_1 = __webpack_require__(/*! ../css/MuiComponents */ "./src/containers/layout/css/MuiComponents.tsx");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
 var Modal_1 = __webpack_require__(/*! material-ui-next/es/Modal */ "./node_modules/material-ui-next/es/Modal/index.js");
+var MUI_1 = __webpack_require__(/*! ../css/MUI */ "./src/containers/layout/css/MUI.tsx");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var Props = /** @class */ (function () {
     function Props() {
     }
@@ -106534,114 +106609,102 @@ var ModalStandardBlank = /** @class */ (function (_super) {
     return ModalStandardBlank;
 }(React.Component));
 exports.ModalStandard = ComponentDecorators_1.decorate(ModalStandardBlank, function (c) { return c
-    .withStyles(MuiComponents_1.modalStyle); });
+    .withStyles(MUI_1.MUI.classes.modalStyle); });
 
 
 /***/ }),
 
-/***/ "./src/containers/layout/css/MuiComponents.tsx":
-/*!*****************************************************!*\
-  !*** ./src/containers/layout/css/MuiComponents.tsx ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**********************************************************/
-// Direct CSS (for inline style)
-/**********************************************************/
-Object.defineProperty(exports, "__esModule", { value: true });
-var Theme_1 = __webpack_require__(/*! ./Theme */ "./src/containers/layout/css/Theme.tsx");
-exports.formCss = {
-    radioButtonHelperText: {
-        marginTop: "-6px"
-    },
-    functionLink: {
-        marginTop: "3px",
-        fontColor: "#000",
-        fontSize: "10px",
-        textDecoration: "underline",
-        cursor: "pointer"
-    }
-};
-exports.modalStyleInline = {
-    style: {
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)"
-    }
-};
-/**********************************************************/
-// CssInJs (for classes)
-/**********************************************************/
-exports.noStyles = function () { return ({}); };
-exports.layoutRoot = function (theme) { return ({
-    root: {
-        flexGrow: 1,
-        minHeight: "100vh",
-        zIndex: 1,
-        overflow: 'hidden',
-        position: 'relative',
-        display: 'flex',
-    }
-}); };
-exports.paperStyle = function () { return ({
-    body: {
-        padding: "16px",
-        marginBottom: "5px"
-    },
-    heading: {
-        color: Theme_1.theme.palette.primary.main,
-        fontSize: "24px",
-        fontWeight: "bold",
-        padding: "5px 16px",
-        marginBottom: "4px"
-    }
-}); };
-exports.modalStyle = function (theme) { return ({
-    standard: {
-        position: 'absolute',
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        width: theme.spacing.unit * 50,
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 4,
-    },
-}); };
-
-
-/***/ }),
-
-/***/ "./src/containers/layout/css/Theme.tsx":
-/*!*********************************************!*\
-  !*** ./src/containers/layout/css/Theme.tsx ***!
-  \*********************************************/
+/***/ "./src/containers/layout/css/MUI.tsx":
+/*!*******************************************!*\
+  !*** ./src/containers/layout/css/MUI.tsx ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var darkBlueYellow = {
-    palette: {
-        primary: {
-            main: "#37474f",
-            light: "#62727b",
-            dark: "#102027",
-            contrastText: "#ffffff"
+var MUI;
+(function (MUI) {
+    MUI.inline = {
+        form: {
+            radioButtonHelperText: {
+                marginTop: "-6px"
+            },
+            functionLink: {
+                marginTop: "3px",
+                fontColor: "#000",
+                fontSize: "10px",
+                textDecoration: "underline",
+                cursor: "pointer"
+            }
         },
-        secondary: {
-            main: "#ffa000",
-            light: "#ffd149",
-            dark: "#c67100",
-            contrastText: "#000000"
+        modalStyleInline: {
+            style: {
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)"
+            }
         }
-    }
-};
-exports.theme = darkBlueYellow;
+    };
+    MUI.classes = {
+        noStyles: function () { return ({}); },
+        layoutRoot: function (theme) { return ({
+            root: {
+                flexGrow: 1,
+                minHeight: "100vh",
+                zIndex: 1,
+                overflow: 'hidden',
+                position: 'relative',
+                display: 'flex',
+            }
+        }); },
+        mainContent: function () { return ({
+            body: {
+                padding: "16px",
+                marginBottom: "5px"
+            },
+            heading: {
+                color: MUI.theme.palette.primary.main,
+                fontSize: "24px",
+                fontWeight: "bold",
+                padding: "5px 16px",
+                marginBottom: "4px"
+            }
+        }); },
+        modalStyle: function (theme) { return ({
+            standard: {
+                position: 'absolute',
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+                width: theme.spacing.unit * 50,
+                backgroundColor: theme.palette.background.paper,
+                boxShadow: theme.shadows[5],
+                padding: theme.spacing.unit * 4,
+            },
+        }); }
+    };
+    var themes = {
+        darkBlueYellow: {
+            palette: {
+                primary: {
+                    main: "#37474f",
+                    light: "#62727b",
+                    dark: "#102027",
+                    contrastText: "#ffffff"
+                },
+                secondary: {
+                    main: "#ffa000",
+                    light: "#ffd149",
+                    dark: "#c67100",
+                    contrastText: "#000000"
+                }
+            }
+        }
+    };
+    MUI.theme = themes.darkBlueYellow;
+})(MUI = exports.MUI || (exports.MUI = {}));
 
 
 /***/ }),
@@ -106666,12 +106729,12 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ComponentDecorators_1 = __webpack_require__(/*! ../../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var AppBar_1 = __webpack_require__(/*! material-ui-next/es/AppBar */ "./node_modules/material-ui-next/es/AppBar/index.js");
 var Toolbar_1 = __webpack_require__(/*! material-ui-next/es/Toolbar */ "./node_modules/material-ui-next/es/Toolbar/index.js");
 var Typography_1 = __webpack_require__(/*! material-ui-next/es/Typography */ "./node_modules/material-ui-next/es/Typography/index.js");
-var Assets_1 = __webpack_require__(/*! ../../../helpers/Assets */ "./src/helpers/Assets.tsx");
+var Assets_1 = __webpack_require__(/*! ../../../lib/helpers/Assets */ "./src/lib/helpers/Assets.tsx");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var drawerWidth = 240;
 var styles = function (theme) { return ({
     root: {
@@ -106737,7 +106800,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var styles = function (theme) { return ({
     content: {
         flexGrow: 1,
@@ -106790,13 +106853,13 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
 var Drawer_1 = __webpack_require__(/*! material-ui-next/es/Drawer */ "./node_modules/material-ui-next/es/Drawer/index.js");
 var SidebarLink_1 = __webpack_require__(/*! ./SidebarLink */ "./src/containers/layout/sidebar/SidebarLink.tsx");
 var Router_1 = __webpack_require__(/*! ../../../app/Router */ "./src/app/Router.tsx");
 var material_ui_next_1 = __webpack_require__(/*! material-ui-next */ "./node_modules/material-ui-next/index.es.js");
 var SidebarNestedLinks_1 = __webpack_require__(/*! ./SidebarNestedLinks */ "./src/containers/layout/sidebar/SidebarNestedLinks.tsx");
 var Divider_1 = __webpack_require__(/*! material-ui-next/es/Divider */ "./node_modules/material-ui-next/es/Divider/index.js");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var styles = function (theme) { return ({
     drawerPaper: {
         position: 'relative',
@@ -106858,9 +106921,9 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
 var List_1 = __webpack_require__(/*! material-ui-next/List */ "./node_modules/material-ui-next/List/index.js");
 var Icon_1 = __webpack_require__(/*! material-ui-next/es/Icon */ "./node_modules/material-ui-next/es/Icon/index.js");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var styles = function (theme) { return ({
     listItem: {},
     nested: {
@@ -106918,11 +106981,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ComponentDecorators_1 = __webpack_require__(/*! ../../../helpers/ComponentDecorators */ "./src/helpers/ComponentDecorators.tsx");
-var Toggle_1 = __webpack_require__(/*! ../../../helpers/Toggle */ "./src/helpers/Toggle.tsx");
 var List_1 = __webpack_require__(/*! material-ui-next/List */ "./node_modules/material-ui-next/List/index.js");
 var Collapse_1 = __webpack_require__(/*! material-ui-next/transitions/Collapse */ "./node_modules/material-ui-next/transitions/Collapse.js");
 var Icon_1 = __webpack_require__(/*! material-ui-next/es/Icon */ "./node_modules/material-ui-next/es/Icon/index.js");
+var Toggle_1 = __webpack_require__(/*! ../../../lib/helpers/Toggle */ "./src/lib/helpers/Toggle.tsx");
+var ComponentDecorators_1 = __webpack_require__(/*! ../../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
 var styles = function (theme) { return ({
     fontColor: {
         color: theme.palette.primary.main
@@ -106963,60 +107026,10 @@ exports.SidebarLinkGroup = ComponentDecorators_1.decorate(Component, function (c
 
 /***/ }),
 
-/***/ "./src/helpers/ActionFactory.tsx":
-/*!***************************************!*\
-  !*** ./src/helpers/ActionFactory.tsx ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ActionFactory = /** @class */ (function () {
-    function ActionFactory() {
-    }
-    ActionFactory.create = function (actionType, payload) {
-        return { type: actionType, payload: payload };
-    };
-    return ActionFactory;
-}());
-exports.ActionFactory = ActionFactory;
-
-
-/***/ }),
-
-/***/ "./src/helpers/Assets.tsx":
-/*!********************************!*\
-  !*** ./src/helpers/Assets.tsx ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Router_1 = __webpack_require__(/*! ../app/Router */ "./src/app/Router.tsx");
-var Assets = /** @class */ (function () {
-    function Assets() {
-    }
-    Assets.image = function (fileName) {
-        return Router_1.Routes.assets.IMAGES + "/" + fileName;
-    };
-    Assets.getLogo = function () {
-        return Assets.image("logo.png");
-    };
-    return Assets;
-}());
-exports.Assets = Assets;
-
-
-/***/ }),
-
-/***/ "./src/helpers/Checks.tsx":
-/*!********************************!*\
-  !*** ./src/helpers/Checks.tsx ***!
-  \********************************/
+/***/ "./src/lib/ear/EAR.tsx":
+/*!*****************************!*\
+  !*** ./src/lib/ear/EAR.tsx ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -107024,163 +107037,118 @@ exports.Assets = Assets;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-var Checks;
-(function (Checks) {
-    function throwIfNil(value, message) {
-        if (_.isNil(value)) {
-            throw new Error(message);
-        }
-        return value;
+var Redux_1 = __webpack_require__(/*! ../../app/Redux */ "./src/app/Redux.tsx");
+var Checks_1 = __webpack_require__(/*! ../helpers/Checks */ "./src/lib/helpers/Checks.tsx");
+var ActionFactory_1 = __webpack_require__(/*! ../helpers/ActionFactory */ "./src/lib/helpers/ActionFactory.tsx");
+var EAR = /** @class */ (function () {
+    function EAR(parentEAR, config) {
+        var earConfig = config(new EarConfig(parentEAR)).internalBuild();
+        this.dispatchActionType = Checks_1.Checks.throwIfNil(earConfig.getDispatchActionType(), "'dispatchActionType' must not be null.");
+        this.parent = Checks_1.Checks.throwIfNil(earConfig.getParentEAR(), "'parentEAR' must not be null.");
+        this._epic = earConfig.getEpic();
     }
-    Checks.throwIfNil = throwIfNil;
-    function throwIfNotNil(value, message) {
-        if (!_.isNil(value)) {
-            throw new Error(message);
+    EAR.prototype.dispatch = function (payload) {
+        var _this = this;
+        if (_.isNil(payload)) {
+            return function () { return Redux_1.Redux.INST.dispatch(ActionFactory_1.ActionFactory.create(_this.dispatchActionType, null)); };
         }
-        return value;
-    }
-    Checks.throwIfNotNil = throwIfNotNil;
-    function throwIfWrongType(value, expectedType, message) {
-        if (typeof value !== expectedType) {
-            throw new Error(message + " Got type: '" + typeof value + "', expected " + expectedType);
+        else {
+            return function () { return Redux_1.Redux.INST.dispatch(ActionFactory_1.ActionFactory.create(_this.dispatchActionType, payload)); };
         }
-        return value;
+    };
+    Object.defineProperty(EAR.prototype, "epic", {
+        get: function () {
+            Checks_1.Checks.throwIfNil(this._epic, "Epic was not set in EarBuilder. Check your implementation of combineEpics().");
+            return this._epic;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return EAR;
+}());
+exports.EAR = EAR;
+var EarConfig = /** @class */ (function () {
+    /* ------------------------------------------------------ */
+    // BUILDER
+    /* ------------------------------------------------------ */
+    function EarConfig(parentEAR) {
+        this.parentEAR = parentEAR;
     }
-    Checks.throwIfWrongType = throwIfWrongType;
-})(Checks = exports.Checks || (exports.Checks = {}));
+    EarConfig.prototype.setDispatchAction = function (mandatorySetting) {
+        this.dispatchActionType = mandatorySetting;
+        return this;
+    };
+    EarConfig.prototype.addReducer = function (actionType, optionalSetting) {
+        this.parentEAR.addReducer(actionType, optionalSetting);
+        return this;
+    };
+    EarConfig.prototype.setEpic = function (epic) {
+        this.epic = epic;
+        return this;
+    };
+    EarConfig.prototype.internalBuild = function () {
+        return this;
+    };
+    /* ------------------------------------------------------ */
+    // GETTERS
+    /* ------------------------------------------------------ */
+    EarConfig.prototype.getDispatchActionType = function () {
+        return this.dispatchActionType;
+    };
+    EarConfig.prototype.getParentEAR = function () {
+        return this.parentEAR;
+    };
+    EarConfig.prototype.getEpic = function () {
+        return this.epic;
+    };
+    return EarConfig;
+}());
+exports.EarConfig = EarConfig;
 
 
 /***/ }),
 
-/***/ "./src/helpers/ComponentDecorators.tsx":
-/*!*********************************************!*\
-  !*** ./src/helpers/ComponentDecorators.tsx ***!
-  \*********************************************/
+/***/ "./src/lib/ear/Reducer.tsx":
+/*!*********************************!*\
+  !*** ./src/lib/ear/Reducer.tsx ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-var withStyles_1 = __webpack_require__(/*! material-ui-next/es/styles/withStyles */ "./node_modules/material-ui-next/es/styles/withStyles.js");
-var GenericBuilder_1 = __webpack_require__(/*! ./GenericBuilder */ "./src/helpers/GenericBuilder.tsx");
-var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
-/**
- * ----- Props interface maybe needs specific properties -----
- * ------ We can't check these at compile- or run-time. ------
- *
- * withStyles:
- * Props must have property 'classes:any'. This adds the provided CSS to props.
- *
- * withRouter:
- * Props should have property 'location:any'. This adds some functions to props.
- *
- * withRedux:
- * Props must have the state property names from the store. Otherwise they won't be available.
- */
-function decorate(component, cfg) {
-    var config = GenericBuilder_1.GenericBuilder.buildFromConfig(cfg);
-    var bareComponent = component;
-    if (config.withStyles) {
-        bareComponent = withStyles_1.default(config.withStyles)(bareComponent);
-    }
-    if (config.withRouter) {
-        bareComponent = react_router_1.withRouter(bareComponent);
-    }
-    if (config.withRedux) {
-        bareComponent = react_redux_1.connect(function (props) { return props; })(bareComponent);
-    }
-    return bareComponent;
-}
-exports.decorate = decorate;
-function withRedux(componentClass) {
-    return react_redux_1.connect(function (props) { return props; })(componentClass);
-}
-exports.withRedux = withRedux;
-
-
-/***/ }),
-
-/***/ "./src/helpers/GenericBuilder.tsx":
-/*!****************************************!*\
-  !*** ./src/helpers/GenericBuilder.tsx ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var GenericBuilder = /** @class */ (function () {
-    function GenericBuilder() {
-    }
-    GenericBuilder.of = function () {
-        var built = {};
-        var builder = new Proxy({}, {
-            get: function (target, prop, receiver) {
-                if ('build' === prop) {
-                    return function () { return built; };
-                }
-                return function (x) {
-                    built[prop] = x;
-                    return builder;
-                };
+var Checks_1 = __webpack_require__(/*! ../helpers/Checks */ "./src/lib/helpers/Checks.tsx");
+var Reducer = /** @class */ (function () {
+    function Reducer(initialState) {
+        var _this = this;
+        this.reducers = {};
+        this.reducer = function (state, action) {
+            if (state === void 0) { state = _this.initialState; }
+            var matchingReducer = _this.reducers[action.type];
+            if (matchingReducer) {
+                return _this.reducers[action.type](state, action);
             }
-        });
-        return builder;
-    };
-    GenericBuilder.buildFromConfig = function (genericConfig) {
-        return genericConfig(GenericBuilder.of()).build();
-    };
-    return GenericBuilder;
-}());
-exports.GenericBuilder = GenericBuilder;
-
-
-/***/ }),
-
-/***/ "./src/helpers/Toggle.tsx":
-/*!********************************!*\
-  !*** ./src/helpers/Toggle.tsx ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Checks_1 = __webpack_require__(/*! ./Checks */ "./src/helpers/Checks.tsx");
-var Toggle = /** @class */ (function () {
-    function Toggle() {
-    }
-    Toggle.asFunction = function (key, component) {
-        return function () {
-            var stateCopy = component.state;
-            Checks_1.Checks.throwIfNil(stateCopy[key], "Key '" + key + "' does not exist in state");
-            var oldState = stateCopy[key];
-            component.setState((_a = {}, _a[key] = !oldState, _a));
-            var _a;
+            return state;
         };
+        Checks_1.Checks.throwIfNil(initialState, "'initialState' must not be null.");
+        this.initialState = initialState;
+    }
+    Reducer.prototype.addReducer = function (actionType, reducerFunction) {
+        Checks_1.Checks.throwIfNotNil(this.reducers[actionType], "Duplicate ActionType for Reducer in EAR instance provided, problem with " + actionType);
+        this.reducers[actionType] = reducerFunction;
     };
-    Toggle.byKey = function (key, component) {
-        var stateCopy = component.state;
-        Checks_1.Checks.throwIfNil(stateCopy[key], "Key '" + key + "' does not exist in state");
-        var oldState = stateCopy[key];
-        component.setState((_a = {}, _a[key] = !oldState, _a));
-        var _a;
-    };
-    return Toggle;
+    return Reducer;
 }());
-exports.Toggle = Toggle;
+exports.Reducer = Reducer;
 
 
 /***/ }),
 
-/***/ "./src/helpers/forms/FieldMeta.tsx":
-/*!*****************************************!*\
-  !*** ./src/helpers/forms/FieldMeta.tsx ***!
-  \*****************************************/
+/***/ "./src/lib/form/FieldMeta.tsx":
+/*!************************************!*\
+  !*** ./src/lib/form/FieldMeta.tsx ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -107294,10 +107262,10 @@ exports.FieldMeta = FieldMeta;
 
 /***/ }),
 
-/***/ "./src/helpers/forms/FormFactory.tsx":
-/*!*******************************************!*\
-  !*** ./src/helpers/forms/FormFactory.tsx ***!
-  \*******************************************/
+/***/ "./src/lib/form/FormFactory.tsx":
+/*!**************************************!*\
+  !*** ./src/lib/form/FormFactory.tsx ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -107312,21 +107280,21 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var GenericBuilder_1 = __webpack_require__(/*! ../GenericBuilder */ "./src/helpers/GenericBuilder.tsx");
 var TextField_1 = __webpack_require__(/*! material-ui-next/es/TextField */ "./node_modules/material-ui-next/es/TextField/index.js");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var react_final_form_1 = __webpack_require__(/*! react-final-form */ "./node_modules/react-final-form/dist/react-final-form.es.js");
 var Radio_1 = __webpack_require__(/*! material-ui-next/es/Radio */ "./node_modules/material-ui-next/es/Radio/index.js");
-var Checks_1 = __webpack_require__(/*! ../Checks */ "./src/helpers/Checks.tsx");
 var Checkbox_1 = __webpack_require__(/*! material-ui-next/es/Checkbox */ "./node_modules/material-ui-next/es/Checkbox/index.js");
-var FieldMeta_1 = __webpack_require__(/*! ./FieldMeta */ "./src/helpers/forms/FieldMeta.tsx");
+var FieldMeta_1 = __webpack_require__(/*! ./FieldMeta */ "./src/lib/form/FieldMeta.tsx");
 var Switch_1 = __webpack_require__(/*! material-ui-next/es/Switch */ "./node_modules/material-ui-next/es/Switch/index.js");
 var material_ui_next_1 = __webpack_require__(/*! material-ui-next */ "./node_modules/material-ui-next/index.es.js");
 var Select_1 = __webpack_require__(/*! material-ui-next/es/Select */ "./node_modules/material-ui-next/es/Select/index.js");
 var Icon_1 = __webpack_require__(/*! material-ui-next/es/Icon */ "./node_modules/material-ui-next/es/Icon/index.js");
 var Tooltip_1 = __webpack_require__(/*! material-ui-next/es/Tooltip */ "./node_modules/material-ui-next/es/Tooltip/index.js");
-var TextFieldConfig_1 = __webpack_require__(/*! ./configs/TextFieldConfig */ "./src/helpers/forms/configs/TextFieldConfig.tsx");
-var SelectFieldConfig_1 = __webpack_require__(/*! ./configs/SelectFieldConfig */ "./src/helpers/forms/configs/SelectFieldConfig.tsx");
+var TextFieldConfig_1 = __webpack_require__(/*! ./configs/TextFieldConfig */ "./src/lib/form/configs/TextFieldConfig.tsx");
+var SelectFieldConfig_1 = __webpack_require__(/*! ./configs/SelectFieldConfig */ "./src/lib/form/configs/SelectFieldConfig.tsx");
+var Checks_1 = __webpack_require__(/*! ../helpers/Checks */ "./src/lib/helpers/Checks.tsx");
+var GenericBuilder_1 = __webpack_require__(/*! ../helpers/GenericBuilder */ "./src/lib/helpers/GenericBuilder.tsx");
 var FormFactory = /** @class */ (function () {
     function FormFactory() {
     }
@@ -107343,7 +107311,7 @@ var FormFactory = /** @class */ (function () {
         Checks_1.Checks.throwIfNotNil(cfg.name, "Property 'name' is not allowed. Use 'formField'.");
         Checks_1.Checks.throwIfNil(cfg.value, "Property 'value' in RadioButton  must not be null;");
         cfg.name = cfg.formField.name;
-        return (React.createElement(react_final_form_1.Field, __assign({}, cfg, { type: "radio" }), function (props) { return React.createElement(Radio_1.default, __assign({}, props.input)); }));
+        return (React.createElement(react_final_form_1.Field, __assign({}, cfg, { type: FieldMeta_1.FieldMeta.inputType.radio }), function (props) { return React.createElement(Radio_1.default, __assign({}, props.input)); }));
     };
     FormFactory.checkbox = function (config) {
         var cfg = GenericBuilder_1.GenericBuilder.buildFromConfig(config);
@@ -107353,7 +107321,7 @@ var FormFactory = /** @class */ (function () {
         Checks_1.Checks.throwIfNil(cfg.value, "Property 'value' in Checkbox  must not be null;");
         cfg.name = cfg.formField.name;
         cfg.formField.addOption(cfg.value);
-        return (React.createElement(react_final_form_1.Field, __assign({}, cfg, { type: "checkbox" }), function (props) {
+        return (React.createElement(react_final_form_1.Field, __assign({}, cfg, { type: FieldMeta_1.FieldMeta.inputType.checkbox }), function (props) {
             cfg.formField.props = props;
             return (React.createElement(Checkbox_1.default, __assign({}, props.input, { checked: FieldMeta_1.FieldMeta.hasValue(cfg.value, cfg.formField) })));
         }));
@@ -107365,7 +107333,7 @@ var FormFactory = /** @class */ (function () {
         Checks_1.Checks.throwIfNotNil(cfg.name, "Property 'name' is not allowed. Use 'formField'.");
         Checks_1.Checks.throwIfNotNil(cfg.value, "Property 'value' in Switch  is not allowed. Switch is for true/false only.");
         cfg.name = cfg.formField.name;
-        return (React.createElement(react_final_form_1.Field, __assign({}, cfg, { type: "checkbox" }), function (props) {
+        return (React.createElement(react_final_form_1.Field, __assign({}, cfg, { type: FieldMeta_1.FieldMeta.inputType.checkbox }), function (props) {
             cfg.formField.props = props;
             return (React.createElement(Switch_1.default, __assign({}, props.input, { value: "override_dummy", checked: props.input.value })));
         }));
@@ -107429,18 +107397,18 @@ exports.FormFactory = FormFactory;
 
 /***/ }),
 
-/***/ "./src/helpers/forms/FormField.tsx":
-/*!*****************************************!*\
-  !*** ./src/helpers/forms/FormField.tsx ***!
-  \*****************************************/
+/***/ "./src/lib/form/FormField.tsx":
+/*!************************************!*\
+  !*** ./src/lib/form/FormField.tsx ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var FormManager_1 = __webpack_require__(/*! ./FormManager */ "./src/helpers/forms/FormManager.tsx");
-var Checks_1 = __webpack_require__(/*! ../Checks */ "./src/helpers/Checks.tsx");
+var FormManager_1 = __webpack_require__(/*! ./FormManager */ "./src/lib/form/FormManager.tsx");
+var Checks_1 = __webpack_require__(/*! ../helpers/Checks */ "./src/lib/helpers/Checks.tsx");
 var FormField = /** @class */ (function () {
     function FormField(fieldType, config) {
         this.validations = [];
@@ -107510,17 +107478,17 @@ exports.FormFieldConfig = FormFieldConfig;
 
 /***/ }),
 
-/***/ "./src/helpers/forms/FormManager.tsx":
-/*!*******************************************!*\
-  !*** ./src/helpers/forms/FormManager.tsx ***!
-  \*******************************************/
+/***/ "./src/lib/form/FormManager.tsx":
+/*!**************************************!*\
+  !*** ./src/lib/form/FormManager.tsx ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Checks_1 = __webpack_require__(/*! ../Checks */ "./src/helpers/Checks.tsx");
+var Checks_1 = __webpack_require__(/*! ../helpers/Checks */ "./src/lib/helpers/Checks.tsx");
 var FormManager = /** @class */ (function () {
     function FormManager(component, fields) {
         Object.keys(fields).forEach(function (key) {
@@ -107588,10 +107556,10 @@ exports.Validation = Validation;
 
 /***/ }),
 
-/***/ "./src/helpers/forms/Value.tsx":
-/*!*************************************!*\
-  !*** ./src/helpers/forms/Value.tsx ***!
-  \*************************************/
+/***/ "./src/lib/form/Value.tsx":
+/*!********************************!*\
+  !*** ./src/lib/form/Value.tsx ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -107700,17 +107668,17 @@ exports.Value = Value;
 
 /***/ }),
 
-/***/ "./src/helpers/forms/configs/SelectFieldConfig.tsx":
-/*!*********************************************************!*\
-  !*** ./src/helpers/forms/configs/SelectFieldConfig.tsx ***!
-  \*********************************************************/
+/***/ "./src/lib/form/configs/SelectFieldConfig.tsx":
+/*!****************************************************!*\
+  !*** ./src/lib/form/configs/SelectFieldConfig.tsx ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var GenericBuilder_1 = __webpack_require__(/*! ../../GenericBuilder */ "./src/helpers/GenericBuilder.tsx");
+var GenericBuilder_1 = __webpack_require__(/*! ../../helpers/GenericBuilder */ "./src/lib/helpers/GenericBuilder.tsx");
 var SelectFieldConfigData = /** @class */ (function () {
     function SelectFieldConfigData() {
     }
@@ -107785,10 +107753,10 @@ exports.SelectFieldConfig = SelectFieldConfig;
 
 /***/ }),
 
-/***/ "./src/helpers/forms/configs/TextFieldConfig.tsx":
-/*!*******************************************************!*\
-  !*** ./src/helpers/forms/configs/TextFieldConfig.tsx ***!
-  \*******************************************************/
+/***/ "./src/lib/form/configs/TextFieldConfig.tsx":
+/*!**************************************************!*\
+  !*** ./src/lib/form/configs/TextFieldConfig.tsx ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -107830,10 +107798,60 @@ exports.TextFieldConfig = TextFieldConfig;
 
 /***/ }),
 
-/***/ "./src/lib/EAR.tsx":
-/*!*************************!*\
-  !*** ./src/lib/EAR.tsx ***!
-  \*************************/
+/***/ "./src/lib/helpers/ActionFactory.tsx":
+/*!*******************************************!*\
+  !*** ./src/lib/helpers/ActionFactory.tsx ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ActionFactory = /** @class */ (function () {
+    function ActionFactory() {
+    }
+    ActionFactory.create = function (actionType, payload) {
+        return { type: actionType, payload: payload };
+    };
+    return ActionFactory;
+}());
+exports.ActionFactory = ActionFactory;
+
+
+/***/ }),
+
+/***/ "./src/lib/helpers/Assets.tsx":
+/*!************************************!*\
+  !*** ./src/lib/helpers/Assets.tsx ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Router_1 = __webpack_require__(/*! ../../app/Router */ "./src/app/Router.tsx");
+var Assets = /** @class */ (function () {
+    function Assets() {
+    }
+    Assets.image = function (fileName) {
+        return Router_1.Routes.assets.IMAGES + "/" + fileName;
+    };
+    Assets.getLogo = function () {
+        return Assets.image("logo.png");
+    };
+    return Assets;
+}());
+exports.Assets = Assets;
+
+
+/***/ }),
+
+/***/ "./src/lib/helpers/Checks.tsx":
+/*!************************************!*\
+  !*** ./src/lib/helpers/Checks.tsx ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -107841,110 +107859,155 @@ exports.TextFieldConfig = TextFieldConfig;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-var Checks_1 = __webpack_require__(/*! ../helpers/Checks */ "./src/helpers/Checks.tsx");
-var Redux_1 = __webpack_require__(/*! ../app/Redux */ "./src/app/Redux.tsx");
-var ActionFactory_1 = __webpack_require__(/*! ../helpers/ActionFactory */ "./src/helpers/ActionFactory.tsx");
-var EAR = /** @class */ (function () {
-    function EAR(parentEAR, config) {
-        var earConfig = config(new EarConfig(parentEAR)).internalBuild();
-        this.dispatchActionType = Checks_1.Checks.throwIfNil(earConfig.getDispatchActionType(), "'dispatchActionType' must not be null.");
-        this.parent = Checks_1.Checks.throwIfNil(earConfig.getParentEAR(), "'parentEAR' must not be null.");
-        this._epic = earConfig.getEpic();
-    }
-    EAR.prototype.dispatch = function (payload) {
-        var _this = this;
-        if (_.isNil(payload)) {
-            return function () { return Redux_1.Redux.INST.dispatch(ActionFactory_1.ActionFactory.create(_this.dispatchActionType, null)); };
+var Checks;
+(function (Checks) {
+    function throwIfNil(value, message) {
+        if (_.isNil(value)) {
+            throw new Error(message);
         }
-        else {
-            return function () { return Redux_1.Redux.INST.dispatch(ActionFactory_1.ActionFactory.create(_this.dispatchActionType, payload)); };
-        }
-    };
-    Object.defineProperty(EAR.prototype, "epic", {
-        get: function () {
-            Checks_1.Checks.throwIfNil(this._epic, "Epic was not set in EarBuilder. Check your implementation of combineEpics().");
-            return this._epic;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return EAR;
-}());
-exports.EAR = EAR;
-var EarConfig = /** @class */ (function () {
-    /* ------------------------------------------------------ */
-    // BUILDER
-    /* ------------------------------------------------------ */
-    function EarConfig(parentEAR) {
-        this.parentEAR = parentEAR;
+        return value;
     }
-    EarConfig.prototype.setDispatchAction = function (mandatorySetting) {
-        this.dispatchActionType = mandatorySetting;
-        return this;
-    };
-    EarConfig.prototype.addReducer = function (actionType, optionalSetting) {
-        this.parentEAR.addReducer(actionType, optionalSetting);
-        return this;
-    };
-    EarConfig.prototype.setEpic = function (epic) {
-        this.epic = epic;
-        return this;
-    };
-    EarConfig.prototype.internalBuild = function () {
-        return this;
-    };
-    /* ------------------------------------------------------ */
-    // GETTERS
-    /* ------------------------------------------------------ */
-    EarConfig.prototype.getDispatchActionType = function () {
-        return this.dispatchActionType;
-    };
-    EarConfig.prototype.getParentEAR = function () {
-        return this.parentEAR;
-    };
-    EarConfig.prototype.getEpic = function () {
-        return this.epic;
-    };
-    return EarConfig;
-}());
-exports.EarConfig = EarConfig;
+    Checks.throwIfNil = throwIfNil;
+    function throwIfNotNil(value, message) {
+        if (!_.isNil(value)) {
+            throw new Error(message);
+        }
+        return value;
+    }
+    Checks.throwIfNotNil = throwIfNotNil;
+    function throwIfWrongType(value, expectedType, message) {
+        if (typeof value !== expectedType) {
+            throw new Error(message + " Got type: '" + typeof value + "', expected " + expectedType);
+        }
+        return value;
+    }
+    Checks.throwIfWrongType = throwIfWrongType;
+})(Checks = exports.Checks || (exports.Checks = {}));
 
 
 /***/ }),
 
-/***/ "./src/lib/Reducer.tsx":
-/*!*****************************!*\
-  !*** ./src/lib/Reducer.tsx ***!
-  \*****************************/
+/***/ "./src/lib/helpers/ComponentDecorators.tsx":
+/*!*************************************************!*\
+  !*** ./src/lib/helpers/ComponentDecorators.tsx ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Checks_1 = __webpack_require__(/*! ../helpers/Checks */ "./src/helpers/Checks.tsx");
-var Reducer = /** @class */ (function () {
-    function Reducer(initialState) {
-        var _this = this;
-        this.reducers = {};
-        this.reducer = function (state, action) {
-            if (state === void 0) { state = _this.initialState; }
-            var matchingReducer = _this.reducers[action.type];
-            if (matchingReducer) {
-                return _this.reducers[action.type](state, action);
-            }
-            return state;
-        };
-        Checks_1.Checks.throwIfNil(initialState, "'initialState' must not be null.");
-        this.initialState = initialState;
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var withStyles_1 = __webpack_require__(/*! material-ui-next/es/styles/withStyles */ "./node_modules/material-ui-next/es/styles/withStyles.js");
+var GenericBuilder_1 = __webpack_require__(/*! ./GenericBuilder */ "./src/lib/helpers/GenericBuilder.tsx");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
+/**
+ * ----- Props interface maybe needs specific properties -----
+ * ------ We can't check these at compile- or run-time. ------
+ *
+ * withStyles:
+ * Props must have property 'classes:any'. This adds the provided CSS to props.
+ *
+ * withRouter:
+ * Props should have property 'location:any'. This adds some functions to props.
+ *
+ * withRedux:
+ * Props must have the state property names from the store. Otherwise they won't be available.
+ */
+function decorate(component, cfg) {
+    var config = GenericBuilder_1.GenericBuilder.buildFromConfig(cfg);
+    var blankComponent = component;
+    if (config.withStyles) {
+        blankComponent = withStyles_1.default(config.withStyles)(blankComponent);
     }
-    Reducer.prototype.addReducer = function (actionType, reducerFunction) {
-        Checks_1.Checks.throwIfNotNil(this.reducers[actionType], "Duplicate ActionType for Reducer in EAR instance provided, problem with " + actionType);
-        this.reducers[actionType] = reducerFunction;
+    if (config.withRouter) {
+        blankComponent = react_router_1.withRouter(blankComponent);
+    }
+    if (config.withRedux) {
+        blankComponent = react_redux_1.connect(function (props) { return props; })(blankComponent);
+    }
+    return blankComponent;
+}
+exports.decorate = decorate;
+function withRedux(componentClass) {
+    return react_redux_1.connect(function (props) { return props; })(componentClass);
+}
+exports.withRedux = withRedux;
+
+
+/***/ }),
+
+/***/ "./src/lib/helpers/GenericBuilder.tsx":
+/*!********************************************!*\
+  !*** ./src/lib/helpers/GenericBuilder.tsx ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var GenericBuilder = /** @class */ (function () {
+    function GenericBuilder() {
+    }
+    GenericBuilder.of = function () {
+        var built = {};
+        var builder = new Proxy({}, {
+            get: function (target, prop, receiver) {
+                if ('build' === prop) {
+                    return function () { return built; };
+                }
+                return function (x) {
+                    built[prop] = x;
+                    return builder;
+                };
+            }
+        });
+        return builder;
     };
-    return Reducer;
+    GenericBuilder.buildFromConfig = function (genericConfig) {
+        return genericConfig(GenericBuilder.of()).build();
+    };
+    return GenericBuilder;
 }());
-exports.Reducer = Reducer;
+exports.GenericBuilder = GenericBuilder;
+
+
+/***/ }),
+
+/***/ "./src/lib/helpers/Toggle.tsx":
+/*!************************************!*\
+  !*** ./src/lib/helpers/Toggle.tsx ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Checks_1 = __webpack_require__(/*! ./Checks */ "./src/lib/helpers/Checks.tsx");
+var Toggle = /** @class */ (function () {
+    function Toggle() {
+    }
+    Toggle.asFunction = function (key, component) {
+        return function () {
+            var stateCopy = component.state;
+            Checks_1.Checks.throwIfNil(stateCopy[key], "Key '" + key + "' does not exist in state");
+            var oldState = stateCopy[key];
+            component.setState((_a = {}, _a[key] = !oldState, _a));
+            var _a;
+        };
+    };
+    Toggle.byKey = function (key, component) {
+        var stateCopy = component.state;
+        Checks_1.Checks.throwIfNil(stateCopy[key], "Key '" + key + "' does not exist in state");
+        var oldState = stateCopy[key];
+        component.setState((_a = {}, _a[key] = !oldState, _a));
+        var _a;
+    };
+    return Toggle;
+}());
+exports.Toggle = Toggle;
 
 
 /***/ })

@@ -1,6 +1,7 @@
 import {TextFieldProps} from "material-ui-next/es/TextField/TextField";
 import {FieldRenderProps} from "react-final-form";
-import {GenericConfig} from "../../GenericBuilder";
+import {GenericConfig} from "../../helpers/GenericBuilder";
+
 
 
 

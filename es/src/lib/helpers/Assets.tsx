@@ -1,4 +1,4 @@
-import {Routes} from "../app/Router";
+import {Routes} from "../../app/Router";
 
 
 export class Assets {
