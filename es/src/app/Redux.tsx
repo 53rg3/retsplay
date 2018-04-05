@@ -3,7 +3,7 @@ import {combineReducers} from "redux";
 import logger from "redux-logger";
 import * as React from "react";
 import {combineEpics, createEpicMiddleware} from "redux-observable";
-import {CounterEAR} from "../containers/home/counter/actions/CounterEAR";
+import {CounterEAR} from "../containers/counter/actions/CounterEAR";
 
 
 

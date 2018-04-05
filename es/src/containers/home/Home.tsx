@@ -1,18 +1,42 @@
 import * as React from "react";
 import {NoProps, NoState} from "../../helpers/NoPropsNoState";
-import {withRedux} from "../../helpers/ComponentDecorators";
-import Counter from "./counter/Counter";
+import Button from "material-ui-next/es/Button";
+import {Assets} from "../../helpers/Assets";
 
 
 
-export default class Home extends React.Component<NoProps,NoState> {
+const styles = {
+    margin: "0 auto"
+};
+
+class State {
+    buttonPushed:boolean = false;
+}
+export default class Home extends React.Component<NoProps, State> {
+    constructor(props:NoProps) {
+        super(props);
+        this.state = new State();
+    }
+
+    handleClick() {
+        this.setState({buttonPushed: !this.state.buttonPushed});
+    }
+
+    private home = (
+        <div>
+            <Button variant="raised" color="secondary" onClick={this.handleClick.bind(this)}>Push this button!</Button>
+        </div>);
+
+    private dancer = (
+        <div style={styles}>
+            <img className="fading" src={Assets.image("dance.gif")} />
+            <audio autoPlay>
+                <source src={Assets.image("dubmood.mp3")} type="audio/mpeg" />
+            </audio>
+        </div>);
 
     render() {
-        return (
-            <div>
-                <h2>Home</h2>
-                <Counter />
-            </div>
-        );
+        const html = this.state.buttonPushed ? this.dancer : this.home;
+        return (html);
     }
 }

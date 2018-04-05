@@ -1,20 +1,25 @@
 import * as React from "react";
-import {NoProps, NoState} from "../../helpers/NoPropsNoState";
-import {withRedux} from "../../helpers/ComponentDecorators";
-import {FormTest} from "./FormTest";
+import {NoState} from "../../helpers/NoPropsNoState";
+import {decorate} from "../../helpers/ComponentDecorators";
+import {Heading} from "../layout/commons/Heading";
+import {Body} from "../layout/commons/Body";
 
 
+class Props {
+    classes?: any
+}
 
-
-class Blog extends React.Component<NoProps,NoState> {
+class Blog extends React.Component<Props, NoState> {
 
     render() {
         return (
             <div>
-                <h2>Blog</h2>
-                <FormTest />
+                <Heading heading="Blog" />
+                <Body>
+                    Blog...
+                </Body>
             </div>
         );
     }
 }
-export default withRedux<NoProps>(Blog);
+export default decorate<Props>(Blog, c => c);

@@ -1,7 +1,11 @@
 
 # REACT COMPONENTS
 GET           /                     controllers.HomeController.index
-GET           /blog           controllers.HomeController.index
+GET           /blog                 controllers.HomeController.index
+GET           /form-example         controllers.HomeController.index
+GET           /counter              controllers.HomeController.index
+
+
 GET           /posteditor           controllers.HomeController.index
 GET           /post                 controllers.HomeController.index
 GET           /editor               controllers.HomeController.index

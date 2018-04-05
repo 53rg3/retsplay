@@ -1,8 +1,7 @@
 import * as React from "react";
 import {CounterEAR, CounterState, CounterStateFactory} from "./actions/CounterEAR";
-import {NoState} from "../../../helpers/NoPropsNoState";
-import {Api} from "../../../app/Api";
-import {withRedux} from "../../../helpers/ComponentDecorators";
+import {NoState} from "../../helpers/NoPropsNoState";
+import {withRedux} from "../../helpers/ComponentDecorators";
 
 
 

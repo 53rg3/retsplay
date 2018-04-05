@@ -18,8 +18,8 @@ export class EAR<T, R extends Reducer<T>> {
 
         const earConfig = config(new EarConfig<T, R>(parentEAR)).internalBuild();
 
-        this.dispatchActionType = Checks.throwIfNull(earConfig.getDispatchActionType(), "'dispatchActionType' must not be null.");
-        this.parent = Checks.throwIfNull(earConfig.getParentEAR(), "'parentEAR' must not be null.");
+        this.dispatchActionType = Checks.throwIfNil(earConfig.getDispatchActionType(), "'dispatchActionType' must not be null.");
+        this.parent = Checks.throwIfNil(earConfig.getParentEAR(), "'parentEAR' must not be null.");
         this._epic = earConfig.getEpic();
     }
 
@@ -33,7 +33,7 @@ export class EAR<T, R extends Reducer<T>> {
     }
 
     get epic(): Epic<FSAction<T>, T> {
-        Checks.throwIfNull(this._epic, "Epic was not set in EarBuilder. Check your implementation of combineEpics().");
+        Checks.throwIfNil(this._epic, "Epic was not set in EarBuilder. Check your implementation of combineEpics().");
         return this._epic;
     }
 }

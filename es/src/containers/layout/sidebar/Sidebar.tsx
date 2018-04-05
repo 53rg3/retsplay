@@ -7,20 +7,25 @@ import {Routes} from "../../../app/Router";
 import {MenuList} from "material-ui-next";
 import {SidebarLinkGroup} from "./SidebarNestedLinks";
 import Icon from "material-ui-next/es/Icon";
+import Divider from "material-ui-next/es/Divider";
 
 
 
 const styles = (theme:any) => ({
     drawerPaper: {
         position: 'relative',
+        minHeight:"100%",
         width: 240,
     },
-    toolbar: theme.mixins.toolbar,
+    toolbar: {
+        marginTop: "63px"
+    },
     root: {
         width: '100%',
         maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
     },
+
 });
 
 interface Props {
@@ -37,15 +42,15 @@ class Component extends React.Component<Props, NoState> {
 
                 <MenuList>
                     <SidebarLink linkText={"Dashboard"} route={Routes.DASHBOARD} icon={"dashboard"}/>
-                </MenuList>
 
-                <SidebarLinkGroup groupName={"Blog"} icon={"comment"}>
+
+                <SidebarLinkGroup groupName={"Blog"} icon={"comment"} >
                     <SidebarLink linkText={"Show all posts"} route={Routes.blog.ROOT} nested={true} icon={"list"}/>
-                    <SidebarLink linkText={"Add new"} route={Routes.blog.ROOT} nested={true} icon={"add_circle_outline"} />
+                    <Divider />
                 </SidebarLinkGroup>
 
-                <MenuList>
-                    <SidebarLink linkText={"Something"} route={Routes.DASHBOARD} icon={"equalizer"}/>
+                    <SidebarLink linkText={"Counter"} route={Routes.counter.ROOT} icon={"exposure_plus_1"}/>
+                    <SidebarLink linkText={"Form Example"} route={Routes.formExample.ROOT} icon={"format_align_left"} />
                 </MenuList>
 
 

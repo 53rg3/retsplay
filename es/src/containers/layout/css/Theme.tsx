@@ -1,6 +1,4 @@
-import createMuiTheme from 'material-ui-next/styles/createMuiTheme';
-
-export const MuiCustomTheme = createMuiTheme({
+const darkBlueYellow = {
     palette: {
         primary: {
             main: "#37474f",
@@ -15,4 +13,6 @@ export const MuiCustomTheme = createMuiTheme({
             contrastText: "#000000"
         }
     }
-});
+};
+
+export const theme = darkBlueYellow;

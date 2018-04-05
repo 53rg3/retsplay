@@ -1,8 +1,8 @@
-import {FSAction} from "../../../../lib/FSAction";
-import {Reducer} from "../../../../lib/Reducer";
-import {Act} from "../../../../app/ActionType";
-import {ActionFactory} from "../../../../helpers/ActionFactory";
-import {EAR} from "../../../../lib/EAR";
+import {FSAction} from "../../../lib/FSAction";
+import {Reducer} from "../../../lib/Reducer";
+import {Act} from "../../../app/ActionType";
+import {EAR} from "../../../lib/EAR";
+import {ActionFactory} from "../../../helpers/ActionFactory";
 
 
 export class CounterState {

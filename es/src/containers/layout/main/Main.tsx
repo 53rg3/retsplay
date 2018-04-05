@@ -10,7 +10,9 @@ const styles = (theme:any) => ({
         padding: theme.spacing.unit * 3,
         minWidth: 0, // So the Typography noWrap works
     },
-    toolbar: theme.mixins.toolbar,
+    toolbar: {
+        marginTop: "57px"
+    },
 });
 
 interface Props {

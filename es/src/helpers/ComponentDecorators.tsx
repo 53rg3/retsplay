@@ -27,7 +27,7 @@ interface Capabilities {
  */
 export function decorate<P>(component: React.ComponentClass, cfg:(cfg:GenericConfig<Capabilities>)=>GenericConfig<Capabilities>): React.ComponentClass<P> {
 
-    const config = GenericBuilder.buildFrom(cfg);
+    const config = GenericBuilder.buildFromConfig(cfg);
 
     let bareComponent = component as any;
 

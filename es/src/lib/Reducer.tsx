@@ -8,12 +8,12 @@ export class Reducer<T> {
     private readonly initialState:T;
 
     constructor(initialState:T) {
-        Checks.throwIfNull(initialState, "'initialState' must not be null.");
+        Checks.throwIfNil(initialState, "'initialState' must not be null.");
         this.initialState = initialState;
     }
 
     public addReducer(actionType: string, reducerFunction: (state: T, action: FSAction<T>) => T) {
-        Checks.throwIfNotUndefined(this.reducers[actionType], "Duplicate ActionType for Reducer in EAR instance provided, problem with "+actionType);
+        Checks.throwIfNotNil(this.reducers[actionType], "Duplicate ActionType for Reducer in EAR instance provided, problem with "+actionType);
         this.reducers[actionType] = reducerFunction;
     }
 

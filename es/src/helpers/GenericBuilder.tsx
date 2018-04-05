@@ -1,3 +1,5 @@
+import {FormField} from "./forms/FormField";
+
 export type GenericConfig<T> = {
         [k in keyof T]: (arg: T[k]) => GenericConfig<T>
         }
@@ -5,8 +7,16 @@ export type GenericConfig<T> = {
     build(): T
 };
 
+export type GenericConfigWithFormField<T> = {
+        [k in keyof T]: (arg: T[k]) => GenericConfigWithFormField<T>
+        }
+    & {
+    formField(formField:FormField<any>):GenericConfigWithFormField<T>,
+    build(): T
+};
+
 export class GenericBuilder {
-    public static build<T>(): GenericConfig<T> {
+    public static of<T>(): GenericConfig<T> {
         const built: any = {};
 
         const builder = new Proxy(
@@ -28,8 +38,8 @@ export class GenericBuilder {
         return builder as any;
     }
 
-    public static buildFrom<T>(genericConfig:(cfg:GenericConfig<T>)=>GenericConfig<T>): T {
-        return genericConfig(GenericBuilder.build()).build();
+    public static buildFromConfig<T>(genericConfig: (cfg: GenericConfig<T>) => GenericConfig<T>): T {
+        return genericConfig(GenericBuilder.of()).build();
     }
 
 }

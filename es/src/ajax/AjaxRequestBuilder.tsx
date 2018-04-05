@@ -14,15 +14,15 @@ export interface HttpRequest {
 }
 export function AjaxRequestBuilder(config:(cfg:GenericConfig<AjaxRequest>)=>GenericConfig<AjaxRequest>):AjaxRequest {
 
-    const result = GenericBuilder.buildFrom(config);
+    const result = GenericBuilder.buildFromConfig(config);
 
-    let method = GenericBuilder.build<HttpRequest>()
+    let method = GenericBuilder.of<HttpRequest>()
         .method(Method.GET)
         .build();
 
 
-    Checks.throwIfNull(result.method, "'method' must not be null.");
-    Checks.throwIfNull(result.url, "'url' must not be null.");
+    Checks.throwIfNil(result.method, "'method' must not be null.");
+    Checks.throwIfNil(result.url, "'url' must not be null.");
 
     return result;
 }
