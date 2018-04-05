@@ -1,28 +1,27 @@
-import {applyMiddleware, createStore} from "redux";
-import {combineReducers} from "redux";
-import logger from "redux-logger";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import * as React from "react";
 import {combineEpics, createEpicMiddleware} from "redux-observable";
-import {CounterEAR} from "../containers/counter/actions/CounterEAR";
-
+import {CounterEAR} from "../containers/counter/Counter.ear";
 
 
 export class Redux {
     private static _INST: Redux;
 
+
     /* ------------------------------------------------------------- */
     // REDUCERS
     /* ------------------------------------------------------------- */
     private readonly registeredReducers = combineReducers({
-        counterState: CounterEAR.INST.reducer,
+        counterState: CounterEAR.Action.reducer
     });
+
 
     /* ------------------------------------------------------------- */
     // EPICS
     /* ------------------------------------------------------------- */
     private readonly rootEpic = combineEpics(
-        CounterEAR.INST.increase.epic,
-        CounterEAR.INST.decrease.epic
+        CounterEAR.Action.increase.epic,
+        CounterEAR.Action.decrease.epic
     );
 
 

@@ -1,4 +1,4 @@
-export const FormExampleCss = {
+export const formExampleCss = {
 
     nameField: {
         width: "100px",

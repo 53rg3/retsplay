@@ -1,29 +1,33 @@
 import * as React from "react";
-import {CounterEAR, CounterState, CounterStateFactory} from "./actions/CounterEAR";
 import {NoState} from "../../lib/helpers/NoPropsNoState";
 import {decorate} from "../../lib/helpers/ComponentDecorators";
+import {CounterEAR} from "./Counter.ear";
 
 
-type Props = {
-    counterState?: CounterState;
+
+
+class Props {
+    counterState: CounterEAR.State
 }
 
-class Component extends React.Component<Props, NoState> {
+class CounterComponent extends React.Component<Props, NoState> {
 
     render() {
+        const Action = CounterEAR.Action;
+        const Factory = CounterEAR.Factory;
         return (
             <div>
                 Counter: {this.props.counterState.count}<br/>
-                <button onClick={CounterEAR.INST.increase.dispatch()}>Increase</button>
+                <button onClick={Action.increase.dispatch()}>Increase</button>
                 <br/>
-                <button onClick={CounterEAR.INST.decrease.dispatch(CounterStateFactory.value(7))}>Decrease</button>
+                <button onClick={Action.decrease.dispatch(Factory.value(7))}>Decrease</button>
                 <br/>
             </div>
         );
     }
 }
 
-export default decorate<Props>(Component, c => c
+export default decorate<Props>(CounterComponent, c => c
     .withRedux(true))
 
 

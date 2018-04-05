@@ -7,7 +7,7 @@ import Divider from "material-ui-next/es/Divider";
 import {ModalStandard} from "../layout/commons/ModalStandard";
 import {colorSelection, FormExampleLogic} from "./FormExample.logic";
 import {formExampleFields} from "./FormExample.fields";
-import {FormExampleCss} from "./FormExample.css";
+import {formExampleCss} from "./FormExample.css";
 import {FormManager} from "../../lib/form/FormManager";
 import {Toggle} from "../../lib/helpers/Toggle";
 import {FormFactory} from "../../lib/form/FormFactory";
@@ -26,12 +26,12 @@ class State {
     colorFilter = "";
 }
 
-class FormExample extends React.Component<Props, State> {
+class FormExampleComponent extends React.Component<Props, State> {
 
     private formFields = formExampleFields;
     private formManager: FormManager;
     private logic:FormExampleLogic;
-    private css = FormExampleCss;
+    private css = formExampleCss;
 
     constructor(props: Props) {
         super(props);
@@ -233,5 +233,5 @@ class FormExample extends React.Component<Props, State> {
         );
     }
 }
-export default decorate<Props>(FormExample, c=>c
+export default decorate<Props>(FormExampleComponent, c=>c
     .withRedux(true))

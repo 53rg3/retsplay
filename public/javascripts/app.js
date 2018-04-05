@@ -105711,21 +105711,20 @@ ReactDOM.render(React.createElement(react_redux_1.Provider, { store: Redux_1.Red
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var redux_1 = __webpack_require__(/*! redux */ "./node_modules/redux/es/index.js");
-var redux_2 = __webpack_require__(/*! redux */ "./node_modules/redux/es/index.js");
 var redux_observable_1 = __webpack_require__(/*! redux-observable */ "./node_modules/redux-observable/lib/esm/index.js");
-var CounterEAR_1 = __webpack_require__(/*! ../containers/counter/actions/CounterEAR */ "./src/containers/counter/actions/CounterEAR.tsx");
+var Counter_ear_1 = __webpack_require__(/*! ../containers/counter/Counter.ear */ "./src/containers/counter/Counter.ear.tsx");
 var Redux = /** @class */ (function () {
     function Redux() {
         /* ------------------------------------------------------------- */
         // REDUCERS
         /* ------------------------------------------------------------- */
-        this.registeredReducers = redux_2.combineReducers({
-            counterState: CounterEAR_1.CounterEAR.INST.reducer,
+        this.registeredReducers = redux_1.combineReducers({
+            counterState: Counter_ear_1.CounterEAR.Action.reducer
         });
         /* ------------------------------------------------------------- */
         // EPICS
         /* ------------------------------------------------------------- */
-        this.rootEpic = redux_observable_1.combineEpics(CounterEAR_1.CounterEAR.INST.increase.epic, CounterEAR_1.CounterEAR.INST.decrease.epic);
+        this.rootEpic = redux_observable_1.combineEpics(Counter_ear_1.CounterEAR.Action.increase.epic, Counter_ear_1.CounterEAR.Action.decrease.epic);
         /* ------------------------------------------------------------- */
         // STORE
         /* ------------------------------------------------------------- */
@@ -105920,6 +105919,95 @@ exports.default = ComponentDecorators_1.decorate(Blog, function (c) { return c; 
 
 /***/ }),
 
+/***/ "./src/containers/counter/Counter.ear.tsx":
+/*!************************************************!*\
+  !*** ./src/containers/counter/Counter.ear.tsx ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Reducer_1 = __webpack_require__(/*! ../../lib/ear/Reducer */ "./src/lib/ear/Reducer.tsx");
+var EAR_1 = __webpack_require__(/*! ../../lib/ear/EAR */ "./src/lib/ear/EAR.tsx");
+var ActionType_1 = __webpack_require__(/*! ../../app/ActionType */ "./src/app/ActionType.tsx");
+var ActionFactory_1 = __webpack_require__(/*! ../../lib/helpers/ActionFactory */ "./src/lib/helpers/ActionFactory.tsx");
+var CounterEAR;
+(function (CounterEAR) {
+    var State = /** @class */ (function () {
+        function State(count) {
+            this.count = count;
+        }
+        return State;
+    }());
+    CounterEAR.State = State;
+    var Factory = /** @class */ (function () {
+        function Factory() {
+        }
+        Factory.increase = function (counterState, action) {
+            return new State(counterState.count + 1);
+        };
+        Factory.decrease = function (counterState, action) {
+            return new State(counterState.count - action.payload.count);
+        };
+        Factory.initial = function () {
+            return new State(0);
+        };
+        Factory.value = function (value) {
+            return new State(value);
+        };
+        return Factory;
+    }());
+    CounterEAR.Factory = Factory;
+    var EarWrapper = /** @class */ (function (_super) {
+        __extends(EarWrapper, _super);
+        function EarWrapper() {
+            var _this = _super.call(this, Factory.initial()) || this;
+            _this.increase = new EAR_1.EAR(_this, function (c) { return c
+                .setDispatchAction(ActionType_1.Act.counter.ASYNC_INCREMENT)
+                .setEpic(function (action) { return action
+                .ofType(ActionType_1.Act.counter.ASYNC_INCREMENT)
+                .delay(500)
+                .mapTo(ActionFactory_1.ActionFactory.create(ActionType_1.Act.counter.INCREMENT, null)); })
+                .addReducer(ActionType_1.Act.counter.INCREMENT, Factory.increase); });
+            _this.decrease = new EAR_1.EAR(_this, function (c) { return c
+                .setDispatchAction(ActionType_1.Act.counter.ASYNC_DECREMENT)
+                .setEpic(function (action) { return action
+                .ofType(ActionType_1.Act.counter.ASYNC_DECREMENT)
+                .delay(500)
+                .map(function (x) { return ActionFactory_1.ActionFactory.create(ActionType_1.Act.counter.DECREMENT, x.payload); }); })
+                .addReducer(ActionType_1.Act.counter.DECREMENT, Factory.decrease); });
+            return _this;
+        }
+        Object.defineProperty(EarWrapper, "INST", {
+            get: function () {
+                if (!this._INST) {
+                    this._INST = new EarWrapper();
+                }
+                return this._INST;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return EarWrapper;
+    }(Reducer_1.Reducer));
+    CounterEAR.Action = EarWrapper.INST;
+})(CounterEAR = exports.CounterEAR || (exports.CounterEAR = {}));
+
+
+/***/ }),
+
 /***/ "./src/containers/counter/Counter.tsx":
 /*!********************************************!*\
   !*** ./src/containers/counter/Counter.tsx ***!
@@ -105941,113 +106029,34 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var CounterEAR_1 = __webpack_require__(/*! ./actions/CounterEAR */ "./src/containers/counter/actions/CounterEAR.tsx");
 var ComponentDecorators_1 = __webpack_require__(/*! ../../lib/helpers/ComponentDecorators */ "./src/lib/helpers/ComponentDecorators.tsx");
-var Component = /** @class */ (function (_super) {
-    __extends(Component, _super);
-    function Component() {
+var Counter_ear_1 = __webpack_require__(/*! ./Counter.ear */ "./src/containers/counter/Counter.ear.tsx");
+var Props = /** @class */ (function () {
+    function Props() {
+    }
+    return Props;
+}());
+var CounterComponent = /** @class */ (function (_super) {
+    __extends(CounterComponent, _super);
+    function CounterComponent() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Component.prototype.render = function () {
+    CounterComponent.prototype.render = function () {
+        var Action = Counter_ear_1.CounterEAR.Action;
+        var Factory = Counter_ear_1.CounterEAR.Factory;
         return (React.createElement("div", null,
             "Counter: ",
             this.props.counterState.count,
             React.createElement("br", null),
-            React.createElement("button", { onClick: CounterEAR_1.CounterEAR.INST.increase.dispatch() }, "Increase"),
+            React.createElement("button", { onClick: Action.increase.dispatch() }, "Increase"),
             React.createElement("br", null),
-            React.createElement("button", { onClick: CounterEAR_1.CounterEAR.INST.decrease.dispatch(CounterEAR_1.CounterStateFactory.value(7)) }, "Decrease"),
+            React.createElement("button", { onClick: Action.decrease.dispatch(Factory.value(7)) }, "Decrease"),
             React.createElement("br", null)));
     };
-    return Component;
+    return CounterComponent;
 }(React.Component));
-exports.default = ComponentDecorators_1.decorate(Component, function (c) { return c
+exports.default = ComponentDecorators_1.decorate(CounterComponent, function (c) { return c
     .withRedux(true); });
-
-
-/***/ }),
-
-/***/ "./src/containers/counter/actions/CounterEAR.tsx":
-/*!*******************************************************!*\
-  !*** ./src/containers/counter/actions/CounterEAR.tsx ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var ActionType_1 = __webpack_require__(/*! ../../../app/ActionType */ "./src/app/ActionType.tsx");
-var Reducer_1 = __webpack_require__(/*! ../../../lib/ear/Reducer */ "./src/lib/ear/Reducer.tsx");
-var EAR_1 = __webpack_require__(/*! ../../../lib/ear/EAR */ "./src/lib/ear/EAR.tsx");
-var ActionFactory_1 = __webpack_require__(/*! ../../../lib/helpers/ActionFactory */ "./src/lib/helpers/ActionFactory.tsx");
-var CounterState = /** @class */ (function () {
-    function CounterState(count) {
-        this.count = count;
-    }
-    return CounterState;
-}());
-exports.CounterState = CounterState;
-var CounterStateFactory = /** @class */ (function () {
-    function CounterStateFactory() {
-    }
-    CounterStateFactory.increase = function (counterState, action) {
-        return new CounterState(counterState.count + 1);
-    };
-    CounterStateFactory.decrease = function (counterState, action) {
-        return new CounterState(counterState.count - action.payload.count);
-    };
-    CounterStateFactory.initial = function () {
-        return new CounterState(0);
-    };
-    CounterStateFactory.value = function (value) {
-        return new CounterState(value);
-    };
-    return CounterStateFactory;
-}());
-exports.CounterStateFactory = CounterStateFactory;
-var CounterEAR = /** @class */ (function (_super) {
-    __extends(CounterEAR, _super);
-    function CounterEAR() {
-        var _this = _super.call(this, CounterStateFactory.initial()) || this;
-        _this.increase = new EAR_1.EAR(_this, function (c) { return c
-            .setDispatchAction(ActionType_1.Act.counter.ASYNC_INCREMENT)
-            .setEpic(function (action) { return action
-            .ofType(ActionType_1.Act.counter.ASYNC_INCREMENT)
-            .delay(500)
-            .mapTo(ActionFactory_1.ActionFactory.create(ActionType_1.Act.counter.INCREMENT, null)); })
-            .addReducer(ActionType_1.Act.counter.INCREMENT, CounterStateFactory.increase); });
-        _this.decrease = new EAR_1.EAR(_this, function (c) { return c
-            .setDispatchAction(ActionType_1.Act.counter.ASYNC_DECREMENT)
-            .setEpic(function (action) { return action
-            .ofType(ActionType_1.Act.counter.ASYNC_DECREMENT)
-            .delay(500)
-            .map(function (x) { return ActionFactory_1.ActionFactory.create(ActionType_1.Act.counter.DECREMENT, x.payload); }); })
-            .addReducer(ActionType_1.Act.counter.DECREMENT, CounterStateFactory.decrease); });
-        return _this;
-    }
-    Object.defineProperty(CounterEAR, "INST", {
-        get: function () {
-            if (!this._INST) {
-                this._INST = new CounterEAR();
-            }
-            return this._INST;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return CounterEAR;
-}(Reducer_1.Reducer));
-exports.CounterEAR = CounterEAR;
 
 
 /***/ }),
@@ -106062,7 +106071,7 @@ exports.CounterEAR = CounterEAR;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FormExampleCss = {
+exports.formExampleCss = {
     nameField: {
         width: "100px",
         marginRight: "20px"
@@ -106243,18 +106252,18 @@ var State = /** @class */ (function () {
     }
     return State;
 }());
-var FormExample = /** @class */ (function (_super) {
-    __extends(FormExample, _super);
-    function FormExample(props) {
+var FormExampleComponent = /** @class */ (function (_super) {
+    __extends(FormExampleComponent, _super);
+    function FormExampleComponent(props) {
         var _this = _super.call(this, props) || this;
         _this.formFields = FormExample_fields_1.formExampleFields;
-        _this.css = FormExample_css_1.FormExampleCss;
+        _this.css = FormExample_css_1.formExampleCss;
         _this.state = new State();
         _this.formManager = new FormManager_1.FormManager(_this, FormExample_fields_1.formExampleFields);
         _this.logic = new FormExample_logic_1.FormExampleLogic(_this, _this.formManager);
         return _this;
     }
-    FormExample.prototype.render = function () {
+    FormExampleComponent.prototype.render = function () {
         var _this = this;
         return (React.createElement("div", null,
             React.createElement(ModalStandard_1.ModalStandard, { isOpen: this.state.isModalOpen, onClose: Toggle_1.Toggle.asFunction('isModalOpen', this) },
@@ -106365,9 +106374,9 @@ var FormExample = /** @class */ (function (_super) {
                     React.createElement("div", { style: _this.css.values },
                         React.createElement("pre", null, JSON.stringify(_this.formManager.getValues(), null, 4))))); } })));
     };
-    return FormExample;
+    return FormExampleComponent;
 }(React.Component));
-exports.default = ComponentDecorators_1.decorate(FormExample, function (c) { return c
+exports.default = ComponentDecorators_1.decorate(FormExampleComponent, function (c) { return c
     .withRedux(true); });
 
 
