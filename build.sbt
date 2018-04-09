@@ -9,3 +9,6 @@ scalaVersion := "2.12.4"
 
 libraryDependencies += guice
 libraryDependencies += filters
+
+// https://mvnrepository.com/artifact/com.github.javafaker/javafaker
+libraryDependencies += "com.github.javafaker" % "javafaker" % "0.14"

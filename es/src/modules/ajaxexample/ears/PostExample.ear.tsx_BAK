@@ -1,0 +1,48 @@
+import {Observable} from "rxjs/Observable";
+import {ajax} from "rxjs/observable/dom/ajax";
+import {JsonResponse} from "../../../lib/ajax/JsonResponse";
+import 'rxjs/add/observable/of';
+import {Reducer} from "../../../lib/ear/Reducer";
+import {EAR} from "../../../lib/ear/EAR";
+import {Act} from "../../../app/ActionType";
+import {Api} from "../../../app/Api";
+import {FSAction} from "../../../lib/ear/FSAction";
+import {Person} from "../models/Person";
+
+export class PostExampleEar extends Reducer<JsonResponse<Person>> {
+    private constructor() {
+        super(JsonResponse.initial());
+    }
+
+    private complex$ = Observable.ajax({
+        url: 'https://httpbin.org/post',
+        method: 'POST'
+    });
+    public readonly postRequest = new EAR(this, c => c
+        .setDispatchAction(Act.example.postRequest.SEND)
+        .setEpic(action => action
+            .ofType(Act.example.postRequest.SEND)
+            .mergeMap(action =>
+                ajax.post(Api.testing.EXAMPLE_SUCCESS_URL, action.payload)
+                    .map(response => FSAction.create(Act.example.postRequest.SUCCESS, response))
+                    .catch(error => Observable.of({
+                        type: Act.example.postRequest.ERROR,
+                        payload: error,
+                        statusCode: error.xhr.status
+                    }))))
+        .addReducer(Act.example.postRequest.SEND, JsonResponse.loading)
+        .addReducer(Act.example.postRequest.SUCCESS, JsonResponse.success)
+        .addReducer(Act.example.postRequest.ERROR, JsonResponse.error)
+    );
+
+
+    private static _INST: PostExampleEar;
+    static get INST(): PostExampleEar {
+        if (!this._INST) {
+            this._INST = new PostExampleEar();
+        }
+        return this._INST;
+    }
+}
+
+

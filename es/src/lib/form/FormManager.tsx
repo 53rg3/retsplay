@@ -1,11 +1,13 @@
 import {FormField} from "./FormField";
 import * as React from "react";
 import {Checks} from "../helpers/Checks";
+import {FormProps, FormRenderProps} from "react-final-form";
 
 export class FormManager {
 
     public readonly fields:{[key:string]: FormField<any>};
     private readonly component:React.Component;
+    private formProps:FormRenderProps;
 
     constructor(component:React.Component, fields:{[key:string]: FormField<any>}) {
         Object.keys(fields).forEach(key => {
@@ -57,6 +59,15 @@ export class FormManager {
             values[key] = this.fields[key].value;
         });
         return values;
+    }
+
+    public setFormProps(formProps:FormRenderProps) {
+        this.formProps = formProps;
+    }
+
+    public getFormProps():FormRenderProps {
+        Checks.throwIfNil(this.formProps, "formProps has not been set. Must be done manually.");
+        return this.formProps;
     }
 
 }

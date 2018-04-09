@@ -121,6 +121,13 @@ export class FormFactory {
             </ListItem>);
         }
 
+        // EVALUATE VALUE
+        if(!Array.isArray(cfg.formField.value) && !cfg.formField.value) {
+            cfg.formField.value = [];
+        } else if (!Array.isArray(cfg.formField.value) && cfg.formField.value){
+            cfg.formField.value = [cfg.formField.value];
+        }
+
         return (
             <div>
                 <InputLabel>{cfg.inputLabel}</InputLabel>

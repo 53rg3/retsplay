@@ -109,7 +109,14 @@ export class FieldMeta {
     }
 
     public static getValueAsArray(formField: FormField<any>): Array<string> {
-        return formField.value as Array<string>;
+        if(Array.isArray(formField.value) && formField.value) {
+            return formField.value;
+        } else if(!Array.isArray(formField.value) && formField.value) {
+            return [formField.value];
+        } else {
+            return [];
+        }
+
     }
 
 }

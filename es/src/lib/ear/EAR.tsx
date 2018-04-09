@@ -5,8 +5,6 @@ import {FSAction} from "./FSAction";
 import {Reducer} from "./Reducer";
 import {Redux} from "../../app/Redux";
 import {Checks} from "../helpers/Checks";
-import {ActionFactory} from "../helpers/ActionFactory";
-
 
 
 export class EAR<T, R extends Reducer<T>> {
@@ -20,21 +18,30 @@ export class EAR<T, R extends Reducer<T>> {
 
         this.dispatchActionType = Checks.throwIfNil(earConfig.getDispatchActionType(), "'dispatchActionType' must not be null.");
         this.parent = Checks.throwIfNil(earConfig.getParentEAR(), "'parentEAR' must not be null.");
-        this._epic = earConfig.getEpic();
+        // this._epic = earConfig.getEpic();
     }
 
 
-    public dispatch(payload?: T): () => {} {
+    public dispatch(payload?: T): any {
         if (_.isNil(payload)) {
-            return () => Redux.INST.dispatch(ActionFactory.create(this.dispatchActionType, null));
+            return Redux.INST.dispatch(FSAction.create(this.dispatchActionType, null));
         } else {
-            return () => Redux.INST.dispatch(ActionFactory.create(this.dispatchActionType, payload));
+            return Redux.INST.dispatch(FSAction.create(this.dispatchActionType, payload));
         }
     }
 
     get epic(): Epic<FSAction<T>, T> {
         Checks.throwIfNil(this._epic, "Epic was not set in EarBuilder. Check your implementation of combineEpics().");
         return this._epic;
+    }
+
+
+    public setEpic(value: Epic<FSAction<T>, T>) {
+        this._epic = value;
+    }
+
+    public static createEpic<T>(epic: (action$: ActionsObservable<FSAction<T>>) => Observable<FSAction<any>>):Epic<FSAction<T>, T> {
+        return epic;
     }
 }
 
@@ -46,7 +53,7 @@ export class EarConfig<T, R extends Reducer<T>> {
     /* ------------------------------------------------------ */
     private dispatchActionType: string;
     private parentEAR: R;
-    private epic: Epic<FSAction<T>, T>;
+    // SEE setEpic, private epic: Epic<FSAction<T>, T>;
 
     /* ------------------------------------------------------ */
     // BUILDER
@@ -61,15 +68,17 @@ export class EarConfig<T, R extends Reducer<T>> {
         return this;
     }
 
-    public addReducer(actionType: string, optionalSetting: (state: T, action: FSAction<T>) => T): EarConfig<T, R> {
-        this.parentEAR.addReducer(actionType, optionalSetting);
+    public addReducer(actionType: string, reducerFunction: (state: T, action: FSAction<T>) => T): EarConfig<T, R> {
+        this.parentEAR.addReducer(actionType, reducerFunction);
         return this;
     }
 
-    public setEpic(epic: (action$: ActionsObservable<FSAction<T>>) => Observable<FSAction<T>>): EarConfig<T, R> {
-        this.epic = epic;
-        return this;
-    }
+    /** We can't create the Epic in the builder, because IntelliJ can't handle it. Leads to high CPU usage and lag.
+     * RxJS has 3,6k files and 10MB. We have to set the Epic manually in the product of the builder. */
+    // public setEpic(epic: (action$: ActionsObservable<FSAction<T>>) => Observable<FSAction<any>>): EarConfig<T, R> {
+    //     this.epic = epic;
+    //     return this;
+    // }
 
     public internalBuild() {
         return this;
@@ -86,7 +95,8 @@ export class EarConfig<T, R extends Reducer<T>> {
         return this.parentEAR;
     }
 
-    public getEpic(): Epic<FSAction<T>, T> {
-        return this.epic;
-    }
+    // See setEpic
+    // public getEpic(): Epic<FSAction<T>, T> {
+    //     return this.epic;
+    // }
 }

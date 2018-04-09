@@ -6,7 +6,7 @@ import {Checks} from "../helpers/Checks";
 export class FormField<T> {
     name: string;
     readonly validations: Validation[] = [];
-    value: any;
+    value: T;
     options: Array<string> = [];
     props:FieldRenderProps;
 
@@ -15,16 +15,12 @@ export class FormField<T> {
         const type = new fieldType();
         switch(type.constructor) {
             case String:
-                defaultValue = undefined;
-                break;
             case Number:
-                defaultValue = undefined;
-                break;
             case Boolean:
                 defaultValue = undefined;
                 break;
             case Array:
-                defaultValue = [];
+                defaultValue = undefined;
                 break;
             default:
                 throw new Error("FormField type not recognized. Must be String, Number, Boolean or Array. Got: "+type);

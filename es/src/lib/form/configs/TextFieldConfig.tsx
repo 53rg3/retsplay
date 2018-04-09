@@ -23,7 +23,7 @@ export class TextFieldConfig {
     private _customProps: {};
     private _jsx: (cfg: GenericConfig<TextFieldProps>) => GenericConfig<TextFieldProps>;
 
-    public fieldProps(props: FieldRenderProps) {
+    public props(props: FieldRenderProps) {
         this._props = props;
         return this;
     }
