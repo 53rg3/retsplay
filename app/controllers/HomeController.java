@@ -8,14 +8,30 @@ import java.util.UUID;
 
 
 public class HomeController extends Controller {
+
+
     public Result index() {
-        String nonce = UUID.randomUUID().toString();
+        String nonce = this.getUUID();
         return Results.ok(views.html.index.render(nonce))
-                .withHeader("Content-Security-Policy", ""+
-                        "default-src 'self'; " +
-                        "script-src 'self'; " +
-                        "font-src fonts.gstatic.com; " +
-                        "style-src 'self' fonts.googleapis.com 'nonce-" + nonce + "';");
+                .withHeader("Content-Security-Policy", this.getCspHeaderValue(nonce));
+    }
+
+    public Result blogpost(int id) {
+        System.out.println("ID: "+id);
+        String nonce = this.getUUID();
+        return Results.ok(views.html.index.render(nonce))
+                .withHeader("Content-Security-Policy", this.getCspHeaderValue(nonce));
+    }
+
+    private String getUUID() {
+        return UUID.randomUUID().toString();
+    }
+
+    private String getCspHeaderValue(String nonce) {
+        return "default-src 'self'; " +
+                "script-src 'self'; " +
+                "font-src fonts.gstatic.com; " +
+                "style-src 'self' fonts.googleapis.com 'nonce-" + nonce + "';";
     }
 
 }

@@ -1,13 +1,23 @@
 import {Reducer} from "../../../lib/ear/Reducer";
 import {EAR} from "../../../lib/ear/EAR";
-import {Act} from "../../../app/ActionType";
 import {FSAction} from "../../../lib/ear/FSAction";
 import {CounterModel} from "../models/CounterModel";
-
+import {Act} from "../../../app/ActionTypes";
+import {Schema} from "../../../app/Schema";
 
 export class CounterEAR extends Reducer<CounterModel> {
+
+    public readonly increase = new EAR(this, c => c
+        .setDispatchAction(Act.counter.ASYNC_INCREMENT)
+        .addReducer(Act.counter.INCREMENT, CounterModel.increase));
+
+
+    public readonly decrease = new EAR(this, c => c
+        .setDispatchAction(Act.counter.ASYNC_DECREMENT)
+        .addReducer(Act.counter.DECREMENT, CounterModel.decrease));
+
     private constructor() {
-        super(CounterModel.initial());
+        super(CounterModel.initial(), Schema.counter.state);
 
         this.increase.setEpic(EAR.createEpic(action => action
             .ofType(Act.counter.ASYNC_INCREMENT)
@@ -19,15 +29,6 @@ export class CounterEAR extends Reducer<CounterModel> {
             .delay(500)
             .map(action => FSAction.create(Act.counter.DECREMENT, action.payload))))
     }
-
-    public readonly increase = new EAR(this, c => c
-        .setDispatchAction(Act.counter.ASYNC_INCREMENT)
-        .addReducer(Act.counter.INCREMENT, CounterModel.increase));
-
-
-    public readonly decrease = new EAR(this, c => c
-        .setDispatchAction(Act.counter.ASYNC_DECREMENT)
-        .addReducer(Act.counter.DECREMENT, CounterModel.decrease));
 
 
     private static _INST: CounterEAR;

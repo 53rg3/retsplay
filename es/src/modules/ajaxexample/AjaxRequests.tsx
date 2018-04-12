@@ -3,36 +3,42 @@ import {Heading} from "../layout/commons/Heading";
 import {Body} from "../layout/commons/Body";
 import {decorate} from "../../lib/helpers/ComponentDecorators";
 import Button from "material-ui-next/es/Button";
-import {JsonResponse} from "../../lib/ajax/JsonResponse";
+import {HttpResponse} from "../../lib/ajax/HttpResponse";
 import {Grid} from "material-ui-next/es";
-import {GetSuccessEar} from "./ears/GetSuccess";
 import {Person} from "./models/Person";
 import {AjaxRequestsLogic} from "./AjaxRequests.logic";
-import {GetErrorEar} from "./ears/GetError";
-import {RequestStage} from "../../lib/ajax/RequestStage";
-import {dynObject} from "../counter/Counter";
+import {Schema} from "../../app/Schema";
+import {GetSuccessEar} from "./ears/GetSuccessEAR";
+import {GetErrorEar} from "./ears/GetErrorEAR";
+import {PostErrorEar} from "./ears/PostErrorEAR";
+import {PostSuccessEar} from "./ears/PostSuccessEAR";
+
+
 
 
 export module AjaxRequests {
 
-    export const getSuccessEAR = GetSuccessEar.INST;
-    export const getErrorEAR = GetErrorEar.INST;
+    const getSuccessEAR = GetSuccessEar.INST;
+    const getErrorEAR = GetErrorEar.INST;
+    const postSuccessEAR = PostSuccessEar.INST;
+    const postErrorEAR = PostErrorEar.INST;
 
     class Props {
         classes?: any;
-        getSuccess: JsonResponse<Person>;
-        getError: JsonResponse<Person>;
-        ['kjh']: string
+        [Schema.ajaxRequests.getSuccess]: HttpResponse<Person>;
+        [Schema.ajaxRequests.getError]: HttpResponse<Person>;
+        [Schema.ajaxRequests.postSuccess]: HttpResponse<Person>;
+        [Schema.ajaxRequests.postError]: HttpResponse<Person>;
     }
 
     class State {
-        displayedResponse: JsonResponse<Person> = null;
-        lastAction: string = null;
+        displayedResponse: HttpResponse<Person>;
+        lastAction: string;
     }
 
     class Component extends React.Component<Props, State> {
 
-        private ajaxRequestsLogic = new AjaxRequestsLogic(this);
+        private logic = new AjaxRequestsLogic(this);
 
         constructor(props: Props) {
             super(props);
@@ -40,7 +46,7 @@ export module AjaxRequests {
         }
 
         componentWillReceiveProps(nextProps: any) {
-            this.ajaxRequestsLogic.updateDisplayedResponse(nextProps[this.state.lastAction])
+            this.logic.updateDisplayedResponse(nextProps[this.state.lastAction])
         }
 
         render(): any {
@@ -48,14 +54,16 @@ export module AjaxRequests {
                 <div>
                     <Heading heading="Examples for AJAX Requests"/>
                     <Body>
-                    <div style={{textAlign: "center"}}>
+                    "GET (ERROR)" uses the verbose EAR builder. Rest uses the RequestEAR builder, which is quicker for
+                    creating HTTP requests. Use the verbose form if you need special logic.<br/>
+                    <div style={{marginTop:"20px", textAlign: "center"}}>
                         <Grid container alignContent="center" justify="center">
                             <Grid item xs={3}>
                                 <Button variant="raised" color="primary"
-                                        onClick={() => this.ajaxRequestsLogic.sendRequest(
+                                        onClick={() => this.logic.sendRequest(
                                             'getSuccess',
-                                            getSuccessEAR.request.dispatch.bind(getSuccessEAR.request))}>
-                                    GET (Success)
+                                            () => getSuccessEAR.request.dispatch())}>
+                                    GET<br/>(Success)
                                 </Button>
                                 <br/>
                                 <br/>
@@ -64,39 +72,44 @@ export module AjaxRequests {
 
                             <Grid item xs={3}>
                                 <Button variant="raised" color="primary"
-                                        onClick={() => this.ajaxRequestsLogic.sendRequest(
+                                        onClick={() => this.logic.sendRequest(
                                             'getError',
-                                            getSuccessEAR.request.dispatch.bind(getErrorEAR.request))}>
-                                    GET (Error)
+                                            () => getErrorEAR.request.dispatch()
+                                        )}>
+                                    GET<br/>(Error)
                                 </Button>
                                 <br/>
                                 <br/>
                                 {this.props.getError.stage}
                             </Grid>
 
-                            {/*<Grid item xs={3}>*/}
-                            {/*<Button variant="raised" color="primary"*/}
-                            {/*onClick={() => BlogEAR.Action.postRequest.dispatch({someField: "someData"})}>*/}
-                            {/*Load*/}
-                            {/*</Button>*/}
-                            {/*<br/>*/}
-                            {/*<br/>*/}
-                            {/*{this.props.postExampleSuccessState.stage}*/}
-                            {/*</Grid>*/}
+                            <Grid item xs={3}>
+                                <Button variant="raised" color="primary"
+                                        onClick={() => this.logic.sendRequest(
+                                            'postSuccess',
+                                            () => postSuccessEAR.request.dispatch("this is the request body, can be anything"))}>
+                                    POST<br/>(Success)
+                                </Button>
+                                <br/>
+                                <br/>
+                                {this.props.postSuccess.stage}
+                            </Grid>
 
-                            {/*<Grid item xs={3}>*/}
-                            {/*<Button variant="raised" color="primary"*/}
-                            {/*onClick={() => BlogEAR.Action.postRequest.dispatch({someField: "someData"})}>*/}
-                            {/*Load*/}
-                            {/*</Button>*/}
-                            {/*<br/>*/}
-                            {/*<br/>*/}
-                            {/*{this.props.postExampleSuccessState.stage}*/}
-                            {/*</Grid>*/}
+                            <Grid item xs={3}>
+                                <Button variant="raised" color="primary"
+                                        onClick={() => this.logic.sendRequest(
+                                            'postError',
+                                            () => postErrorEAR.request.dispatch("this is the request body, can be anything"))}>
+                                    POST<br/>(Error)
+                                </Button>
+                                <br/>
+                                <br/>
+                                {this.props.postError.stage}
+                            </Grid>
                         </Grid>
                     </div>
                     </Body>
-                    {this.ajaxRequestsLogic.displayResponse(this.state.displayedResponse)}
+                    {this.logic.renderResponse.from(this.state.displayedResponse)}
                 </div>
             );
         }

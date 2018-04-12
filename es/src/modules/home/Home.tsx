@@ -5,7 +5,6 @@ import {Assets} from "../../lib/helpers/Assets";
 
 
 
-
 const styles = {
     margin: "0 auto"
 };

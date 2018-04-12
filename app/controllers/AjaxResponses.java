@@ -10,17 +10,17 @@ public class AjaxResponses extends Controller {
 
     public Result postErrorExample() {
         Helpers.sleep(500);
-        return badRequest();
+        return badRequest("Arbitrary response body for POST error request");
     }
 
     public Result postSuccessExample() {
         Helpers.sleep(500);
-        return ok("postSuccessExample").as("application/json");
+        return ok("Arbitrary response body for POST success request");
     }
 
     public Result getErrorExample() {
         Helpers.sleep(500);
-        return badRequest();
+        return badRequest("Arbitrary response body for GET error request");
     }
 
     public Result getSuccessExample() {

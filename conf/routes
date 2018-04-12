@@ -2,6 +2,8 @@
 # REACT COMPONENTS
 GET           /                           controllers.HomeController.index
 GET           /blog                       controllers.HomeController.index
+GET           /blog/editor                controllers.HomeController.index
+GET           /blog/editor/:id            controllers.HomeController.blogpost(id: Int)
 GET           /form-example               controllers.HomeController.index
 GET           /counter                    controllers.HomeController.index
 GET           /ajax-requests              controllers.HomeController.index

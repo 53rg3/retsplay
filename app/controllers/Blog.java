@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import helpers.Helpers;
 import models.BlogPost;
 import models.DbMock;
+import play.Logger;
 import play.data.FormFactory;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -20,7 +21,8 @@ public class Blog extends Controller {
     @Inject
     private FormFactory formFactory;
 
-    private boolean produceErrorResponse = true;
+    private boolean respondWithOccasionalErrors = false;
+    private boolean produceErrorResponse = false;
 
 
     public Result getAllPosts() {
@@ -63,12 +65,18 @@ public class Blog extends Controller {
 
 
 
-    public Result simulateRealWorldResponse(final JsonNode jsonNode) {
-        System.out.println("Next request will produce error? " + this.produceErrorResponse);
-//        this.produceErrorResponse = !this.produceErrorResponse; // false;
-        this.produceErrorResponse = false;
+    private Result simulateRealWorldResponse(final JsonNode jsonNode) {
+        Logger.info("Next request will produce error? " + this.produceErrorResponse);
+        if(this.respondWithOccasionalErrors) {
+            this.produceErrorResponse = !this.produceErrorResponse;
+        }
         Helpers.sleep(500);
-        return this.produceErrorResponse ? Results.badRequest() : jsonNode != null ? Results.ok(jsonNode) : Results.ok();
+
+        if(this.produceErrorResponse) {
+            return Results.badRequest();
+        } else {
+            return jsonNode != null ? Results.ok(jsonNode) : Results.ok();
+        }
     }
 
 

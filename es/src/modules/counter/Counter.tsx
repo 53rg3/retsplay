@@ -1,4 +1,5 @@
 import * as React from "react";
+import {CounterLogic} from "./Counter.logic";
 import {decorate} from "../../lib/helpers/ComponentDecorators";
 import Paper from "material-ui-next/es/Paper";
 import Button from "material-ui-next/es/Button";
@@ -12,20 +13,20 @@ import {FormFactory} from "../../lib/form/FormFactory";
 import {FieldMeta} from "../../lib/form/FieldMeta";
 import {Heading} from "../layout/commons/Heading";
 import {Body} from "../layout/commons/Body";
-import {CounterLogic} from "./Counter.logic";
 import {CounterModel} from "./models/CounterModel";
+import {Schema} from "../../app/Schema";
 import {CounterEAR} from "./ears/Counter.ear";
-
-
+import {connect} from "react-redux";
 
 export module Counter {
 
-    export const EAR = CounterEAR.INST;
+    CounterEAR.INST;
     const css = counterCss;
     const formFields = counterFormFields;
 
+
     class Props {
-        counter: CounterModel;
+        [Schema.counter.state] = CounterModel.initial();
     }
 
     class State {
@@ -45,16 +46,16 @@ export module Counter {
         }
 
         render(): any {
+            console.log("################################ COUNTER render, props: ", this.props);
             return (
                 <div>
                     <Heading heading={"Async Counter"}/>
                     <Body>
-                    A reminder how to overcomplicate simple things and still come up with a shitty solution...
-                    Only build Factories and such if operations are repetitive. Not for simple counters, toggles, etc.
+                    A reminder how to overcomplicate simple things and still come up with a shitty solution... but it
+                    illustrates how to use the EAR builder with state factory methods in the model.
                     </Body>
                     <br/>
-                    <Form onSubmit={() => {
-                    }}
+                    <Form onSubmit={() => {/* NO OP */}}
                           validate={this.formManager.validate.bind(this.formManager)}
                           initialValues={this.formManager.getValues()}>
                         {formProps => {
@@ -84,7 +85,7 @@ export module Counter {
                                         <Grid container justify="center">
                                             <Paper style={css.paper}>
                                                 <Typography variant="headline" align="center">
-                                                    {this.props.counter.count}
+                                                    {this.props.counterModel.count}
                                                 </Typography>
                                             </Paper>
                                         </Grid>
@@ -112,19 +113,37 @@ export module Counter {
                                     {this.formManager.setFormProps(formProps)}
                                 </Grid>
                             );
-
                         }}
                     </Form>
                     <br/>
                     {this.state.hasError ? <Body>
-                                                <div style={css.errorMessage}>Why you submit NaN!?</div>
-                                            </Body> : ""}
+                    <div style={css.errorMessage}>Why you submit NaN!?</div>
+                    </Body> : ""}
                 </div>
             );
         }
     }
+    console.log("++++++++++++++++++++++++++++ BEFORE COUNTER DECORATE");
+    // export const component = decorate<Props>(Component, c => c
+    //     .withRedux(true).withRouter(false), "FROM COUNTER");
 
-    export const component = decorate<Props>(Component, c => c
-        .withRedux(true));
+    function mapStateToProps({counterModel}:Props) {
+        console.log("PROPS1", counterModel);
+
+        const clazz:any = Props;
+        const props = new clazz();
+        console.log("CounterProps: ",Object.keys(props));
+        return {
+            counterModel
+        };
+    }
+    // function mapStateToProps<{}, Props>({counterModel}:Props) {
+    //     return {
+    //         counterModel
+    //     };
+    // }
+    export const component = connect<Props>((props:Props)=>props, null)(Component);
+    // export const component = connect<Props>(({counterModel}:Props)=>{console.log(counterModel); return {counterModel}}, null)(Component);
+    // export const component = connect<Props>(mapStateToProps, null)(Component);
 
 }

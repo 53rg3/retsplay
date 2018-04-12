@@ -25,13 +25,14 @@ class Component extends React.Component<Props, NoState> {
 
 
                 <SidebarLinkGroup groupName={"Blog"} icon={"comment"} >
-                    <SidebarLink linkText={"Show all posts"} route={Routes.blog.ROOT} nested={true} icon={"list"}/>
+                    <SidebarLink linkText={"Show All Posts"} route={Routes.blog.SHOW_ALL} nested={true} icon={"list"}/>
+                    <SidebarLink linkText={"New"} route={Routes.blog.CREATE_NEW} nested={true} icon={"create"}/>
                     <Divider />
                 </SidebarLinkGroup>
 
-                    <SidebarLink linkText={"Async Counter"} route={Routes.counter.ROOT} icon={"exposure_plus_1"}/>
-                    <SidebarLink linkText={"Ajax Requests"} route={Routes.ajaxRequests.ROOT} icon={"http"}/>
-                    <SidebarLink linkText={"Form Example"} route={Routes.formExample.ROOT} icon={"format_align_left"} />
+                    <SidebarLink linkText={"Async Counter"} route={Routes.counter} icon={"exposure_plus_1"}/>
+                    <SidebarLink linkText={"Ajax Requests"} route={Routes.ajaxRequests} icon={"http"}/>
+                    <SidebarLink linkText={"Form Example"} route={Routes.formExample} icon={"format_align_left"} />
                 </MenuList>
             </Drawer>
         );

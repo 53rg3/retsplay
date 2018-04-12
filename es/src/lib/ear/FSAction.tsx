@@ -9,7 +9,15 @@ export class FSAction<T> implements Action {
         return {type: actionType, payload: payload};
     }
 
-    public static observable<T>(actionType: string, payload: T): Observable<FSAction<T>> {
+    public static asObservable<T>(actionType: string, payload: T): Observable<FSAction<T>> {
         return Observable.of(FSAction.create(actionType, payload));
+    }
+
+    public static ajaxTypes(moduleId:string, reduxStateKey:string) {
+        return {
+            SEND: `${moduleId}.${reduxStateKey}.SEND`,
+            SUCCESS: `${moduleId}.${reduxStateKey}.SUCCESS`,
+            ERROR: `${moduleId}.${reduxStateKey}.ERROR`
+        }
     }
 }

@@ -3,6 +3,7 @@ import * as React from "react";
 import {FormManager} from "../../lib/form/FormManager";
 import {Counter} from "./Counter";
 import {CounterModel} from "./models/CounterModel";
+import {CounterEAR} from "./ears/Counter.ear";
 
 export class CounterLogic {
 
@@ -19,7 +20,7 @@ export class CounterLogic {
 
     incrementValue() {
         if (this.formManager.getFormProps().valid) {
-            Counter.EAR.increase.dispatch(CounterModel.value(Number(this.formFields.incrementValue.value)));
+            CounterEAR.INST.increase.dispatch(CounterModel.value(Number(this.formFields.incrementValue.value)));
             this.component.setState({hasError: false});
         } else {
             this.component.setState({hasError: true})
@@ -28,7 +29,7 @@ export class CounterLogic {
 
     decrementValue() {
         if (this.formManager.getFormProps().valid) {
-            Counter.EAR.decrease.dispatch(CounterModel.value(Number(this.formFields.decrementValue.value)));
+            CounterEAR.INST.decrease.dispatch(CounterModel.value(Number(this.formFields.decrementValue.value)));
             this.component.setState({hasError: false});
         } else {
             this.component.setState({hasError: true});

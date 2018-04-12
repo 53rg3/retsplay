@@ -1,24 +1,26 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import * as React from "react";
 import {combineEpics, createEpicMiddleware} from "redux-observable";
-
 import logger from "redux-logger";
+import {FSAction} from "../lib/ear/FSAction";
+import {Schema} from "./Schema";
 import {Counter} from "../modules/counter/Counter";
+import {GetErrorEar} from "../modules/ajaxexample/ears/GetErrorEAR";
+import {GetSuccessEar} from "../modules/ajaxexample/ears/GetSuccessEAR";
+import {PostSuccessEar} from "../modules/ajaxexample/ears/PostSuccessEAR";
+import {PostErrorEar} from "../modules/ajaxexample/ears/PostErrorEAR";
 import {AjaxRequests} from "../modules/ajaxexample/AjaxRequests";
+import {ReduxCollector} from "../lib/ear/ReduxCollector";
 
 
 export class Redux {
     private static _INST: Redux;
 
-
     /* ------------------------------------------------------------- */
     // REDUCERS
     /* ------------------------------------------------------------- */
     private readonly registeredReducers = combineReducers({
-        counter: Counter.EAR.reducer,
-
-        getSuccess: AjaxRequests.getSuccessEAR.reducer,
-        getError: AjaxRequests.getErrorEAR.reducer,
+        ...ReduxCollector.reducers
     });
 
 
@@ -26,11 +28,7 @@ export class Redux {
     // EPICS
     /* ------------------------------------------------------------- */
     private readonly rootEpic = combineEpics(
-        Counter.EAR.increase.epic,
-        Counter.EAR.decrease.epic,
-
-        AjaxRequests.getSuccessEAR.request.epic,
-        AjaxRequests.getErrorEAR.request.epic
+        ...ReduxCollector.epics
     );
 
 
@@ -41,8 +39,8 @@ export class Redux {
 
     public readonly store = createStore(
         this.registeredReducers,
-        // applyMiddleware(this.epicMiddleware)
-        applyMiddleware(this.epicMiddleware, logger)
+        applyMiddleware(this.epicMiddleware)
+        // applyMiddleware(this.epicMiddleware, logger)
     );
 
     private constructor() {

@@ -1,13 +1,14 @@
+import {Redux} from "../../app/Redux";
 import _ = require("lodash");
 import {ActionsObservable, Epic} from "redux-observable";
 import {Observable} from "rxjs/Observable";
 import {FSAction} from "./FSAction";
 import {Reducer} from "./Reducer";
-import {Redux} from "../../app/Redux";
 import {Checks} from "../helpers/Checks";
-
+import {ReduxCollector} from "./ReduxCollector";
 
 export class EAR<T, R extends Reducer<T>> {
+
     private readonly dispatchActionType: string;
     private readonly parent: R;
     private _epic: Epic<FSAction<T>, T>;
@@ -35,9 +36,9 @@ export class EAR<T, R extends Reducer<T>> {
         return this._epic;
     }
 
-
-    public setEpic(value: Epic<FSAction<T>, T>) {
-        this._epic = value;
+    public setEpic(epic: Epic<FSAction<T>, T>) {
+        this._epic = epic;
+        ReduxCollector.epics.push(epic);
     }
 
     public static createEpic<T>(epic: (action$: ActionsObservable<FSAction<T>>) => Observable<FSAction<any>>):Epic<FSAction<T>, T> {

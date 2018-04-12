@@ -1,7 +1,9 @@
 import * as React from "react";
-import {JsonResponse} from "../../lib/ajax/JsonResponse";
+import {HttpResponse} from "../../lib/ajax/HttpResponse";
 import {Person} from "./models/Person";
 import {Body} from "../layout/commons/Body";
+import {ResponseRenderer} from "../../lib/helpers/ResponseRenderer";
+import {Html} from "../../lib/helpers/Html";
 
 export class AjaxRequestsLogic {
 
@@ -11,23 +13,24 @@ export class AjaxRequestsLogic {
         this.component = component;
     }
 
-    public updateDisplayedResponse(jsonResponse: JsonResponse<Person>) {
-        this.component.setState({displayedResponse: jsonResponse})
+    public updateDisplayedResponse(httpResponse: HttpResponse<Person>) {
+        this.component.setState({displayedResponse: httpResponse})
     }
 
-    public displayResponse(displayedResponse: any) {
-        if (displayedResponse) {
-            return (
-                <Body>
-                <h2>Response</h2>
-                    <pre>
-                        {JSON.stringify(displayedResponse, null, 4)}
-                    </pre>
-                </Body>);
-        } else {
-            return "";
-        }
-    }
+
+    private renderedBody = (response: HttpResponse<Person>) => (
+        <Body>
+        <h2>Response</h2>
+            <pre>
+                {JSON.stringify(response.body, null, 4)}
+            </pre>
+        </Body>);
+    public renderResponse = new ResponseRenderer<Person>(c => c
+        .initial(() => Html.emptySpan())
+        .loading(() => Html.emptySpan())
+        .success(this.renderedBody)
+        .error(this.renderedBody));
+
 
     public sendRequest(type: string, dispatch: (payload?: any) => any) {
         this.component.setState({

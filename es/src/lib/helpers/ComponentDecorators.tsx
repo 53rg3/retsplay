@@ -4,10 +4,10 @@ import withStyles from "material-ui-next/es/styles/withStyles";
 import {GenericBuilder, GenericConfig} from "./GenericBuilder";
 import {withRouter} from "react-router";
 
-interface Capabilities {
-    withRedux:boolean;
+class Capabilities {
+    withRedux:boolean = false;
     withStyles: (theme?:any)=>Object;
-    withRouter:boolean;
+    withRouter:boolean = false;
 }
 
 /**
@@ -23,22 +23,26 @@ interface Capabilities {
  * withRedux:
  * Props must have the state property names from the store. Otherwise they won't be available.
  */
-export function decorate<P>(component: React.ComponentClass, cfg:(cfg:GenericConfig<Capabilities>)=>GenericConfig<Capabilities>): React.ComponentClass<P> {
+export function decorate<P>(component: React.ComponentClass, cfg:(cfg:GenericConfig<Capabilities>)=>GenericConfig<Capabilities>, from?:string): React.ComponentClass<P> {
 
     const config = GenericBuilder.buildFromConfig(cfg);
-
+    if(from) {
+        console.log("FROM: ", from, config);
+    }
     let blankComponent = component as any;
 
     if(config.withStyles) {
+        console.log("in withStyles, config: ", from, config.withStyles);
         blankComponent = withStyles(config.withStyles)(blankComponent)
     }
 
     if(config.withRouter) {
+        console.log("in withRouter, config: ", from, config.withRouter);
         blankComponent = withRouter(blankComponent);
     }
 
     if(config.withRedux) {
-        blankComponent = connect<P>((props:P) => props)(blankComponent);
+        blankComponent = connect<P>((props:P) => {console.log("in withRudux", from, props); return props})(blankComponent);
     }
 
     return blankComponent;

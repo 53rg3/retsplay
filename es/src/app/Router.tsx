@@ -1,47 +1,35 @@
 import * as React from "react";
-import {Route} from "react-router";
+import {Route, RouteProps} from "react-router";
 import Home from "../modules/home/Home";
-import Blog from "../modules/blog/Blog";
+import Blog from "../modules/blog/ShowAll";
 import {LayoutRoot} from "../modules/layout/LayoutRoot";
 import CssBaseline from "material-ui-next/es/CssBaseline";
 import {NoProps, NoState} from "../lib/helpers/NoPropsNoState";
 import FormExample from "../modules/formexample/FormExample";
 import {Counter} from "../modules/counter/Counter";
 import {AjaxRequests} from "../modules/ajaxexample/AjaxRequests";
+import {Editor} from "../modules/blog/createnew/Editor";
 
 
 
 export class Routes {
 
-    private static root: string = "/";
-    private static module = {
-        blog: Routes.root + "blog",
-        formExample: Routes.root + "form-example",
-        counter: Routes.root + "counter",
-        ajaxRequests: Routes.root + "ajax-requests",
-        assets: Routes.root + "assets"
-    };
-
-    public static DASHBOARD = Routes.root;
+    public static DASHBOARD = "/";
 
     public static blog = {
-        ROOT: Routes.module.blog
+        SHOW_ALL: "/blog",
+        CREATE_NEW: "/blog/editor",
+        EDIT: "/blog/editor/:id"
     };
 
-    public static formExample = {
-        ROOT: Routes.module.formExample
-    };
+    public static formExample = "/form-example";
 
-    public static counter = {
-        ROOT: Routes.module.counter
-    };
+    public static counter = "/counter";
 
-    public static ajaxRequests = {
-        ROOT: Routes.module.ajaxRequests
-    };
+    public static ajaxRequests = "/ajax-requests";
 
     public static assets = {
-        IMAGES: Routes.module.assets+"/images"
+        IMAGES: "/assets/images"
     };
 
 }
@@ -53,10 +41,14 @@ export class Router extends React.Component<NoProps, NoState> {
                 <CssBaseline />
                 <LayoutRoot>
                     <Route exact path={Routes.DASHBOARD} component={Home}/>
-                    <Route exact path={Routes.blog.ROOT} component={Blog}/>
-                    <Route exact path={Routes.counter.ROOT} component={Counter.component}/>
-                    <Route exact path={Routes.ajaxRequests.ROOT} component={AjaxRequests.component}/>
-                    <Route exact path={Routes.formExample.ROOT} component={FormExample}/>
+
+                    <Route exact path={Routes.blog.SHOW_ALL} component={Blog}/>
+                    <Route exact path={Routes.blog.CREATE_NEW} component={Editor.component}/>
+                    <Route exact path={Routes.blog.EDIT} component={Editor.component}/>
+
+                    <Route exact path={Routes.counter} component={Counter.component}/>
+                    <Route exact path={Routes.ajaxRequests} component={AjaxRequests.component}/>
+                    <Route exact path={Routes.formExample} component={FormExample}/>
                 </LayoutRoot>
             </div>
         );
