@@ -4,7 +4,7 @@ import Toolbar from "material-ui-next/es/Toolbar";
 import Typography from "material-ui-next/es/Typography";
 import {NoState} from "../../../lib/helpers/NoPropsNoState";
 import {Assets} from "../../../lib/helpers/Assets";
-import {decorate} from "../../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../../lib/helpers/Decorator";
 import {headerCss} from "./Header.css";
 
 

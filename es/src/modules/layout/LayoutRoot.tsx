@@ -4,7 +4,7 @@ import {Header} from "./header/Header";
 import {Main} from "./main/Main";
 import {MUI} from "./css/MUI";
 import {NoState} from "../../lib/helpers/NoPropsNoState";
-import {decorate} from "../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../lib/helpers/Decorator";
 
 
 interface Props {

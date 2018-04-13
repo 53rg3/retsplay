@@ -3,7 +3,7 @@ import {ListItem, ListItemText} from 'material-ui-next/List';
 import Collapse from 'material-ui-next/transitions/Collapse';
 import Icon from "material-ui-next/es/Icon";
 import {Toggle} from "../../../lib/helpers/Toggle";
-import {decorate} from "../../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../../lib/helpers/Decorator";
 
 
 const styles = (theme: any) => ({

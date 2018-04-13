@@ -6,7 +6,7 @@ import {MenuList} from "material-ui-next";
 import {SidebarLinkGroup} from "./SidebarNestedLinks";
 import Divider from "material-ui-next/es/Divider";
 import {NoState} from "../../../lib/helpers/NoPropsNoState";
-import {decorate} from "../../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../../lib/helpers/Decorator";
 import {sidebarCss} from "./Sidebar.css";
 
 

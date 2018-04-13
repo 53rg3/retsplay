@@ -1,6 +1,6 @@
 import * as React from "react";
 import {CounterLogic} from "./Counter.logic";
-import {decorate} from "../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../lib/helpers/Decorator";
 import Paper from "material-ui-next/es/Paper";
 import Button from "material-ui-next/es/Button";
 import {counterCss} from "./Counter.css";
@@ -16,7 +16,6 @@ import {Body} from "../layout/commons/Body";
 import {CounterModel} from "./models/CounterModel";
 import {Schema} from "../../app/Schema";
 import {CounterEAR} from "./ears/Counter.ear";
-import {connect} from "react-redux";
 
 export module Counter {
 
@@ -25,12 +24,12 @@ export module Counter {
     const formFields = counterFormFields;
 
 
-    class Props {
-        [Schema.counter.state] = CounterModel.initial();
-    }
-
     class State {
         hasError: false;
+    }
+
+    class Props {
+        [Schema.counter.state]:CounterModel;
     }
 
     class Component extends React.Component<Props, State> {
@@ -46,7 +45,6 @@ export module Counter {
         }
 
         render(): any {
-            console.log("################################ COUNTER render, props: ", this.props);
             return (
                 <div>
                     <Heading heading={"Async Counter"}/>
@@ -123,27 +121,7 @@ export module Counter {
             );
         }
     }
-    console.log("++++++++++++++++++++++++++++ BEFORE COUNTER DECORATE");
-    // export const component = decorate<Props>(Component, c => c
-    //     .withRedux(true).withRouter(false), "FROM COUNTER");
-
-    function mapStateToProps({counterModel}:Props) {
-        console.log("PROPS1", counterModel);
-
-        const clazz:any = Props;
-        const props = new clazz();
-        console.log("CounterProps: ",Object.keys(props));
-        return {
-            counterModel
-        };
-    }
-    // function mapStateToProps<{}, Props>({counterModel}:Props) {
-    //     return {
-    //         counterModel
-    //     };
-    // }
-    export const component = connect<Props>((props:Props)=>props, null)(Component);
-    // export const component = connect<Props>(({counterModel}:Props)=>{console.log(counterModel); return {counterModel}}, null)(Component);
-    // export const component = connect<Props>(mapStateToProps, null)(Component);
+    export const component = decorate(Component, c => c
+        .withRedux(({counterModel}:Props) => ({counterModel})));
 
 }

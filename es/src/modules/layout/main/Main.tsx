@@ -1,6 +1,6 @@
 import * as React from "react";
 import {NoState} from "../../../lib/helpers/NoPropsNoState";
-import {decorate} from "../../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../../lib/helpers/Decorator";
 import {mainCss} from "./Main.css";
 
 
@@ -21,6 +21,4 @@ class Component extends React.Component<Props, NoState> {
 }
 
 export const Main = decorate<Props>(Component, c => c
-    .withRouter(true)
-    .withRedux(true)
     .withStyles(mainCss));

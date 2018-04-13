@@ -12,7 +12,7 @@ import {FormManager} from "../../lib/form/FormManager";
 import {Toggle} from "../../lib/helpers/Toggle";
 import {FormFactory} from "../../lib/form/FormFactory";
 import {FieldMeta} from "../../lib/form/FieldMeta";
-import {decorate} from "../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../lib/helpers/Decorator";
 
 
 
@@ -42,6 +42,7 @@ class FormExampleComponent extends React.Component<Props, State> {
 
 
     render(): any {
+        console.log(this.props);
         return (
             <div>
                 <ModalStandard isOpen={this.state.isModalOpen} onClose={Toggle.asFunction('isModalOpen', this)}>
@@ -233,5 +234,4 @@ class FormExampleComponent extends React.Component<Props, State> {
         );
     }
 }
-export default decorate<Props>(FormExampleComponent, c=>c
-    .withRedux(true))
+export default decorate<Props>(FormExampleComponent, c=>c)

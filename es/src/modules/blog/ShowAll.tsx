@@ -2,7 +2,7 @@ import * as React from "react";
 import {Heading} from "../layout/commons/Heading";
 import {Body} from "../layout/commons/Body";
 import {NoState} from "../../lib/helpers/NoPropsNoState";
-import {decorate} from "../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../lib/helpers/Decorator";
 
 
 class Props {
@@ -23,5 +23,4 @@ class Blog extends React.Component<Props, NoState> {
     }
 }
 
-export default decorate<Props>(Blog, c => c
-    .withRedux(true));
+export default decorate<Props>(Blog, c => c);

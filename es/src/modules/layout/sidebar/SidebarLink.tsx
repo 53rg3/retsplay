@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import { ListItem, ListItemText } from 'material-ui-next/List';
 import Icon from "material-ui-next/es/Icon";
 import {NoState} from "../../../lib/helpers/NoPropsNoState";
-import {decorate} from "../../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../../lib/helpers/Decorator";
 
 
 const styles = (theme:any) => ({

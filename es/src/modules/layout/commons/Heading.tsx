@@ -2,7 +2,7 @@ import * as React from "react";
 import Paper from "material-ui-next/es/Paper";
 import {MUI} from "../css/MUI";
 import {NoState} from "../../../lib/helpers/NoPropsNoState";
-import {decorate} from "../../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../../lib/helpers/Decorator";
 
 class Props {
     classes?: any;

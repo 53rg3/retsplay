@@ -1,7 +1,7 @@
 import * as React from "react";
 import {NoState} from "../../../lib/helpers/NoPropsNoState";
 import {Body} from "../../layout/commons/Body";
-import {decorate} from "../../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../../lib/helpers/Decorator";
 
 
 export module Editor {
@@ -13,7 +13,6 @@ export module Editor {
     class Component extends React.Component<Props, NoState> {
 
         render() {
-            console.log(this.props);
             return (
                 <div>
                     <Body>
@@ -24,9 +23,7 @@ export module Editor {
         }
     }
 
-    export const component = decorate<Props>(Component, c => c
-        .withRedux(true)
-        .withRouter(true));
+    export const component = decorate<Props>(Component, c => c);
 
 
 }

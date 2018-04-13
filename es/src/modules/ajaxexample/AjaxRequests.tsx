@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Heading} from "../layout/commons/Heading";
 import {Body} from "../layout/commons/Body";
-import {decorate} from "../../lib/helpers/ComponentDecorators";
+import {decorate} from "../../lib/helpers/Decorator";
 import Button from "material-ui-next/es/Button";
 import {HttpResponse} from "../../lib/ajax/HttpResponse";
 import {Grid} from "material-ui-next/es";
@@ -116,7 +116,7 @@ export module AjaxRequests {
     }
 
     export const component = decorate<Props>(Component, c => c
-        .withRedux(true));
+        .withRedux(({getError,getSuccess,postError,postSuccess}:Props) => ({getError,getSuccess,postError,postSuccess})));
 
 }
 
