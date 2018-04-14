@@ -99,6 +99,7 @@ export module Counter {
                                                         .field(c => c
                                                             .InputProps({disableUnderline: true})
                                                             .placeholder("value")
+                                                            .error(FieldMeta.isTouchedAndInvalid(props))
                                                             .helperText(FieldMeta.showHelpOrError(props, "(decrement by)"))))}
                                                 </Field>
                                             </Paper>

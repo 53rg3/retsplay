@@ -1,32 +1,45 @@
-
-# REACT COMPONENTS
-GET           /                           controllers.HomeController.index
-GET           /blog                       controllers.HomeController.index
-GET           /blog/editor                controllers.HomeController.index
-GET           /blog/editor/:id            controllers.HomeController.blogpost(id: Int)
-GET           /form-example               controllers.HomeController.index
-GET           /counter                    controllers.HomeController.index
-GET           /ajax-requests              controllers.HomeController.index
-
-
-# API
-POST          /api/error-example          controllers.AjaxResponses.postErrorExample
-POST          /api/success-example        controllers.AjaxResponses.postSuccessExample
-GET           /api/error-example          controllers.AjaxResponses.getErrorExample
-GET           /api/success-example        controllers.AjaxResponses.getSuccessExample
+# ---------------------------------------------------------------------------------------------------
+#  _____                 _
+# |  __ \               | |
+# | |__) |___  __ _  ___| |_
+# |  _  // _ \/ _` |/ __| __|
+# | | \ \  __/ (_| | (__| |_
+# |_|  \_\___|\__,_|\___|\__|
+# ---------------------------------------------------------------------------------------------------
 
 
+GET           /                                        controllers.HomeController.index
+GET           /blog                                    controllers.HomeController.index
+GET           /blog/editor                             controllers.HomeController.index
+GET           /blog/editor/:id                         controllers.HomeController.blogpost(id: Int)
+GET           /blog/post/:id                         controllers.HomeController.blogpost(id: Int)
+GET           /form-example                            controllers.HomeController.index
+GET           /counter                                 controllers.HomeController.index
+GET           /ajax-requests                           controllers.HomeController.index
 
-# ------------------------------------------------------------------------------------------------------
-GET           /posteditor                 controllers.HomeController.index
-GET           /post                       controllers.HomeController.index
-GET           /editor                     controllers.HomeController.index
-GET           /post/show-all              controllers.Blog.getAllPosts
-GET           /post/:id                   controllers.Blog.getPost(id: String)
-POST          /add                        controllers.Blog.addNewPost()
-DELETE        /delete/:id                 controllers.Blog.deletePost(id : String)
-POST          /update/:id                 controllers.Blog.updatePost(id : String)
+
+# ---------------------------------------------------------------------------------------------------
+#           _____ _____
+#     /\   |  __ \_   _|
+#    /  \  | |__) || |
+#   / /\ \ |  ___/ | |
+#  / ____ \| |    _| |_
+# /_/    \_\_|   |_____|
+# ---------------------------------------------------------------------------------------------------
+
+# AjaxResponses
+POST          /api/ajaxrequests/error-example          controllers.AjaxResponses.postErrorExample
+POST          /api/ajaxrequests/success-example        controllers.AjaxResponses.postSuccessExample
+GET           /api/ajaxrequests/error-example          controllers.AjaxResponses.getErrorExample
+GET           /api/ajaxrequests/success-example        controllers.AjaxResponses.getSuccessExample
+
+# Blog
+GET           /api/blog/getallposts                    controllers.Blog.getAllPosts
+GET           /api/blog/post/:id                       controllers.Blog.getPost(id: String)
+DELETE        /api/blog/delete/:id                     controllers.Blog.deletePost(id : String)
+POST          /api/blog/createnewpost                            controllers.Blog.createNewPost()
+POST          /api/blog/updatepost/:id                     controllers.Blog.updatePost(id : String)
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET           /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET           /assets/*file                            controllers.Assets.versioned(path="/public", file: Asset)

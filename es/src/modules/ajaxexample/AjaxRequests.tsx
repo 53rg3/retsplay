@@ -8,10 +8,10 @@ import {Grid} from "material-ui-next/es";
 import {Person} from "./models/Person";
 import {AjaxRequestsLogic} from "./AjaxRequests.logic";
 import {Schema} from "../../app/Schema";
-import {GetSuccessEar} from "./ears/GetSuccessEAR";
-import {GetErrorEar} from "./ears/GetErrorEAR";
-import {PostErrorEar} from "./ears/PostErrorEAR";
-import {PostSuccessEar} from "./ears/PostSuccessEAR";
+import {GetSuccessEar} from "./ears/GetSuccess.ear";
+import {GetErrorEar} from "./ears/GetError.ear";
+import {PostErrorEar} from "./ears/PostError.ear";
+import {PostSuccessEar} from "./ears/PostSuccess.ear";
 
 
 
@@ -23,6 +23,11 @@ export module AjaxRequests {
     const postSuccessEAR = PostSuccessEar.INST;
     const postErrorEAR = PostErrorEar.INST;
 
+    class State {
+        displayedResponse: HttpResponse<Person>;
+        lastAction: string;
+    }
+
     class Props {
         classes?: any;
         [Schema.ajaxRequests.getSuccess]: HttpResponse<Person>;
@@ -30,11 +35,8 @@ export module AjaxRequests {
         [Schema.ajaxRequests.postSuccess]: HttpResponse<Person>;
         [Schema.ajaxRequests.postError]: HttpResponse<Person>;
     }
-
-    class State {
-        displayedResponse: HttpResponse<Person>;
-        lastAction: string;
-    }
+    const mapsStateToProps = ({getError,getSuccess,postError,postSuccess}:Props) =>
+        ({getError,getSuccess,postError,postSuccess});
 
     class Component extends React.Component<Props, State> {
 
@@ -116,7 +118,7 @@ export module AjaxRequests {
     }
 
     export const component = decorate<Props>(Component, c => c
-        .withRedux(({getError,getSuccess,postError,postSuccess}:Props) => ({getError,getSuccess,postError,postSuccess})));
+        .withRedux(mapsStateToProps));
 
 }
 

@@ -13,4 +13,13 @@ export module Schema {
         postError = "postError"
     }
 
+    export enum blog {
+        moduleId = "blog",
+        showAll = "showAll",
+        getPost = "getPost",
+        deletePost = "deletePost",
+        createNew = "createNew",
+        updatePost = "updatePost"
+    }
+
 }

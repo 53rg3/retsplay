@@ -1,5 +1,5 @@
 import * as React from "react";
-import {formExampleFields} from "./FormExample.form";
+import {formExampleFields} from "./FormExample.formFields";
 import {MUI} from "../layout/css/MUI";
 import {FormManager} from "../../lib/form/FormManager";
 import {Toggle} from "../../lib/helpers/Toggle";

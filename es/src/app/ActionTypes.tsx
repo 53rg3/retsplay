@@ -30,6 +30,31 @@ export class Act {
         },
     };
 
+    public static blog = {
+
+        [Schema.blog.showAll]: {
+            ...FSAction.ajaxTypes(Schema.blog.moduleId, Schema.blog.showAll)
+        },
+
+        [Schema.blog.getPost]: {
+            ...FSAction.ajaxTypes(Schema.blog.moduleId, Schema.blog.getPost),
+            INVALIDATE: `${Schema.blog.moduleId}.${Schema.blog.getPost}.INVALIDATE`
+        },
+
+        [Schema.blog.deletePost]: {
+            ...FSAction.ajaxTypes(Schema.blog.moduleId, Schema.blog.deletePost)
+        },
+
+        [Schema.blog.createNew]: {
+            ...FSAction.ajaxTypes(Schema.blog.moduleId, Schema.blog.createNew)
+        },
+
+        [Schema.blog.updatePost]: {
+            ...FSAction.ajaxTypes(Schema.blog.moduleId, Schema.blog.updatePost)
+        }
+
+    }
+
 }
 
 

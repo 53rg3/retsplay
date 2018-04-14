@@ -4,7 +4,7 @@ import {GenericBuilder, GenericConfig} from "./GenericBuilder";
 import {Checks} from "./Checks";
 import {Html} from "./Html";
 
-class ResponseRendererConfig<T> {
+class HttpResponseRendererConfig<T> {
     public readonly ifResponseIsNull:(response:HttpResponse<T>) => JSX.Element;
     public readonly initial:(response:HttpResponse<T>) => JSX.Element;
     public readonly loading:(response:HttpResponse<T>) => JSX.Element;
@@ -12,7 +12,7 @@ class ResponseRendererConfig<T> {
     public readonly error:(response:HttpResponse<T>) => JSX.Element;
 }
 
-export class ResponseRenderer<T> {
+export class HttpResponseRenderer<T> {
 
     public readonly ifResponseIsNull:(response:HttpResponse<T>) => JSX.Element;
     private readonly initial:(response:HttpResponse<T>) => JSX.Element;
@@ -20,7 +20,7 @@ export class ResponseRenderer<T> {
     private readonly success:(response:HttpResponse<T>) => JSX.Element;
     private readonly error:(response:HttpResponse<T>) => JSX.Element;
 
-    constructor(cfg:(cfg:GenericConfig<ResponseRendererConfig<T>>)=>GenericConfig<ResponseRendererConfig<T>>) {
+    constructor(cfg:(cfg:GenericConfig<HttpResponseRendererConfig<T>>)=>GenericConfig<HttpResponseRendererConfig<T>>) {
         const config = GenericBuilder.buildFromConfig(cfg);
         this.initial = Checks.throwIfNil(config.initial, "'initial' must not be null.");
         this.loading = Checks.throwIfNil(config.loading, "'loading' must not be null.");

@@ -2,7 +2,7 @@ import * as React from "react";
 import {HttpResponse} from "../../lib/ajax/HttpResponse";
 import {Person} from "./models/Person";
 import {Body} from "../layout/commons/Body";
-import {ResponseRenderer} from "../../lib/helpers/ResponseRenderer";
+import {HttpResponseRenderer} from "../../lib/helpers/ResponseRenderer";
 import {Html} from "../../lib/helpers/Html";
 
 export class AjaxRequestsLogic {
@@ -25,7 +25,7 @@ export class AjaxRequestsLogic {
                 {JSON.stringify(response.body, null, 4)}
             </pre>
         </Body>);
-    public renderResponse = new ResponseRenderer<Person>(c => c
+    public renderResponse = new HttpResponseRenderer<Person>(c => c
         .initial(() => Html.emptySpan())
         .loading(() => Html.emptySpan())
         .success(this.renderedBody)

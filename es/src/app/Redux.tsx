@@ -5,10 +5,10 @@ import logger from "redux-logger";
 import {FSAction} from "../lib/ear/FSAction";
 import {Schema} from "./Schema";
 import {Counter} from "../modules/counter/Counter";
-import {GetErrorEar} from "../modules/ajaxexample/ears/GetErrorEAR";
-import {GetSuccessEar} from "../modules/ajaxexample/ears/GetSuccessEAR";
-import {PostSuccessEar} from "../modules/ajaxexample/ears/PostSuccessEAR";
-import {PostErrorEar} from "../modules/ajaxexample/ears/PostErrorEAR";
+import {GetErrorEar} from "../modules/ajaxexample/ears/GetError.ear";
+import {GetSuccessEar} from "../modules/ajaxexample/ears/GetSuccess.ear";
+import {PostSuccessEar} from "../modules/ajaxexample/ears/PostSuccess.ear";
+import {PostErrorEar} from "../modules/ajaxexample/ears/PostError.ear";
 import {AjaxRequests} from "../modules/ajaxexample/AjaxRequests";
 import {ReduxCollector} from "../lib/ear/ReduxCollector";
 

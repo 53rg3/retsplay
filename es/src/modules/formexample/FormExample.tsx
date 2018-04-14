@@ -6,7 +6,7 @@ import {MUI} from "../layout/css/MUI";
 import Divider from "material-ui-next/es/Divider";
 import {ModalStandard} from "../layout/commons/ModalStandard";
 import {colorSelection, FormExampleLogic} from "./FormExample.logic";
-import {formExampleFields} from "./FormExample.form";
+import {formExampleFields} from "./FormExample.formFields";
 import {formExampleCss} from "./FormExample.css";
 import {FormManager} from "../../lib/form/FormManager";
 import {Toggle} from "../../lib/helpers/Toggle";
