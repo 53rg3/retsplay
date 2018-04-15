@@ -1,7 +1,7 @@
 import {Schema} from "../../../app/Schema";
 import {HttpResponse} from "../../../lib/ajax/HttpResponse";
 import {Act} from "../../../app/ActionTypes";
-import {RequestEAR} from "../../../lib/ajax/RequestEAR";
+import {RequestEAR} from "../../../lib/ajax/HttpRequestEAR";
 import {Method, ResponseType} from "../../../lib/ajax/HttpMeta";
 import {Api} from "../../../app/Api";
 import {HttpRequest} from "../../../lib/ajax/HttpRequest";

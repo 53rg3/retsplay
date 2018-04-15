@@ -42,7 +42,6 @@ class FormExampleComponent extends React.Component<Props, State> {
 
 
     render(): any {
-        console.log(this.props);
         return (
             <div>
                 <ModalStandard isOpen={this.state.isModalOpen} onClose={Toggle.asFunction('isModalOpen', this)}>
