@@ -16,7 +16,8 @@ public class s01_Install extends Output {
         Print.codeBlock("sbt run");
 
         Print.wrapped("The repository comes with a prebuilt React app, see "+Ref.internalPath("/public/javascripts")+". " +
-                "If you want to edit the JS files then you need install the node modules. In `/es` run `npm install`.");
+                "If you want to edit the JS files then you need install the node modules. In `/es` run `npm install`. " +
+                "In the same folder run `webpack --watch` after that.");
 
     }
 

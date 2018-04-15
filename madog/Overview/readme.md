@@ -15,5 +15,5 @@ sbt run
 ```
 
 
-The repository comes with a prebuilt React app, see [/public/javascripts](/public/javascripts). If you want to edit the JS files then you need install the node modules. In `/es` run `npm install`.
+The repository comes with a prebuilt React app, see [/public/javascripts](/public/javascripts). If you want to edit the JS files then you need install the node modules. In `/es` run `npm install`. In the same folder run `webpack --watch` after that.
 
