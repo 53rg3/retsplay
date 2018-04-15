@@ -14,9 +14,9 @@ public class s00_RxJS extends Output {
 
         List list = new List();
         list.entry("Map functions", "" +
-                "`.mapTo(obj)` -> Map emissions to constant value\n" +
-                "`.map(fn)` -> Apply projection with each value from source\n");
-        
+                "`.mapTo(obj)` -> Map emissions to constant value<br/>" +
+                "`.map(fn)` -> Apply projection with each value from source<br/>");
+
 
         Print.wrapped(list.getAsMarkdown());
 
