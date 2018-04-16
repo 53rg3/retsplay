@@ -12,7 +12,7 @@ GET           /                                        controllers.HomeControlle
 GET           /blog                                    controllers.HomeController.index
 GET           /blog/editor                             controllers.HomeController.index
 GET           /blog/editor/:id                         controllers.HomeController.blogpost(id: Int)
-GET           /blog/post/:id                         controllers.HomeController.blogpost(id: Int)
+GET           /blog/post/:id                           controllers.HomeController.blogpost(id: Int)
 GET           /form-example                            controllers.HomeController.index
 GET           /counter                                 controllers.HomeController.index
 GET           /ajax-requests                           controllers.HomeController.index
@@ -37,8 +37,8 @@ GET           /api/ajaxrequests/success-example        controllers.AjaxResponses
 GET           /api/blog/getallposts                    controllers.Blog.getAllPosts
 GET           /api/blog/post/:id                       controllers.Blog.getPost(id: String)
 DELETE        /api/blog/delete/:id                     controllers.Blog.deletePost(id : String)
-POST          /api/blog/createnewpost                            controllers.Blog.createNewPost()
-POST          /api/blog/updatepost/:id                     controllers.Blog.updatePost(id : String)
+POST          /api/blog/createnewpost                  controllers.Blog.createNewPost()
+POST          /api/blog/updatepost/:id                 controllers.Blog.updatePost(id : String)
 
 
 # Map static resources from the /public folder to the /assets URL path

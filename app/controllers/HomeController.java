@@ -17,7 +17,6 @@ public class HomeController extends Controller {
     }
 
     public Result blogpost(int id) {
-        System.out.println("ID: "+id);
         String nonce = this.getUUID();
         return Results.ok(views.html.index.render(nonce))
                 .withHeader("Content-Security-Policy", this.getCspHeaderValue(nonce));

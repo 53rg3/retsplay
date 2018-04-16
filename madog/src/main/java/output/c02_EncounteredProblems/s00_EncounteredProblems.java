@@ -30,12 +30,27 @@ public class s00_EncounteredProblems extends Output {
                 Ref.externalURL("https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318", "it's an anti-pattern")+". ");
 
         list.entry("Play refuses to use external font libraries like Roboto Font for Material UI, because of CSP", "" +
-                "Error-message: Refused to apply inline style because it violates the following Content Security Policy directive: \"default-src 'self'\". " +
+                "Error-message: `Refused to apply inline style because it violates the following Content Security Policy directive: \"default-src 'self'\"`. " +
                 "\"In order to use CSP with Material-UI (and JSS), you need to use a nonce.\", but  \"Banning inline script " +
                 "is the biggest security win CSP provides, and banning inline style likewise hardens your application\". Nice... " +
                 "See "+Ref.classFile("HomeController.java")+" how we implemented it. Notice that we also added `fonts.gstatic.com` " +
-                "and `fonts.googleapis.com` to the CSP header. We added the nonce via `&lt;meta property=\"csp-nonce\" content=\"@{nonce}\" /&gt;` " +
+                "and `fonts.googleapis.com` to the CSP header. We added the nonce via `<meta property=\"csp-nonce\" content=\"@{nonce}\" />` " +
                 "in `index.scala.html`.");
+
+        list.entry("Weird borders around form elements", "" +
+                "Add `outline: 'none'` to their style property.");
+
+        list.entry("CSS in Production is mangled", "" +
+                "No idea how to solve this. Use normalize.css, class-loader, style-loader? Doesn't matter for Admin Dashboards. " +
+                "We simply use Dev and gzip. Maybe it's the way we use CSS? Or withStyles? Maybe CSSinJS needs some additional libraries?");
+
+        list.entry("POST requests respond with 403 forbidden", "" +
+                "We need to use `CSRF tokens`. Or we simply use `play.filters.disabled += play.filters.csrf.CSRFFilter` in " +
+                "`application.conf`, because we use the app only internally.");
+
+        list.entry("IntelliJ does too much 'indexing'", "" +
+                "Exclude `app.js` & `app.map.js` in /public in Project Settings. These files simply get too large and are indexed " +
+                "after every transpiling, which is an expensive operation.");
 
         Print.wrapped(list.getAsMarkdown());
 
