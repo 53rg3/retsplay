@@ -15,7 +15,7 @@ class RequestEARConfig {
     debounce: number;
 }
 
-export class RequestEAR {
+export class HttpRequestEAR {
     private constructor() {
     }
 

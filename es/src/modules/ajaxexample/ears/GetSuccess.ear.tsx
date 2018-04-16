@@ -5,7 +5,7 @@ import {Api} from "../../../app/Api";
 import {Act} from "../../../app/ActionTypes";
 import {HttpRequest} from "../../../lib/ajax/HttpRequest";
 import {Method, ResponseType} from "../../../lib/ajax/HttpMeta";
-import {RequestEAR} from "../../../lib/ajax/HttpRequestEAR";
+import {HttpRequestEAR} from "../../../lib/ajax/HttpRequestEAR";
 import {Schema} from "../../../app/Schema";
 
 
@@ -15,7 +15,7 @@ export class GetSuccessEar extends Reducer<HttpResponse<Person>> {
         .method(Method.GET)
         .url(Api.ajaxRequests.EXAMPLE_SUCCESS_URL)
         .responseType(ResponseType.JSON));
-    public readonly request = RequestEAR.create(this, c => c
+    public readonly request = HttpRequestEAR.create(this, c => c
         .request(this.requestConfig)
         .actionTypes(Act.ajaxRequests.getSuccess)
         .debounce(250));

@@ -33,7 +33,7 @@ public class s00_EncounteredProblems extends Output {
                 "Error-message: `Refused to apply inline style because it violates the following Content Security Policy directive: \"default-src 'self'\"`. " +
                 "\"In order to use CSP with Material-UI (and JSS), you need to use a nonce.\", but  \"Banning inline script " +
                 "is the biggest security win CSP provides, and banning inline style likewise hardens your application\". Nice... " +
-                "See "+Ref.classFile("HomeController.java")+" how we implemented it. Notice that we also added `fonts.gstatic.com` " +
+                "See "+Ref.classFile("HomeController.java", "HomeController.java")+" how we implemented it. Notice that we also added `fonts.gstatic.com` " +
                 "and `fonts.googleapis.com` to the CSP header. We added the nonce via `<meta property=\"csp-nonce\" content=\"@{nonce}\" />` " +
                 "in `index.scala.html`.");
 

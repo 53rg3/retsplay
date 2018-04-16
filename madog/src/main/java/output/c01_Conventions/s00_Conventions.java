@@ -30,6 +30,7 @@ public class s00_Conventions extends Output {
                 "If there are overlaps, e.g. multiple EARs, then put these into separate folders.");
         list.entry("No logic in components. Write it into `YourModule.logic.tsx`. Otherwise components become too big.");
         list.entry("SCSS goes into "+Ref.internalPath("/app/assets")+". These will be automatically compiled.");
+        list.entry("Redux state reducer methods belong in the model class, not into EARs.");
         Print.wrapped(list.getAsMarkdown());
 
     }

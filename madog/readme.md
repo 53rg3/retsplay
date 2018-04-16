@@ -3,6 +3,11 @@
 [2. Conventions](/madog/Conventions/readme.md#conventions)<br>
 [3. EncounteredProblems](/madog/EncounteredProblems/readme.md#encounteredproblems)<br>
 [4. EARs](/madog/EARs/readme.md#ears)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1 How to create EARs](/madog/EARs/readme.md#how-to-create-ears)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.1 Generic EAR](/madog/EARs/readme.md#generic-ear)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.2 Verbose HTTP request EAR](/madog/EARs/readme.md#verbose-http-request-ear)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.3 Concise HTTP request EAR](/madog/EARs/readme.md#concise-http-request-ear)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.4 More Examples](/madog/EARs/readme.md#more-examples)<br>
 [5. AjaxRequests](/madog/AjaxRequests/readme.md#ajaxrequests)<br>
 [6. Forms](/madog/Forms/readme.md#forms)<br>
 [7. RxJS](/madog/RxJS/readme.md#rxjs)<br>

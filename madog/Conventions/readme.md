@@ -8,5 +8,6 @@ Structure the project 'module-oriented'. Modules as in 'containers for component
 Files in module folders should be contain the module name and the aspect they provide, e.g.<br/>`PostView.tsx` -> the component<br/>`PostView.logic.tsx` -> methods of this component.<br/>`PostView.formFields.tsx` -> form definition<br/>`PostView.css.tsx` -> CSS<br/>If there are overlaps, e.g. multiple EARs, then put these into separate folders.
 * No logic in components. Write it into `YourModule.logic.tsx`. Otherwise components become too big.
 * SCSS goes into [/app/assets](/app/assets). These will be automatically compiled.
+* Redux state reducer methods belong in the model class, not into EARs.
 
 
