@@ -29,7 +29,8 @@ public class s00_EARs extends Output {
                 "dispatch method which dispatches the configured action to Redux. For example this "+
                 Ref.externalURL("https://github.com/53rg3/retsplay/blob/master/es/src/modules/blog/singlePost/ears/GetPost.ear.tsx", "EAR instance")+ " " +
                 "provides the fields `request` and `invalidate`. First one dispatches `Act.blog.getPost.SEND` and the latter one " +
-                "dispatches `Act.blog.getPost.INVALIDATE`. ");
+                "dispatches `Act.blog.getPost.INVALIDATE`. Both can be accessed via their `.dispatch()` method. If you call `.dispatch(someValue)` then " +
+                "`someValue` will be passed as `action payload` to the reducer or epics. ");
 
         list.entry("Each EAR is responsible for **one Redux state key**, i.e. the combined reducers registered in Redux will only affect the " +
                 "key provided in the `super()` call in the constructor.");
@@ -67,7 +68,7 @@ public class s00_EARs extends Output {
                 Ref.externalURL("https://github.com/53rg3/retsplay/blob/master/es/src/modules/blog/editor/ears/UpdatePost.ear.tsx", "example")+". ");
 
         Print.h3("Concise HTTP request EAR");
-        Print.wrapped("If you just a standard HTTP request to a fixed URL. See "+
+        Print.wrapped("If you just make a standard HTTP request to a fixed URL. See "+
                 Ref.externalURL("https://github.com/53rg3/retsplay/blob/master/es/src/modules/blog/editor/ears/CreateNew.ear.tsx", "example")+". ");
 
         Print.h3("More Examples");

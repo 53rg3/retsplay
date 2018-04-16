@@ -13,7 +13,7 @@ EARs combine Epics, Action creators and Reducers.
 * An EAR must extend `Reducer<TypeForReduxState>`, see [example](https://github.com/53rg3/retsplay/blob/master/es/src/modules/blog/editor/ears/UpdatePost.ear.tsx#L13). 
 * EARs must be Singletons. Use IntelliJ's Live Templates.
 * The constructor must call `super` with initialState and reduxStateKey. See [example](https://github.com/53rg3/retsplay/blob/master/es/src/modules/blog/editor/ears/UpdatePost.ear.tsx#L23). 
-* EARs can expose multiple 'dispatchable actions', each instantiated as `new EAR()`. Each of these fields comes with a dispatch method which dispatches the configured action to Redux. For example this [EAR instance](https://github.com/53rg3/retsplay/blob/master/es/src/modules/blog/singlePost/ears/GetPost.ear.tsx) provides the fields `request` and `invalidate`. First one dispatches `Act.blog.getPost.SEND` and the latter one dispatches `Act.blog.getPost.INVALIDATE`. 
+* EARs can expose multiple 'dispatchable actions', each instantiated as `new EAR()`. Each of these fields comes with a dispatch method which dispatches the configured action to Redux. For example this [EAR instance](https://github.com/53rg3/retsplay/blob/master/es/src/modules/blog/singlePost/ears/GetPost.ear.tsx) provides the fields `request` and `invalidate`. First one dispatches `Act.blog.getPost.SEND` and the latter one dispatches `Act.blog.getPost.INVALIDATE`. Both can be accessed via their `.dispatch()` method. If you call `.dispatch(someValue)` then `someValue` will be passed as `action payload` to the reducer or epics. 
 * Each EAR is responsible for **one Redux state key**, i.e. the combined reducers registered in Redux will only affect the key provided in the `super()` call in the constructor.
 * Epics & Reducers are registered automatically in the Redux store while class instantiation. Therefore, `YourEar.INST` must be called in module. Could probably also be called in Redux.tsx, but in the module we can use it to create handy shorter references for the use in the component.
 * The expected ResponseType must be correctly stated in the request. Otherwise RxJS sets the response to null.
@@ -36,7 +36,7 @@ If you need some specific logic to make a HTTP request. See [example](https://gi
 
 ### Concise HTTP request EAR
 
-If you just a standard HTTP request to a fixed URL. See [example](https://github.com/53rg3/retsplay/blob/master/es/src/modules/blog/editor/ears/CreateNew.ear.tsx). 
+If you just make a standard HTTP request to a fixed URL. See [example](https://github.com/53rg3/retsplay/blob/master/es/src/modules/blog/editor/ears/CreateNew.ear.tsx). 
 
 ### More Examples
 

@@ -8,12 +8,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.2 Verbose HTTP request EAR](/madog/EARs/readme.md#verbose-http-request-ear)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.3 Concise HTTP request EAR](/madog/EARs/readme.md#concise-http-request-ear)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.4 More Examples](/madog/EARs/readme.md#more-examples)<br>
-[5. AjaxRequests](/madog/AjaxRequests/readme.md#ajaxrequests)<br>
-[6. Forms](/madog/Forms/readme.md#forms)<br>
-[7. RxJS](/madog/RxJS/readme.md#rxjs)<br>
-[8. Theming](/madog/Theming/readme.md#theming)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.1 Removing Material UI](/madog/Theming/readme.md#removing-material-ui)<br>
-[9. Bookmarks](/madog/Bookmarks/readme.md#bookmarks)<br>
+[5. Forms](/madog/Forms/readme.md#forms)<br>
+[6. RxJS](/madog/RxJS/readme.md#rxjs)<br>
+[7. Theming](/madog/Theming/readme.md#theming)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.1 Removing Material UI](/madog/Theming/readme.md#removing-material-ui)<br>
+[8. Bookmarks](/madog/Bookmarks/readme.md#bookmarks)<br>
 
  
 
