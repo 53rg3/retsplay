@@ -6,6 +6,8 @@
 [5. AjaxRequests](/madog/AjaxRequests/readme.md#ajaxrequests)<br>
 [6. Forms](/madog/Forms/readme.md#forms)<br>
 [7. RxJS](/madog/RxJS/readme.md#rxjs)<br>
+[8. Theming](/madog/Theming/readme.md#theming)<br>
+[9. Bookmarks](/madog/Bookmarks/readme.md#bookmarks)<br>
 
  
 

@@ -1,0 +1,10 @@
+## Table of Contents
+[1. Theming](#theming)<br>
+# Theming
+
+* Using IntelliJ import helper functionality (ALT+Enter) is risky. See [Benchmark](https://stackoverflow.com/q/49408778/4179212). Tree shaking doesn't seem to work.
+* We can override Material UI Next CSS in the theme, see [https://stackoverflow.com/a/48962739/4179212](https://stackoverflow.com/a/48962739/4179212)
+* **Theme Colors**<br>
+The theme colors can be edited in [MUI.tsx](/es/src/modules/layout/css/MUI.tsx). You can replace the whole color scheme by adding a new one in the `themes` object and changing the exported `theme` constant to it.
+
+
