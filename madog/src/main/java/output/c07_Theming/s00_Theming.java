@@ -22,13 +22,14 @@ public class s00_Theming extends Output {
         list.entry("The theme colors can be edited in "+Ref.internalPath("/es/src/modules/layout/css/MUI.tsx", "MUI.tsx")+". " +
                 "You can replace the whole color scheme by adding a new one in the `themes` object and changing the exported `theme` " +
                 "constant to it.");
-        list.entry(Ref.internalPath("/es/src/modules/layout/css/MUI.tsx", "MUI.tsx")+ "also contains inline styles and classes for the " +
+        list.entry(Ref.internalPath("/es/src/modules/layout/css/MUI.tsx", "MUI.tsx")+ " also contains inline styles and classes for the " +
                 "general layout.");
         Print.wrapped(list.getAsMarkdown());
 
+        
         Print.h2("Removing Material UI");
         List muiRemoval = new List();
-        list.entry("Yeah... just don't. It runs though EACH component in "+Ref.internalPath("/es/src/modules")+". " +
+        muiRemoval.entry("Yeah... just don't. It runs though EACH component in "+Ref.internalPath("/es/src/modules")+". " +
                 "Probably simply delete all JSX from component, `.render.tsx` and `.logic.tsx` files. " +
                 "Delete `MuiThemeProvider` in "+Ref.internalPath("/es/src/app/AppRoot.tsx", "AppRoot")+". Delete " +
                 "`CssBaseline` & `LayoutRoot` from "+Ref.internalPath("/es/src/app/Router.tsx", "Router.tsx")+". " +
