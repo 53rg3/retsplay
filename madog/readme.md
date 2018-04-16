@@ -9,6 +9,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.3 Concise HTTP request EAR](/madog/EARs/readme.md#concise-http-request-ear)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.4 More Examples](/madog/EARs/readme.md#more-examples)<br>
 [5. Forms](/madog/Forms/readme.md#forms)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Form definition & FormManager](/madog/Forms/readme.md#form-definition--formmanager)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.2 FormFactory](/madog/Forms/readme.md#formfactory)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.3 FieldMeta](/madog/Forms/readme.md#fieldmeta)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4 Validation helpers](/madog/Forms/readme.md#validation-helpers)<br>
 [6. RxJS](/madog/RxJS/readme.md#rxjs)<br>
 [7. Theming](/madog/Theming/readme.md#theming)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.1 Removing Material UI](/madog/Theming/readme.md#removing-material-ui)<br>
