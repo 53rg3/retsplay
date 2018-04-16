@@ -11,6 +11,6 @@
 
 ## Removing Material UI
 
-* Yeah... just don't. It runs though EACH component in [/es/src/modules](/es/src/modules). Probably simply delete all JSX from component, `.render.tsx` and `.logic.tsx` files. Delete `MuiThemeProvider` in [AppRoot](/es/src/app/AppRoot.tsx). Delete `CssBaseline` & `LayoutRoot` from [Router.tsx](/es/src/app/Router.tsx). Then run `npm remove --save material-ui-next`. 
+* Yeah... just don't. It runs through EACH component in [/es/src/modules](/es/src/modules). Delete all JSX from component, `.render.tsx` and `.logic.tsx` files. Delete `MuiThemeProvider` in [AppRoot](/es/src/app/AppRoot.tsx). Delete `CssBaseline` & `LayoutRoot` from [Router.tsx](/es/src/app/Router.tsx). Then run `npm remove --save material-ui-next`. Also delete the &lt;link rel="stylesheet"&gt; in `index.scala.html`.
 
 
