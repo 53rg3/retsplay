@@ -7,6 +7,7 @@
 [6. Forms](/madog/Forms/readme.md#forms)<br>
 [7. RxJS](/madog/RxJS/readme.md#rxjs)<br>
 [8. Theming](/madog/Theming/readme.md#theming)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.1 Removing Material UI](/madog/Theming/readme.md#removing-material-ui)<br>
 [9. Bookmarks](/madog/Bookmarks/readme.md#bookmarks)<br>
 
  
