@@ -16,5 +16,7 @@ No idea how to solve this. Use normalize.css, class-loader, style-loader? Doesn'
 We need to use `CSRF tokens`. Or we simply use `play.filters.disabled += play.filters.csrf.CSRFFilter` in `application.conf`, because we use the app only internally.
 * **IntelliJ does too much 'indexing'**<br>
 Exclude `app.js` & `app.map.js` in /public in Project Settings. These files simply get too large and are indexed after every transpiling, which is an expensive operation.
+* **SCSS doesn't compile**<br>
+Add `addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.11")` to `/project/plugins.sbt`
 
 

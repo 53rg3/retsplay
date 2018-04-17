@@ -53,6 +53,9 @@ public class s00_EncounteredProblems extends Output {
                 "Exclude `app.js` & `app.map.js` in /public in Project Settings. These files simply get too large and are indexed " +
                 "after every transpiling, which is an expensive operation.");
 
+        list.entry("SCSS doesn't compile", "" +
+                "Add `addSbtPlugin(\"org.irundaia.sbt\" % \"sbt-sassify\" % \"1.4.11\")` to `/project/plugins.sbt`");
+
         Print.wrapped(list.getAsMarkdown());
 
     }
