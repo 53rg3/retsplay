@@ -56,6 +56,9 @@ public class s00_EncounteredProblems extends Output {
         list.entry("SCSS doesn't compile", "" +
                 "Add `addSbtPlugin(\"org.irundaia.sbt\" % \"sbt-sassify\" % \"1.4.11\")` to `/project/plugins.sbt`");
 
+        list.entry("RxJS says: 'Promise' only refers to a type, but is being used as a value here.", "" +
+                "See "+Ref.externalURL("https://stackoverflow.com/a/43962119/4179212", " here")+". ");
+
         Print.wrapped(list.getAsMarkdown());
 
     }
