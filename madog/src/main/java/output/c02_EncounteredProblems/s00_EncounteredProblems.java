@@ -35,7 +35,8 @@ public class s00_EncounteredProblems extends Output {
                 "is the biggest security win CSP provides, and banning inline style likewise hardens your application\". Nice... " +
                 "See "+Ref.classFile("HomeController.java", "HomeController.java")+" how we implemented it. Notice that we also added `fonts.gstatic.com` " +
                 "and `fonts.googleapis.com` to the CSP header. We added the nonce via `<meta property=\"csp-nonce\" content=\"@{nonce}\" />` " +
-                "in `index.scala.html`.");
+                "in `index.scala.html`. Add `play.filters.enabled += \"play.filters.headers.SecurityHeadersFilter\"` and " +
+                "set `play.filters.headers.allowActionSpecificHeaders=true` in `application.conf`.");
 
         list.entry("Weird borders around form elements", "" +
                 "Add `outline: 'none'` to their style property.");
