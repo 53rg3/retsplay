@@ -18,5 +18,7 @@ We need to use `CSRF tokens`. Or we simply use `play.filters.disabled += play.fi
 Exclude `app.js` & `app.map.js` in /public in Project Settings. These files simply get too large and are indexed after every transpiling, which is an expensive operation.
 * **SCSS doesn't compile**<br>
 Add `addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.11")` to `/project/plugins.sbt`
+* **RxJS says: 'Promise' only refers to a type, but is being used as a value here.**<br>
+See [ here](https://stackoverflow.com/a/43962119/4179212). 
 
 
