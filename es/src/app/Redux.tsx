@@ -1,15 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import * as React from "react";
 import {combineEpics, createEpicMiddleware} from "redux-observable";
-import logger from "redux-logger";
-import {FSAction} from "../lib/ear/FSAction";
-import {Schema} from "./Schema";
-import {Counter} from "../modules/counter/Counter";
-import {GetErrorEar} from "../modules/ajaxexample/ears/GetError.ear";
-import {GetSuccessEar} from "../modules/ajaxexample/ears/GetSuccess.ear";
-import {PostSuccessEar} from "../modules/ajaxexample/ears/PostSuccess.ear";
-import {PostErrorEar} from "../modules/ajaxexample/ears/PostError.ear";
-import {AjaxRequests} from "../modules/ajaxexample/AjaxRequests";
 import {ReduxCollector} from "../lib/ear/ReduxCollector";
 
 

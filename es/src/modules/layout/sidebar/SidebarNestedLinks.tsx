@@ -31,7 +31,7 @@ class Component extends React.Component<Props, State> {
             <div>
                 <ListItem button onClick={Toggle.asFunction("open", this)} className={this.props.classes.fontColor}>
                     <Icon>{this.props.icon}</Icon>
-                    <ListItemText inset primary="Blog"/>
+                    <ListItemText inset primary={this.props.groupName} />
                     {this.state.open ? <Icon>keyboard_arrow_up</Icon> : <Icon>keyboard_arrow_down</Icon>}
                 </ListItem>
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
