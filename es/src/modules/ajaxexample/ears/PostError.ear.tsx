@@ -17,11 +17,11 @@ export class PostErrorEar extends Reducer<HttpResponse<Person>> {
         .responseType(ResponseType.TEXT));
     public readonly request = HttpRequestEAR.create(this, c => c
         .request(this.httpRequest)
-        .actionTypes(Act.ajaxRequests.postError)
+        .actionTypes(Act.ajaxRequestsPostError)
         .debounce(250));
 
     private constructor() {
-        super(HttpResponse.initial(), Schema.ajaxRequests.postError);
+        super(HttpResponse.initial(), Schema.ajaxRequestsPostError);
     }
 
     private static _INST: PostErrorEar;

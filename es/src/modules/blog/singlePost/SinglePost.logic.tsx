@@ -1,6 +1,6 @@
 import {BlogPost} from "../commons/models/BlogPost";
 import {Html} from "../../../lib/helpers/Html";
-import {HttpResponseRenderer} from "../../../lib/helpers/ResponseRenderer";
+import {HttpResponseRenderer} from "../../../lib/helpers/HttpResponseRenderer";
 import {HttpResponse} from "../../../lib/ajax/HttpResponse";
 import {BlogRender} from "../commons/render/BlogRender";
 import {blogCss} from "../commons/Blog.css";

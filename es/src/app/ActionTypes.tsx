@@ -11,49 +11,47 @@ export class Act {
         ASYNC_INCREMENT: "ASYNC_INCREMENT"
     };
 
-    public static ajaxRequests = {
 
-        [Schema.ajaxRequests.getSuccess]: {
-            ...FSAction.ajaxTypes(Schema.ajaxRequests.moduleId, Schema.ajaxRequests.getSuccess)
-        },
 
-        [Schema.ajaxRequests.getError]: {
-            ...FSAction.ajaxTypes(Schema.ajaxRequests.moduleId, Schema.ajaxRequests.getError)
-        },
-
-        [Schema.ajaxRequests.postSuccess]: {
-            ...FSAction.ajaxTypes(Schema.ajaxRequests.moduleId, Schema.ajaxRequests.postSuccess)
-        },
-
-        [Schema.ajaxRequests.postError]: {
-            ...FSAction.ajaxTypes(Schema.ajaxRequests.moduleId, Schema.ajaxRequests.postError)
-        },
+    public static [Schema.ajaxRequestsGetSuccess] = {
+        ...FSAction.ajaxTypes(Schema.ajaxRequestsGetSuccess)
     };
 
-    public static blog = {
+    public static [Schema.ajaxRequestsGetError] = {
+        ...FSAction.ajaxTypes(Schema.ajaxRequestsGetError)
+    };
 
-        [Schema.blog.showAll]: {
-            ...FSAction.ajaxTypes(Schema.blog.moduleId, Schema.blog.showAll)
-        },
+    public static [Schema.ajaxRequestsPostSuccess] = {
+        ...FSAction.ajaxTypes(Schema.ajaxRequestsPostSuccess)
+    };
 
-        [Schema.blog.getPost]: {
-            ...FSAction.ajaxTypes(Schema.blog.moduleId, Schema.blog.getPost),
-            INVALIDATE: `${Schema.blog.moduleId}.${Schema.blog.getPost}.INVALIDATE`
-        },
+    public static [Schema.ajaxRequestsPostError] = {
+        ...FSAction.ajaxTypes(Schema.ajaxRequestsPostError)
+    };
 
-        [Schema.blog.deletePost]: {
-            ...FSAction.ajaxTypes(Schema.blog.moduleId, Schema.blog.deletePost)
-        },
 
-        [Schema.blog.createNew]: {
-            ...FSAction.ajaxTypes(Schema.blog.moduleId, Schema.blog.createNew)
-        },
 
-        [Schema.blog.updatePost]: {
-            ...FSAction.ajaxTypes(Schema.blog.moduleId, Schema.blog.updatePost)
-        }
+    public static [Schema.blogShowAll] = {
+        ...FSAction.ajaxTypes(Schema.blogShowAll)
+    };
 
-    }
+    public static [Schema.blogGetPost] = {
+        ...FSAction.ajaxTypes(Schema.blogGetPost),
+        INVALIDATE: `${Schema.blogGetPost}/INVALIDATE`
+    };
+
+    public static [Schema.blogDeletePost] = {
+        ...FSAction.ajaxTypes(Schema.blogDeletePost)
+    };
+
+    public static [Schema.blogCreateNew] = {
+        ...FSAction.ajaxTypes(Schema.blogCreateNew)
+    };
+
+    public static [Schema.blogUpdatePost] = {
+        ...FSAction.ajaxTypes(Schema.blogUpdatePost)
+    };
+
 
 }
 

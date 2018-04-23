@@ -13,11 +13,11 @@ export class FSAction<T> implements Action {
         return Observable.of(FSAction.create(actionType, payload));
     }
 
-    public static ajaxTypes(moduleId:string, reduxStateKey:string) {
+    public static ajaxTypes(reduxStateKey:string) {
         return {
-            SEND: `${moduleId}.${reduxStateKey}.SEND`,
-            SUCCESS: `${moduleId}.${reduxStateKey}.SUCCESS`,
-            ERROR: `${moduleId}.${reduxStateKey}.ERROR`
+            SEND: `${reduxStateKey}/SEND`,
+            SUCCESS: `${reduxStateKey}/SUCCESS`,
+            ERROR: `${reduxStateKey}/ERROR`
         }
     }
 }

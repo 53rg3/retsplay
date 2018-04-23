@@ -16,10 +16,10 @@ export class ShowAllEar extends Reducer<HttpResponse<Person>> {
         .responseType(ResponseType.JSON));
     public readonly request = HttpRequestEAR.create(this, c => c
         .request(this.requestConfig)
-        .actionTypes(Act.blog.showAll));
+        .actionTypes(Act.blogShowAll));
 
     private constructor() {
-        super(HttpResponse.initial(), Schema.blog.showAll);
+        super(HttpResponse.initial(), Schema.blogShowAll);
     }
 
 

@@ -13,25 +13,25 @@ import {Reducer} from "../../../../lib/ear/Reducer";
 export class DeletePostEar extends Reducer<HttpResponse<BlogPost>> {
 
     public readonly request = new EAR(this, c => c
-        .setDispatchAction(Act.blog.deletePost.SEND)
-        .addReducer(Act.blog.deletePost.SEND, HttpResponse.loading)
-        .addReducer(Act.blog.deletePost.SUCCESS, HttpResponse.success)
-        .addReducer(Act.blog.deletePost.ERROR, HttpResponse.error)
+        .setDispatchAction(Act.blogDeletePost.SEND)
+        .addReducer(Act.blogDeletePost.SEND, HttpResponse.loading)
+        .addReducer(Act.blogDeletePost.SUCCESS, HttpResponse.success)
+        .addReducer(Act.blogDeletePost.ERROR, HttpResponse.error)
     );
 
     private constructor() {
-        super(HttpResponse.initial(), Schema.blog.deletePost);
+        super(HttpResponse.initial(), Schema.blogDeletePost);
 
         this.request.setEpic(EAR.createEpic(action => action
-            .ofType(Act.blog.deletePost.SEND)
+            .ofType(Act.blogDeletePost.SEND)
             .mergeMap((action: any) => {
                     const request = new HttpRequest(c => c
                         .method(Method.DELETE)
                         .url(Api.blog.DELETE_POST.replace(":id", action.payload))
                         .responseType(ResponseType.JSON));
                     return Observable.ajax(request)
-                        .map(response => FSAction.create(Act.blog.deletePost.SUCCESS, response))
-                        .catch(error => FSAction.asObservable(Act.blog.deletePost.ERROR, error))
+                        .map(response => FSAction.create(Act.blogDeletePost.SUCCESS, response))
+                        .catch(error => FSAction.asObservable(Act.blogDeletePost.ERROR, error))
                 }
             )));
     }

@@ -17,11 +17,11 @@ export class PostSuccessEar extends Reducer<HttpResponse<Person>> {
         .responseType(ResponseType.TEXT));
     public readonly request = HttpRequestEAR.create(this, c => c
         .request(this.httpRequest)
-        .actionTypes(Act.ajaxRequests.postSuccess)
+        .actionTypes(Act.ajaxRequestsPostSuccess)
         .debounce(250));
 
     private constructor() {
-        super(HttpResponse.initial(), Schema.ajaxRequests.postSuccess);
+        super(HttpResponse.initial(), Schema.ajaxRequestsPostSuccess);
     }
 
     private static _INST: PostSuccessEar;

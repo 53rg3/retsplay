@@ -16,11 +16,11 @@ export module SinglePost {
     DeletePostEar.INST;
 
     export class SinglePostProps {
-        [Schema.blog.getPost]: HttpResponse<BlogPost>;
+        [Schema.blogGetPost]: HttpResponse<BlogPost>;
         match: match<{id:string}>;
     }
-    const mapsStateToProps = ({getPost}:SinglePostProps) =>
-            ({getPost});
+    const mapsStateToProps = ({blogGetPost}:SinglePostProps) =>
+            ({blogGetPost});
     class State {
         redirectTo:string = null;
     }
@@ -42,7 +42,7 @@ export module SinglePost {
         render():any {
             return (
                 <div>
-                    {this.logic.renderResponse.from(this.props.getPost)}
+                    {this.logic.renderResponse.from(this.props.blogGetPost)}
                     {this.state.redirectTo ? <Redirect to={this.state.redirectTo}/> : ""}
                 </div>
             );

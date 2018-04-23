@@ -13,10 +13,10 @@ export module ShowAll {
     const ear = ShowAllEar.INST;
 
     class Props {
-        [Schema.blog.showAll]: HttpResponse<BlogPost[]>
+        [Schema.blogShowAll]: HttpResponse<BlogPost[]>
     }
-    const mapsStateToProps = ({showAll}:Props) =>
-            ({showAll});
+    const mapsStateToProps = ({blogShowAll}:Props) =>
+            ({blogShowAll});
 
     class Component extends React.Component<Props, NoState> {
 
@@ -29,7 +29,7 @@ export module ShowAll {
         render():any {
             return (
                 <div>
-                    {this.logic.renderResponse.from(this.props.showAll)}
+                    {this.logic.renderResponse.from(this.props.blogShowAll)}
                 </div>
             );
         }

@@ -1,4 +1,4 @@
-import {HttpResponseRenderer} from "../../../lib/helpers/ResponseRenderer";
+import {HttpResponseRenderer} from "../../../lib/helpers/HttpResponseRenderer";
 import {Html} from "../../../lib/helpers/Html";
 import React = require("react");
 import {BlogPost} from "../commons/models/BlogPost";

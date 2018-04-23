@@ -56,7 +56,9 @@ export class FormManager {
     public getValues():Object {
         let values:{[key:string]: any} = {};
         Object.keys(this.fields).forEach(key => {
-            values[key] = this.fields[key].value;
+            if(this.fields[key].value) {
+                values[key] = this.fields[key].value;
+            }
         });
         return values;
     }

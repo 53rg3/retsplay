@@ -13,17 +13,17 @@ import {Reducer} from "../../../../lib/ear/Reducer";
 export class UpdatePostEar extends Reducer<HttpResponse<BlogPost>> {
 
     public readonly request = new EAR(this, c => c
-        .setDispatchAction(Act.blog.updatePost.SEND)
-        .addReducer(Act.blog.updatePost.SEND, HttpResponse.loading)
-        .addReducer(Act.blog.updatePost.SUCCESS, HttpResponse.success)
-        .addReducer(Act.blog.updatePost.ERROR, HttpResponse.error)
+        .setDispatchAction(Act.blogUpdatePost.SEND)
+        .addReducer(Act.blogUpdatePost.SEND, HttpResponse.loading)
+        .addReducer(Act.blogUpdatePost.SUCCESS, HttpResponse.success)
+        .addReducer(Act.blogUpdatePost.ERROR, HttpResponse.error)
     );
 
     private constructor() {
-        super(HttpResponse.initial(), Schema.blog.updatePost);
+        super(HttpResponse.initial(), Schema.blogUpdatePost);
 
         this.request.setEpic(EAR.createEpic(action => action
-            .ofType(Act.blog.updatePost.SEND)
+            .ofType(Act.blogUpdatePost.SEND)
             .mergeMap((action: any) => {
                 const request = new HttpRequest(c => c
                     .method(Method.POST)
@@ -31,8 +31,8 @@ export class UpdatePostEar extends Reducer<HttpResponse<BlogPost>> {
                     .url(Api.blog.UPDATE_POST.replace(":id", action.payload.id))
                     .responseType(ResponseType.JSON));
                 return (Observable.ajax(request)
-                    .map(response => FSAction.create(Act.blog.updatePost.SUCCESS, response))
-                    .catch(error => FSAction.asObservable(Act.blog.updatePost.ERROR, error)))
+                    .map(response => FSAction.create(Act.blogUpdatePost.SUCCESS, response))
+                    .catch(error => FSAction.asObservable(Act.blogUpdatePost.ERROR, error)))
             })));
     }
 

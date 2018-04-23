@@ -14,21 +14,21 @@ import {FSAction} from "../../../../lib/ear/FSAction";
 export class GetPostEar extends Reducer<HttpResponse<BlogPost>> {
 
     public readonly request = new EAR(this, c => c
-        .setDispatchAction(Act.blog.getPost.SEND)
-        .addReducer(Act.blog.getPost.SEND, HttpResponse.loading)
-        .addReducer(Act.blog.getPost.SUCCESS, HttpResponse.success)
-        .addReducer(Act.blog.getPost.ERROR, HttpResponse.error)
+        .setDispatchAction(Act.blogGetPost.SEND)
+        .addReducer(Act.blogGetPost.SEND, HttpResponse.loading)
+        .addReducer(Act.blogGetPost.SUCCESS, HttpResponse.success)
+        .addReducer(Act.blogGetPost.ERROR, HttpResponse.error)
     );
 
     public readonly invalidate = new EAR(this, c=>c
-        .setDispatchAction(Act.blog.getPost.INVALIDATE)
-        .addReducer(Act.blog.getPost.INVALIDATE, HttpResponse.initial));
+        .setDispatchAction(Act.blogGetPost.INVALIDATE)
+        .addReducer(Act.blogGetPost.INVALIDATE, HttpResponse.initial));
 
     private constructor() {
-        super(HttpResponse.initial(), Schema.blog.getPost);
+        super(HttpResponse.initial(), Schema.blogGetPost);
 
         this.request.setEpic(EAR.createEpic(action => action
-            .ofType(Act.blog.getPost.SEND)
+            .ofType(Act.blogGetPost.SEND)
             .debounceTime(250)
             .mergeMap((action: any) => {
                     const request = new HttpRequest(c => c
@@ -36,8 +36,8 @@ export class GetPostEar extends Reducer<HttpResponse<BlogPost>> {
                         .url(Api.blog.GET_SINGLE_POST.replace(":id", action.payload))
                         .responseType(ResponseType.JSON));
                     return Observable.ajax(request)
-                        .map(response => FSAction.create(Act.blog.getPost.SUCCESS, response))
-                        .catch(error => FSAction.asObservable(Act.blog.getPost.ERROR, error))
+                        .map(response => FSAction.create(Act.blogGetPost.SUCCESS, response))
+                        .catch(error => FSAction.asObservable(Act.blogGetPost.ERROR, error))
                 }
             )));
     }

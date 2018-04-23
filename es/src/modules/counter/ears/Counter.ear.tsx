@@ -17,7 +17,7 @@ export class CounterEAR extends Reducer<CounterModel> {
         .addReducer(Act.counter.DECREMENT, CounterModel.decrease));
 
     private constructor() {
-        super(CounterModel.initial(), Schema.counter.state);
+        super(CounterModel.initial(), Schema.counterModel);
 
         this.increase.setEpic(EAR.createEpic(action => action
             .ofType(Act.counter.ASYNC_INCREMENT)

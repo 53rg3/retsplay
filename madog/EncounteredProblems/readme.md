@@ -20,5 +20,9 @@ Exclude `app.js` & `app.map.js` in /public in Project Settings. These files simp
 Add `addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.11")` to `/project/plugins.sbt`
 * **RxJS says: 'Promise' only refers to a type, but is being used as a value here.**<br>
 See [ here](https://stackoverflow.com/a/43962119/4179212). 
+* **'render' implicitly has return type 'any'**<br>
+`'render' implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.`. Set the return type of the `render` to `any`, i.e. `render(): any { /* ... */}`
+* **Failed prop type: Invalid prop `value` supplied to `Input`**<br>
+You probably forget to create the FormManager. It sets the `name` property of the formFields according to their key names.
 
 

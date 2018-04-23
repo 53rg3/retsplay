@@ -16,10 +16,10 @@ export class CreateNewEar extends Reducer<HttpResponse<BlogPost>> {
         .responseType(ResponseType.JSON));
     public readonly request = HttpRequestEAR.create(this, c => c
         .request(this.requestConfig)
-        .actionTypes(Act.blog.createNew));
+        .actionTypes(Act.blogCreateNew));
 
     private constructor() {
-        super(HttpResponse.initial(), Schema.blog.createNew);
+        super(HttpResponse.initial(), Schema.blogCreateNew);
     }
 
 

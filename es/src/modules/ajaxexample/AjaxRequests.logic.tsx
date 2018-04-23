@@ -2,7 +2,7 @@ import * as React from "react";
 import {HttpResponse} from "../../lib/ajax/HttpResponse";
 import {Person} from "./models/Person";
 import {Body} from "../layout/commons/Body";
-import {HttpResponseRenderer} from "../../lib/helpers/ResponseRenderer";
+import {HttpResponseRenderer} from "../../lib/helpers/HttpResponseRenderer";
 import {Html} from "../../lib/helpers/Html";
 
 export class AjaxRequestsLogic {

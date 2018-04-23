@@ -1,11 +1,13 @@
 import TextField from "material-ui-next/es/TextField";
 import * as React from "react";
-import {Field, FieldProps, FormProps} from "react-final-form";
+import {Field, FieldProps} from "react-final-form";
 import Radio from "material-ui-next/es/Radio";
 import Checkbox from "material-ui-next/es/Checkbox";
 import {FieldMeta} from "./FieldMeta";
 import Switch from "material-ui-next/es/Switch";
-import {InputLabel, ListItem, MenuItem} from "material-ui-next";
+import MenuItem from "material-ui-next/Menu/MenuItem";
+import ListItem from "material-ui-next/List/ListItem";
+import InputLabel from "material-ui-next/Input/InputLabel";
 import Select from "material-ui-next/es/Select";
 import Icon from "material-ui-next/es/Icon";
 import {FormField} from "./FormField";

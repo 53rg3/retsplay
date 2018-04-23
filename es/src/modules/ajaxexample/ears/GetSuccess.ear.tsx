@@ -17,11 +17,11 @@ export class GetSuccessEar extends Reducer<HttpResponse<Person>> {
         .responseType(ResponseType.JSON));
     public readonly request = HttpRequestEAR.create(this, c => c
         .request(this.requestConfig)
-        .actionTypes(Act.ajaxRequests.getSuccess)
+        .actionTypes(Act.ajaxRequestsGetSuccess)
         .debounce(250));
 
     private constructor() {
-        super(HttpResponse.initial(), Schema.ajaxRequests.getSuccess);
+        super(HttpResponse.initial(), Schema.ajaxRequestsGetSuccess);
     }
 
 

@@ -59,6 +59,14 @@ public class s00_EncounteredProblems extends Output {
         list.entry("RxJS says: 'Promise' only refers to a type, but is being used as a value here.", "" +
                 "See "+Ref.externalURL("https://stackoverflow.com/a/43962119/4179212", " here")+". ");
 
+        list.entry("'render' implicitly has return type 'any'", "" +
+                "`'render' implicitly has return type 'any' because it does not have a return type annotation and " +
+                "is referenced directly or indirectly in one of its return expressions.`. Set the return type of the `render` " +
+                "to `any`, i.e. `render(): any { /* ... */}`");
+
+        list.entry("Failed prop type: Invalid prop `value` supplied to `Input`", "" +
+                "You probably forget to create the FormManager. It sets the `name` property of the formFields according to their key names.");
+
         Print.wrapped(list.getAsMarkdown());
 
     }

@@ -17,8 +17,6 @@ export class FormField<T> {
             case String:
             case Number:
             case Boolean:
-                defaultValue = undefined;
-                break;
             case Array:
                 defaultValue = undefined;
                 break;
@@ -46,9 +44,9 @@ export class FormField<T> {
 
 class FormFieldData {
     readonly validations: Validation[];
-    readonly value: string | number | Array<string>;
+    readonly value: string | number | Array<string> | boolean;
 
-    constructor(validations: Validation[], value: string | number | Array<string>) {
+    constructor(validations: Validation[], value: string | number | Array<string> | boolean) {
         this.validations = validations;
         this.value = value;
     }
@@ -57,14 +55,14 @@ class FormFieldData {
 export class FormFieldConfig {
 
     private _validations: Validation[] = [];
-    private _value: string | number | Array<string>;
+    private _value: string | number | Array<string> | boolean;
 
     public validation(validation: (value: any) => boolean, errorMessage: string) {
         this._validations.push(new Validation(validation, errorMessage));
         return this;
     }
 
-    public value(value: string | number | Array<string>) {
+    public value(value: string | number | Array<string> | boolean) {
         this._value = value;
         return this;
     }

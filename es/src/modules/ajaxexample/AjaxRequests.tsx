@@ -30,13 +30,13 @@ export module AjaxRequests {
 
     class Props {
         classes?: any;
-        [Schema.ajaxRequests.getSuccess]: HttpResponse<Person>;
-        [Schema.ajaxRequests.getError]: HttpResponse<Person>;
-        [Schema.ajaxRequests.postSuccess]: HttpResponse<Person>;
-        [Schema.ajaxRequests.postError]: HttpResponse<Person>;
+        [Schema.ajaxRequestsGetSuccess]: HttpResponse<Person>;
+        [Schema.ajaxRequestsGetError]: HttpResponse<Person>;
+        [Schema.ajaxRequestsPostSuccess]: HttpResponse<Person>;
+        [Schema.ajaxRequestsPostError]: HttpResponse<Person>;
     }
-    const mapsStateToProps = ({getError,getSuccess,postError,postSuccess}:Props) =>
-        ({getError,getSuccess,postError,postSuccess});
+    const mapsStateToProps = ({ajaxRequestsGetError,ajaxRequestsGetSuccess,ajaxRequestsPostError,ajaxRequestsPostSuccess}:Props) =>
+        ({ajaxRequestsGetError,ajaxRequestsGetSuccess,ajaxRequestsPostError,ajaxRequestsPostSuccess});
 
     class Component extends React.Component<Props, State> {
 
@@ -69,7 +69,7 @@ export module AjaxRequests {
                                 </Button>
                                 <br/>
                                 <br/>
-                                {this.props.getSuccess.stage}<br/>
+                                {this.props.ajaxRequestsGetSuccess.stage}<br/>
                             </Grid>
 
                             <Grid item xs={3}>
@@ -82,7 +82,7 @@ export module AjaxRequests {
                                 </Button>
                                 <br/>
                                 <br/>
-                                {this.props.getError.stage}
+                                {this.props.ajaxRequestsGetError.stage}
                             </Grid>
 
                             <Grid item xs={3}>
@@ -94,7 +94,7 @@ export module AjaxRequests {
                                 </Button>
                                 <br/>
                                 <br/>
-                                {this.props.postSuccess.stage}
+                                {this.props.ajaxRequestsPostSuccess.stage}
                             </Grid>
 
                             <Grid item xs={3}>
@@ -106,7 +106,7 @@ export module AjaxRequests {
                                 </Button>
                                 <br/>
                                 <br/>
-                                {this.props.postError.stage}
+                                {this.props.ajaxRequestsPostError.stage}
                             </Grid>
                         </Grid>
                     </div>

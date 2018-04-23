@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Route} from "react-router";
+import {Route, Switch} from "react-router";
 import Home from "../modules/home/Home";
 import {LayoutRoot} from "../modules/layout/LayoutRoot";
 import CssBaseline from "material-ui-next/es/CssBaseline";
@@ -10,7 +10,7 @@ import {AjaxRequests} from "../modules/ajaxexample/AjaxRequests";
 import {Editor} from "../modules/blog/editor/Editor";
 import {ShowAll} from "../modules/blog/showAll/ShowAll";
 import {SinglePost} from "../modules/blog/singlePost/SinglePost";
-
+import {NotFound} from "../modules/layout/notfound/NotFound";
 
 
 export class Routes {
@@ -41,18 +41,21 @@ export class Router extends React.Component<NoProps, NoState> {
     render() {
         return (
             <div>
-                <CssBaseline />
+                <CssBaseline/>
                 <LayoutRoot>
-                    <Route exact path={Routes.DASHBOARD} component={Home}/>
+                    <Switch>
+                        <Route exact path={Routes.DASHBOARD} component={Home}/>
 
-                    <Route exact path={Routes.blog.SHOW_ALL} component={ShowAll.component}/>
-                    <Route exact path={Routes.blog.CREATE_NEW} component={Editor.component}/>
-                    <Route exact path={Routes.blog.EDIT} component={Editor.component}/>
-                    <Route exact path={Routes.blog.GET_POST} component={SinglePost.component}/>
+                        <Route exact path={Routes.blog.SHOW_ALL} component={ShowAll.component}/>
+                        <Route exact path={Routes.blog.CREATE_NEW} component={Editor.component}/>
+                        <Route exact path={Routes.blog.EDIT} component={Editor.component}/>
+                        <Route exact path={Routes.blog.GET_POST} component={SinglePost.component}/>
 
-                    <Route exact path={Routes.counter} component={Counter.component}/>
-                    <Route exact path={Routes.ajaxRequests} component={AjaxRequests.component}/>
-                    <Route exact path={Routes.formExample} component={FormExample}/>
+                        <Route exact path={Routes.counter} component={Counter.component}/>
+                        <Route exact path={Routes.ajaxRequests} component={AjaxRequests.component}/>
+                        <Route exact path={Routes.formExample} component={FormExample}/>
+                        <Route component={NotFound.component}/>
+                    </Switch>
                 </LayoutRoot>
             </div>
         );

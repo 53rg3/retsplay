@@ -29,11 +29,11 @@ export module Editor {
     class Props {
         classes?: any;
         match: match<{id:string}>;
-        [Schema.blog.createNew]: HttpResponse<BlogPost>;
-        [Schema.blog.getPost]: HttpResponse<BlogPost>;
+        [Schema.blogCreateNew]: HttpResponse<BlogPost>;
+        [Schema.blogGetPost]: HttpResponse<BlogPost>;
     }
-    const mapsStateToProps = ({createNew,getPost}:Props) =>
-        ({createNew,getPost});
+    const mapsStateToProps = ({blogCreateNew,blogGetPost}:Props) =>
+        ({blogCreateNew,blogGetPost});
 
     class State {
         redirectTo:string = null;
@@ -65,7 +65,7 @@ export module Editor {
                     <Body>
                         <Form onSubmit={this.id ? this.logic.updatePost.bind(this.logic) : this.logic.createNewPost.bind(this.logic)}
                               validate={this.formManager.validate.bind(this.formManager)}
-                              initialValues={this.props.getPost.stage == HttpRequestStage.SUCCESS ? this.props.getPost.body : {}}
+                              initialValues={this.props.blogGetPost.stage == HttpRequestStage.SUCCESS ? this.props.blogGetPost.body : {}}
                               render={(formProps) => (
                             <form onSubmit={formProps.handleSubmit}>
 
@@ -119,7 +119,7 @@ export module Editor {
                                             disabled={formProps.submitting}>
                                         {this.id ? "Update Post" : "Create New Post"}
                                     </Button>
-                                    {this.logic.renderResponse.from(this.props.createNew)}
+                                    {this.logic.renderResponse.from(this.props.blogCreateNew)}
                                 </div>
                             </form>
                               )}/>

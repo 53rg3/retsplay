@@ -38,6 +38,7 @@ class FormExampleComponent extends React.Component<Props, State> {
         this.state = new State();
         this.formManager = new FormManager(this, formExampleFields);
         this.logic = new FormExampleLogic(this, this.formManager);
+        console.log(this.formManager.getValues());
     }
 
 

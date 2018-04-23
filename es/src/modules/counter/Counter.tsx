@@ -29,7 +29,7 @@ export module Counter {
     }
 
     class Props {
-        [Schema.counter.state]:CounterModel;
+        [Schema.counterModel]:CounterModel;
     }
 
     class Component extends React.Component<Props, State> {

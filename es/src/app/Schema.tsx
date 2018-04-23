@@ -1,25 +1,18 @@
-export module Schema {
+export enum Schema {
 
-    export enum counter {
-        moduleId = "counter",
-        state = "counterModel"
-    }
+    counterModel = "counterModel",
 
-    export enum ajaxRequests {
-        moduleId = "ajaxRequests",
-        getSuccess = "getSuccess",
-        getError = "getError",
-        postSuccess = "postSuccess",
-        postError = "postError"
-    }
 
-    export enum blog {
-        moduleId = "blog",
-        showAll = "showAll",
-        getPost = "getPost",
-        deletePost = "deletePost",
-        createNew = "createNew",
-        updatePost = "updatePost"
-    }
+    ajaxRequestsGetSuccess = "ajaxRequestsGetSuccess",
+    ajaxRequestsGetError = "ajaxRequestsGetError",
+    ajaxRequestsPostSuccess = "ajaxRequestsPostSuccess",
+    ajaxRequestsPostError = "ajaxRequestsPostError",
+
+
+    blogShowAll = "blogShowAll",
+    blogGetPost = "blogGetPost",
+    blogDeletePost = "blogDeletePost",
+    blogCreateNew = "blogCreateNew",
+    blogUpdatePost = "blogUpdatePost"
 
 }
