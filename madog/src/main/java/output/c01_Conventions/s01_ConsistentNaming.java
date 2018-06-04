@@ -12,7 +12,7 @@ public class s01_ConsistentNaming extends Output {
     @Override
     public void addMarkDownAsCode() {
 
-        Print.h1("Consistent Naming");
+        Print.h2("Consistent Naming");
 
         Print.wrapped("" +
                 "All EARs, Schema entries, API Endpoints, ActionTypes, Controllers, Play Routes, Module Files Names " +
@@ -39,13 +39,15 @@ public class s01_ConsistentNaming extends Output {
                 "- In `Api.tsx`:\n" +
                 "\n" +
                 "```\n" +
-                "public static importSources = {showAll: Api.modules.importSources+\"/show_all\",// ... other ... } \n" +
+                "public static importSources = {showAll: Api.modules.importSources+\"/show_all\",\n" +
+                "// ... other ... } \n" +
                 "```\n" +
                 "\n" +
                 "- In `Router.tsx`:\n" +
                 "```\n" +
                 "public static importSources = {\n" +
-                "         SHOW_ALL:\"/import-sources\",// ... other ... };\n" +
+                "         SHOW_ALL:\"/import-sources\",\n" +
+                "// ... other ... };\n" +
                 "```\n" +
                 "\n" +
                 "- In DAO `ImportSourcesDAO.java`:\n" +
@@ -82,10 +84,11 @@ public class s01_ConsistentNaming extends Output {
                 "}\n" +
                 "```\n" +
                 "\n" +
-                "- In `modules/import_sources/ShowAll.ear.tsx` (again, we're using only the purpose of the view in combination with a designation of the type of the file (i.e. `.ear`)): \n" +
+                "- In `modules/import_sources/ShowAll.ear.tsx` (again, we're using only the purpose of the view in combination with a designation of the type of the file (i.e. `.ear`)):\n" +
+                "**We can keep the actual file name shorter, like `ShowAllEar`.**" +
                 "\n" +
                 "```\n" +
-                "export class ImportSourcesShowAllEarextends Reducer<HttpResponse<ImportSource[]>> {\n" +
+                "export class ImportSourcesShowAllEar extends Reducer<HttpResponse<ImportSource[]>> {\n" +
                 "      // ... code of the EAR\n" +
                 "}\n" +
                 "```" +

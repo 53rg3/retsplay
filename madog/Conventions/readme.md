@@ -1,6 +1,6 @@
 ## Table of Contents
 [1. Conventions](#conventions)<br>
-[2. Consistent Naming](#consistent-naming)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Consistent Naming](#consistent-naming)<br>
 # Conventions
 
 * **Structure**<br>
@@ -12,7 +12,7 @@ Files in module folders should be contain the module name and the aspect they pr
 * Redux state reducer methods belong in the model class, not into EARs.
 
 
-# Consistent Naming
+## Consistent Naming
 
 All EARs, Schema entries, API Endpoints, ActionTypes, Controllers, Play Routes, Module Files Names should comply to the following pattern: `[Module]*[Name of the VIEW]`. **Capitalization rules should follow the conventions of the retrospective file.** I.e. if we have a view which **shows all** entries of a model called "ImportSource", then we should use the following naming: 
 
@@ -34,13 +34,15 @@ public static [Schema.importSourcesShowAll] = {
 - In `Api.tsx`:
 
 ```
-public static importSources = {showAll: Api.modules.importSources+"/show_all",// ... other ... } 
+public static importSources = {showAll: Api.modules.importSources+"/show_all",
+// ... other ... } 
 ```
 
 - In `Router.tsx`:
 ```
 public static importSources = {
-         SHOW_ALL:"/import-sources",// ... other ... };
+         SHOW_ALL:"/import-sources",
+// ... other ... };
 ```
 
 - In DAO `ImportSourcesDAO.java`:
@@ -77,10 +79,10 @@ export class ImportSourcesShowAllextends React.Component<Props, NoState> {
 }
 ```
 
-- In `modules/import_sources/ShowAll.ear.tsx` (again, we're using only the purpose of the view in combination with a designation of the type of the file (i.e. `.ear`)): 
-
+- In `modules/import_sources/ShowAll.ear.tsx` (again, we're using only the purpose of the view in combination with a designation of the type of the file (i.e. `.ear`)):
+**We can keep the actual file name shorter, like `ShowAllEar`.**
 ```
-export class ImportSourcesShowAllEarextends Reducer<HttpResponse<ImportSource[]>> {
+export class ImportSourcesShowAllEar extends Reducer<HttpResponse<ImportSource[]>> {
       // ... code of the EAR
 }
 ```
