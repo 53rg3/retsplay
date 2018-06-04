@@ -4,6 +4,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.2 URL Query Parameters](#url-query-parameters)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.3 Dealing With Dates](#dealing-with-dates)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.4 Repeat Actions](#repeat-actions)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.5 404 - Not Found Page](#404---not-found-page)<br>
 # Cookbooks
 ## Copy retsplay into other project
 
@@ -60,4 +61,45 @@ componentWillUnmount() {
 
 
 :heavy_exclamation_mark:  IntelliJ adds `import {clearInterval}from "timers";` automatically. You need to delete this for whatever reason.
+
+## 404 - Not Found Page
+
+In Play routes, place as **LAST** route:
+
+
+```TYPESCRIPT
+GET /*path                                  controllers.PNA.unknownRoute(path) 
+```
+
+
+In a controller:
+
+
+```TYPESCRIPT
+public Result unknownRoute(String path) {
+     return notFound("Couldn't find route"); 
+}
+```
+
+
+In React Router add a route to desired 404 component:
+
+
+```TYPESCRIPT
+<Route component={NotFound.component}/>
+```
+
+
+Add a component like:
+
+
+```TYPESCRIPT
+class NotFound extends React.Component<NoProps, NoState> {
+    render() {
+        return (
+            <div>404 - Route not found</div>
+        );
+    }
+}
+```
 

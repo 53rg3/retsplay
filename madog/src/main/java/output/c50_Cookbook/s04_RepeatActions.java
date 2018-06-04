@@ -6,7 +6,7 @@ import madog.core.Ref;
 import madog.markdown.Icon;
 
 
-public class s03_RepeatActions extends Output {
+public class s04_RepeatActions extends Output {
 
     @Override
     public void addMarkDownAsCode() {

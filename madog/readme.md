@@ -23,6 +23,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[9.2 URL Query Parameters](/madog/Cookbook/readme.md#url-query-parameters)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[9.3 Dealing With Dates](/madog/Cookbook/readme.md#dealing-with-dates)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[9.4 Repeat Actions](/madog/Cookbook/readme.md#repeat-actions)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[9.5 404 - Not Found Page](/madog/Cookbook/readme.md#404---not-found-page)<br>
 [10. Bookmarks](/madog/Bookmarks/readme.md#bookmarks)<br>
 
  
