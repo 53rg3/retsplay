@@ -4,7 +4,7 @@ import madog.core.Output;
 import madog.core.Print;
 
 
-public class s00_CopyRetsplayIntoOtherProject extends Output {
+public class s01_CopyRetsplayIntoOtherProject extends Output {
 
     @Override
     public void addMarkDownAsCode() {

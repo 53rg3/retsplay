@@ -24,5 +24,7 @@ See [ here](https://stackoverflow.com/a/43962119/4179212).
 `'render' implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.`. Set the return type of the `render` to `any`, i.e. `render(): any { /* ... */}`
 * **Failed prop type: Invalid prop `value` supplied to `Input`**<br>
 You probably forget to create the FormManager. It sets the `name` property of the formFields according to their key names.
+* **Form field loses focus and needs second click to enter**<br>
+Don't use prop `<Field component={props => ...} />`. Use `<Field>{props => ...}</Field>` instead.
 
 

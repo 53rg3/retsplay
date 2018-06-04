@@ -1,6 +1,9 @@
 ## Table of Contents
 [1. Cookbooks](#cookbooks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Copy retsplay into other project](#copy-retsplay-into-other-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.2 URL Query Parameters](#url-query-parameters)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.3 Dealing With Dates](#dealing-with-dates)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.4 Repeat Actions](#repeat-actions)<br>
 # Cookbooks
 ## Copy retsplay into other project
 
@@ -17,4 +20,44 @@
 11. Run `webpack --watch` and remove leftover fuckups
 
 Start Play if IntelliJ shows linting errors. Restart IntelliJ if it complains that it doesn't recognize node_modules.
+
+## URL Query Parameters
+
+Do `npm install query-string`. The URL parameters can be found in React Router connected component via:
+
+
+```TYPESCRIPT
+class Props {
+     location:Location
+}
+```
+
+
+See [https://www.npmjs.com/package/query-string](https://www.npmjs.com/package/query-string) for usage.
+
+## Dealing With Dates
+
+Do `npm install date-fns@next`. See [https://date-fns.org/](https://date-fns.org/). Example:
+
+
+```TYPESCRIPT
+import {format, addDays, subDays, subMilliseconds, subMinutes, endOfDay} from 'date-fns'// ...// Add 1 day to todayformat(addDays(new Date(), 1), "YYYY-MM-dd");// Subtract 7 days to todayformat(subDays(new Date(), 7), "YYYY-MM-dd");
+```
+
+## Repeat Actions
+
+Use `setInterval` somewhere and cancel the interval with `clearInterval`
+
+
+```TYPESCRIPT
+private interval = setInterval(()=>console.log("interval"), 1000);
+//...
+componentWillUnmount() {
+     clearInterval(this.interval);
+}
+
+```
+
+
+:heavy_exclamation_mark:  IntelliJ adds `import {clearInterval}from "timers";` automatically. You need to delete this for whatever reason.
 

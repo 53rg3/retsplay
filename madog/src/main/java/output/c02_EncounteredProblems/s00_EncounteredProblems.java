@@ -67,6 +67,11 @@ public class s00_EncounteredProblems extends Output {
         list.entry("Failed prop type: Invalid prop `value` supplied to `Input`", "" +
                 "You probably forget to create the FormManager. It sets the `name` property of the formFields according to their key names.");
 
+        list.entry("Form field loses focus and needs second click to enter", "" +
+                "Don't use prop `<Field component={props => ...} />`. Use `<Field>{props => ...}</Field>` instead.");
+
+
+
         Print.wrapped(list.getAsMarkdown());
 
     }
