@@ -2,7 +2,7 @@ import * as React from "react";
 import Drawer from "material-ui-next/es/Drawer";
 import {SidebarLink} from "./SidebarLink";
 import {Routes} from "../../../app/Router";
-import {MenuList} from "material-ui-next";
+import MenuList from "material-ui-next/Menu/MenuList";
 import {SidebarLinkGroup} from "./SidebarNestedLinks";
 import Divider from "material-ui-next/es/Divider";
 import {NoState} from "../../../lib/helpers/NoPropsNoState";

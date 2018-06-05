@@ -1,7 +1,12 @@
 import * as React from "react";
 import {Field, Form} from 'react-final-form'
 import Button from "material-ui-next/es/Button";
-import {FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, RadioGroup} from "material-ui-next";
+import FormControl from "material-ui-next/es/Form/FormControl";
+import FormControlLabel from "material-ui-next/es/Form/FormControlLabel";
+import FormGroup from "material-ui-next/es/Form/FormGroup";
+import FormHelperText from "material-ui-next/es/Form/FormHelperText";
+import FormLabel from "material-ui-next/es/Form/FormLabel";
+import RadioGroup from "material-ui-next/es/Radio/RadioGroup";
 import {MUI} from "../layout/css/MUI";
 import Divider from "material-ui-next/es/Divider";
 import {ModalStandard} from "../layout/commons/ModalStandard";

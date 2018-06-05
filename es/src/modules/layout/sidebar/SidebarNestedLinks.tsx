@@ -1,5 +1,6 @@
 import * as React from "react";
-import {ListItem, ListItemText} from 'material-ui-next/List';
+import ListItem from 'material-ui-next/List/ListItem';
+import ListItemText from 'material-ui-next/List/ListItemText';
 import Collapse from 'material-ui-next/transitions/Collapse';
 import Icon from "material-ui-next/es/Icon";
 import {Toggle} from "../../../lib/helpers/Toggle";
@@ -13,7 +14,7 @@ const styles = (theme: any) => ({
 });
 
 class Props {
-    icon?: string = "none"
+    icon?: string = "none";
     groupName: string;
     classes?: any;
 }

@@ -4,7 +4,7 @@ import {Body} from "../layout/commons/Body";
 import {decorate} from "../../lib/helpers/Decorator";
 import Button from "material-ui-next/es/Button";
 import {HttpResponse} from "../../lib/ajax/HttpResponse";
-import {Grid} from "material-ui-next/es";
+import Grid from "material-ui-next/es/Grid/Grid";
 import {Person} from "./models/Person";
 import {AjaxRequestsLogic} from "./AjaxRequests.logic";
 import {Schema} from "../../app/StateTree";
