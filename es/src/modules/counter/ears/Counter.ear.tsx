@@ -3,7 +3,7 @@ import {EAR} from "../../../lib/ear/EAR";
 import {FSAction} from "../../../lib/ear/FSAction";
 import {CounterModel} from "../models/CounterModel";
 import {Act} from "../../../app/ActionTypes";
-import {Schema} from "../../../app/Schema";
+import {Schema} from "../../../app/StateTree";
 
 export class CounterEAR extends Reducer<CounterModel> {
 

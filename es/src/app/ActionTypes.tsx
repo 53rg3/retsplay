@@ -1,5 +1,5 @@
 import {FSAction} from "../lib/ear/FSAction";
-import {Schema} from "./Schema";
+import {Schema} from "./StateTree";
 
 
 export class Act {

@@ -16,7 +16,7 @@
 6. Copy and replace `/conf/application.conf`
 7. Run `npm install` in `/es`
 8. Delete `/ajaxexample`, `/blog`, `/counter`, `/formexample` in `/es/src/modules` 
-9. Delete their entries in `ActionTypes.tsx`, `Api.tsx`, `Schema.tsx` & `Router.tsx` (also in Routes object) in `/es/src/app` 
+9. Delete their entries in `ActionTypes.tsx`, `Api.tsx`, `StateTree.tsx` & `Router.tsx` (also in Routes object) in `/es/src/app` 
 10. Delete their sidebar links in `/es/src/modules/layout/sidebar/Sidebar.tsx` 
 11. Run `webpack --watch` and remove leftover fuckups
 

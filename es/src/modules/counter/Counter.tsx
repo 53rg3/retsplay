@@ -14,7 +14,7 @@ import {FieldMeta} from "../../lib/form/FieldMeta";
 import {Heading} from "../layout/commons/Heading";
 import {Body} from "../layout/commons/Body";
 import {CounterModel} from "./models/CounterModel";
-import {Schema} from "../../app/Schema";
+import {Schema} from "../../app/StateTree";
 import {CounterEAR} from "./ears/Counter.ear";
 
 export module Counter {

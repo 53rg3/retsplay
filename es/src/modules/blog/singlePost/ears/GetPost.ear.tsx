@@ -3,7 +3,7 @@ import {HttpResponse} from "../../../../lib/ajax/HttpResponse";
 import {BlogPost} from "../../commons/models/BlogPost";
 import {EAR} from "../../../../lib/ear/EAR";
 import {Act} from "../../../../app/ActionTypes";
-import {Schema} from "../../../../app/Schema";
+import {Schema} from "../../../../app/StateTree";
 import {HttpRequest} from "../../../../lib/ajax/HttpRequest";
 import {Method, ResponseType} from "../../../../lib/ajax/HttpMeta";
 import {Api} from "../../../../app/Api";

@@ -6,7 +6,7 @@ import {Act} from "../../../app/ActionTypes";
 import {HttpRequest} from "../../../lib/ajax/HttpRequest";
 import {Method, ResponseType} from "../../../lib/ajax/HttpMeta";
 import {HttpRequestEAR} from "../../../lib/ajax/HttpRequestEAR";
-import {Schema} from "../../../app/Schema";
+import {Schema} from "../../../app/StateTree";
 
 
 export class PostSuccessEar extends Reducer<HttpResponse<Person>> {

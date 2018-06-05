@@ -9,7 +9,7 @@ import {Act} from "../../../app/ActionTypes";
 import {HttpRequest} from "../../../lib/ajax/HttpRequest";
 import {Observable} from "rxjs/Observable";
 import {Method, ResponseType} from "../../../lib/ajax/HttpMeta";
-import {Schema} from "../../../app/Schema";
+import {Schema} from "../../../app/StateTree";
 
 
 export class GetErrorEar extends Reducer<HttpResponse<Person>> {

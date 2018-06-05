@@ -1,4 +1,4 @@
-import {Schema} from "../../../app/Schema";
+import {Schema} from "../../../app/StateTree";
 import {HttpResponse} from "../../../lib/ajax/HttpResponse";
 import {Act} from "../../../app/ActionTypes";
 import {HttpRequestEAR} from "../../../lib/ajax/HttpRequestEAR";

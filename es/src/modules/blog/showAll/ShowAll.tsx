@@ -2,7 +2,7 @@ import * as React from "react";
 import {NoProps, NoState} from "../../../lib/helpers/NoPropsNoState";
 import {decorate} from "../../../lib/helpers/Decorator";
 import {ShowAllEar} from "./ShowAll.ear";
-import {Schema} from "../../../app/Schema";
+import {Schema} from "../../../app/StateTree";
 import {HttpResponse} from "../../../lib/ajax/HttpResponse";
 import {ShowAllLogic} from "./ShowAll.logic";
 import {BlogPost} from "../commons/models/BlogPost";

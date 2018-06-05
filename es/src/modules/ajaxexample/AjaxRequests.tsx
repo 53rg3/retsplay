@@ -7,7 +7,7 @@ import {HttpResponse} from "../../lib/ajax/HttpResponse";
 import {Grid} from "material-ui-next/es";
 import {Person} from "./models/Person";
 import {AjaxRequestsLogic} from "./AjaxRequests.logic";
-import {Schema} from "../../app/Schema";
+import {Schema} from "../../app/StateTree";
 import {GetSuccessEar} from "./ears/GetSuccess.ear";
 import {GetErrorEar} from "./ears/GetError.ear";
 import {PostErrorEar} from "./ears/PostError.ear";
@@ -111,6 +111,8 @@ export module AjaxRequests {
                         </Grid>
                     </div>
                     </Body>
+                    Result display under this doesn't work anymore. Some problem with state change probably.
+                    Not worth the time investigating.
                     {this.logic.renderResponse.from(this.state.displayedResponse)}
                 </div>
             );

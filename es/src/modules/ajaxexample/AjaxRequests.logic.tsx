@@ -25,6 +25,7 @@ export class AjaxRequestsLogic {
                 {JSON.stringify(response.body, null, 4)}
             </pre>
         </Body>);
+
     public renderResponse = new HttpResponseRenderer<Person>(c => c
         .initial(() => Html.emptySpan())
         .loading(() => Html.emptySpan())

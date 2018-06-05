@@ -14,7 +14,7 @@ import {EditorLogic} from "./Editor.logic";
 import {CreateNewEar} from "./ears/CreateNew.ear";
 import {HttpResponse} from "../../../lib/ajax/HttpResponse";
 import {BlogPost} from "../commons/models/BlogPost";
-import {Schema} from "../../../app/Schema";
+import {Schema} from "../../../app/StateTree";
 import {UpdatePostEar} from "./ears/UpdatePost.ear";
 import {GetPostEar} from "../singlePost/ears/GetPost.ear";
 import {HttpRequestStage} from "../../../lib/ajax/HttpRequest";

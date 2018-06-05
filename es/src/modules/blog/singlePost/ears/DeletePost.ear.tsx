@@ -6,7 +6,7 @@ import {EAR} from "../../../../lib/ear/EAR";
 import {Method, ResponseType} from "../../../../lib/ajax/HttpMeta";
 import {Api} from "../../../../app/Api";
 import {HttpRequest} from "../../../../lib/ajax/HttpRequest";
-import {Schema} from "../../../../app/Schema";
+import {Schema} from "../../../../app/StateTree";
 import {HttpResponse} from "../../../../lib/ajax/HttpResponse";
 import {Reducer} from "../../../../lib/ear/Reducer";
 

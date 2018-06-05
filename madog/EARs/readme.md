@@ -24,7 +24,7 @@ EARs combine Epics, Action creators and Reducers.
 
 ## How to create EARs
 
-General procedure: Create the entries in `Schema.tsx` (state key ids for Redux), then add the corresponding `ActionTypes.tsx`, if needed add URLs to `Api.tsx`. With these you can finally implement the EAR.
+General procedure: Create the entries in `StateTree.tsx` (state key ids for Redux), then add the corresponding `ActionTypes.tsx`, if needed add URLs to `Api.tsx`. With these you can finally implement the EAR.
 
 ### Generic EAR
 

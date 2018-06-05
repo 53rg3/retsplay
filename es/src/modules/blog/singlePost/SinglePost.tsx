@@ -3,7 +3,7 @@ import {decorate} from "../../../lib/helpers/Decorator";
 import {NoProps} from "../../../lib/helpers/NoPropsNoState";
 import {BlogPost} from "../commons/models/BlogPost";
 import {HttpResponse} from "../../../lib/ajax/HttpResponse";
-import {Schema} from "../../../app/Schema";
+import {Schema} from "../../../app/StateTree";
 import {match, Redirect} from "react-router";
 import {SinglePostLogic} from "./SinglePost.logic";
 import {GetPostEar} from "./ears/GetPost.ear";
